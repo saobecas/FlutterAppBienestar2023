@@ -5,16 +5,16 @@ import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../view_model/home_view_model.dart';
+import '../../view_model/home_view_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreenRegion extends StatefulWidget {
+  const HomeScreenRegion({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenRegion> createState() => _HomeScreenRegionState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenRegionState extends State<HomeScreenRegion> {
   HomeViewModel homeViewModel = HomeViewModel();
 
   @override
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         //automaticallyImplyLeading: false,
-        title: Text("Lista de usuarios"),
+        title: Text("Directorios Escolares"),
         centerTitle: true,
         backgroundColor: AppColors.grenSnackBar,
         actions: [
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Text(
-                "Obtener Lista De Todas Las Escuelas",
+                "Obtener Lista De Todas Las Regiones",
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Text(
-                "Agregar Una Escuela",
+                "Agregar Una Region",
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -101,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
                 title: Text(
-                  "Obtener Una Escuela",
+                  "Obtener Una Region",
                   style: TextStyle(
                     color: Colors.black,
                   ),
@@ -115,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             ListTile(
               title: Text(
-                "Actualizar Una Escuela",
+                "Actualizar Una Region",
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Text(
-                "Eliminar Una Escuela",
+                "Eliminar Una region",
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -145,29 +145,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Text(
-                "Obtener Todas Las escuelas De Una Misma Localidad",
+                "Obtener Todos Los Municipios De Una Region",
                 style: TextStyle(
                   color: Colors.black,
                 ),
               ),
               leading: Icon(
-                Icons.update,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            Divider(),
-            ListTile(
-              title: Text(
-                "Configuración",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.manage_accounts,
+                Icons.list_alt_outlined,
                 color: Colors.black,
               ),
               onTap: () {
@@ -185,9 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, value, _) {
             switch (value.userList.status!) {
               case Status.LOADING:
-                return Center(child: CircularProgressIndicator());
+                return CircularProgressIndicator();
               case Status.ERROR:
-                return Center(child: Text(value.userList.message.toString()));
+                return Text(value.userList.message.toString());
               case Status.COMPLETED:
                 return ListView.builder(
                   itemCount: value.userList.data!.users!.length,

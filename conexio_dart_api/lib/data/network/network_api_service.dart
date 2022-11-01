@@ -46,18 +46,19 @@ class NetworkApiService extends BaseApiService {
       case 200:
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
-      case 401:
-        throw BadRequestException(response.body.toString());
+      case 201:
       case 400:
-        throw InvalidInputException(response.body.toString());
+        throw BadRequestException(response.body.toString());
+      case 401:
+      case 403:
+        throw UnauthorisedException(response.body.toString());
+      case 404:
+        throw NoFoundException(response.body.toString());
       //case:500
       case 500:
         throw MessageApiResponseError(response.body.toString());
-      case 404:
-        throw UnauthorisedException(response.body.toString());
       default:
-        throw FechtDataException(
-            'ocurrió otro tipo de error al comunicarse con el servidor con código de estado${response.statusCode}');
+        throw FechtDataException(' con código de estado${response.statusCode}');
     }
   }
 }

@@ -5,19 +5,18 @@ class AppException implements Exception {
   AppException([this._message, this._prefix]);
 
   String toString() {
-    return '$_prefix$_message';
+    return '$_prefix $_message';
   }
 }
 
-//*! checar no comprueba la conexion a internet
 class FechtDataException extends AppException {
   FechtDataException([String? message])
-      : super(message, 'Otro Error durante la comunicacion');
+      : super(message, 'Error durante la comunicacion con el servidor :');
 }
 
 class BadRequestException extends AppException {
   BadRequestException([String? message])
-      : super(message, 'Solicitud no Invalidad');
+      : super(message, 'Solicitud no Invalidad : ');
 }
 
 class UnauthorisedException extends AppException {
@@ -25,11 +24,16 @@ class UnauthorisedException extends AppException {
       : super(message, 'Solicitud no autorizada');
 }
 
-class InvalidInputException extends AppException {
-  InvalidInputException([String? message]) : super(message, 'Entrada Inválida');
+class NoFoundException extends AppException {
+  NoFoundException([String? message])
+      : super(message, 'El Destino de La URL No Existe');
 }
+
+/*class InvalidInputException extends AppException {
+  InvalidInputException([String? message]) : super(message, 'Entrada Inválida');
+}*/
 
 class MessageApiResponseError extends AppException {
   MessageApiResponseError([String? message])
-      : super(message, 'Error del servidor');
+      : super(message, 'A Ocurrido Un Error En El Servidor');
 }

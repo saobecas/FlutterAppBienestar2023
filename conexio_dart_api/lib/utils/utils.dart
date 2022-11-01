@@ -15,6 +15,10 @@ class Utils {
     FocusScope.of(context).requestFocus(focusNode);
   }
 
+  static void fielFocusGeneral(BuildContext context, FocusNode focusNode) {
+    FocusScope.of(context).requestFocus(focusNode);
+  }
+
 //TODO: otras opciones de mostrar los errores
   static toastMessage(String message) {
     Fluttertoast.showToast(

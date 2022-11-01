@@ -125,6 +125,12 @@ class _LoginViewState extends State<LoginView> {
                   'email': _emailController.text.toString(),
                   'password': _passwordController.text.toString(),
                 };
+
+                /* Map data = {
+                  'email': 'yobany@gmail.com',
+                  'password': 'yobany123',
+                };
+*/
                 authViewModel.loginApi(data, context);
                 print("api pegar");
               }

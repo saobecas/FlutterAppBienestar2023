@@ -42,3 +42,16 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+//pruebas de la api
+ConexionApi/conexio_dart_api/lib/view/admin
+ConexionApi/conexio_dart_api/lib/view/escuela
+ConexionApi/conexio_dart_api/lib/view/localidad
+ConexionApi/conexio_dart_api/lib/view/municipio
+ConexionApi/conexio_dart_api/lib/view/region
+
+ConexionApi/conexio_dart_api/lib/view_model/admin
+ConexionApi/conexio_dart_api/lib/view_model/escuela
+ConexionApi/conexio_dart_api/lib/view_model/localidad
+ConexionApi/conexio_dart_api/lib/view_model/municipio
+ConexionApi/conexio_dart_api/lib/view_model/region

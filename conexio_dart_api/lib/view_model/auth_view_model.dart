@@ -1,5 +1,8 @@
+import 'package:conexio_dart_api/model/user_model.dart';
 import 'package:conexio_dart_api/repository/auth_repository.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
+import 'package:provider/provider.dart';
 import '/utils/utils.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -25,8 +28,14 @@ class AuthViewModel with ChangeNotifier {
 
   Future<void> loginApi(dynamic data, BuildContext context) async {
     setLoading(true);
+
     _myRepo.loginApi(data).then((value) {
       setLoading(false);
+
+      final userPreferences =
+          Provider.of<UserViewModel>(context, listen: false);
+      userPreferences.saveUser(UserModel(token: value['token'].toString()));
+
       Utils.flushBarErrorMessage('Inicio De Sesion Correcta', context);
       Navigator.pushNamed(context, RoutesName.home);
 

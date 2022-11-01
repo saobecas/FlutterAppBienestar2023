@@ -5,16 +5,16 @@ import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../view_model/home_view_model.dart';
+import '../../view_model/home_view_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreenSchool extends StatefulWidget {
+  const HomeScreenSchool({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenSchool> createState() => _HomeScreenSchoolState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenSchoolState extends State<HomeScreenSchool> {
   HomeViewModel homeViewModel = HomeViewModel();
 
   @override
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         //automaticallyImplyLeading: false,
-        title: Text("Lista de usuarios"),
+        title: Text("Directorios Escolares"),
         centerTitle: true,
         backgroundColor: AppColors.grenSnackBar,
         actions: [
@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               leading: Icon(
-                Icons.update,
+                Icons.list_alt_outlined,
                 color: Colors.black,
               ),
               onTap: () {
@@ -185,9 +185,9 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, value, _) {
             switch (value.userList.status!) {
               case Status.LOADING:
-                return Center(child: CircularProgressIndicator());
+                return CircularProgressIndicator();
               case Status.ERROR:
-                return Center(child: Text(value.userList.message.toString()));
+                return Text(value.userList.message.toString());
               case Status.COMPLETED:
                 return ListView.builder(
                   itemCount: value.userList.data!.users!.length,

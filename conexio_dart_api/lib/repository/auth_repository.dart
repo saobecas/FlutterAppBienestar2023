@@ -12,9 +12,8 @@ class AuthRepository {
           await _apiServices.getPostApiResponse(AppUrl.loginEndPoint, data);
       return response;
     } catch (e) {
-      //rethrow;
-      throw e;
-      //!checar esta excepcion ya que no deja ejecutar el error y mostrar en pantalla
+      rethrow;
+      //throw e;
     }
   }
 

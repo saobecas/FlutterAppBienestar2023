@@ -5,16 +5,16 @@ import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../view_model/home_view_model.dart';
+import '../../view_model/home_view_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreenAdmin extends StatefulWidget {
+  const HomeScreenAdmin({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreenAdmin> createState() => _HomeScreenAdminState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenAdminState extends State<HomeScreenAdmin> {
   HomeViewModel homeViewModel = HomeViewModel();
 
   @override
@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         //automaticallyImplyLeading: false,
-        title: Text("Lista de usuarios"),
+        title: Text("Directorios Escolares"),
         centerTitle: true,
         backgroundColor: AppColors.grenSnackBar,
         actions: [
@@ -58,26 +58,26 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Yobany"),
-              accountEmail: Text("yobany@gmail.com"),
+              accountName: Text("Kevin Uziel Hernandez Morales"),
+              accountEmail: Text("KevinAdmin@gmail.com"),
               decoration: BoxDecoration(color: Colors.green[900]),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Color.fromARGB(255, 166, 212, 168),
                 child: Text(
-                  "Y",
+                  "K",
                   style: TextStyle(fontSize: 40.0),
                 ),
               ),
             ),
             ListTile(
               title: Text(
-                "Obtener Lista De Todas Las Escuelas",
+                "Region",
                 style: TextStyle(
                   color: Colors.black,
                 ),
               ),
               leading: Icon(
-                Icons.list,
+                Icons.holiday_village_rounded,
                 color: Colors.black,
               ),
               onTap: () {
@@ -86,13 +86,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
               title: Text(
-                "Agregar Una Escuela",
+                "Municipio",
                 style: TextStyle(
                   color: Colors.black,
                 ),
               ),
               leading: Icon(
-                Icons.add,
+                Icons.account_balance_sharp,
                 color: Colors.black,
               ),
               onTap: () {
@@ -101,13 +101,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ListTile(
                 title: Text(
-                  "Obtener Una Escuela",
+                  "Localidad",
                   style: TextStyle(
                     color: Colors.black,
                   ),
                 ),
                 leading: Icon(
-                  Icons.list,
+                  Icons.home_filled,
                   color: Colors.black,
                 ),
                 onTap: () {
@@ -115,46 +115,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 }),
             ListTile(
               title: Text(
-                "Actualizar Una Escuela",
+                "Escuela",
                 style: TextStyle(
                   color: Colors.black,
                 ),
               ),
               leading: Icon(
-                Icons.update,
+                Icons.school_sharp,
                 color: Colors.black,
               ),
               onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              title: Text(
-                "Eliminar Una Escuela",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.delete,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              title: Text(
-                "Obtener Todas Las escuelas De Una Misma Localidad",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.update,
-                color: Colors.black,
-              ),
-              onTap: () {
+                Navigator.pushNamed(context, RoutesName.homeSchool);
                 Navigator.of(context).pop();
               },
             ),
@@ -185,9 +156,9 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context, value, _) {
             switch (value.userList.status!) {
               case Status.LOADING:
-                return Center(child: CircularProgressIndicator());
+                return CircularProgressIndicator();
               case Status.ERROR:
-                return Center(child: Text(value.userList.message.toString()));
+                return Text(value.userList.message.toString());
               case Status.COMPLETED:
                 return ListView.builder(
                   itemCount: value.userList.data!.users!.length,
