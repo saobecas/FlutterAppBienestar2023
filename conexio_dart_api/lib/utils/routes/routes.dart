@@ -1,4 +1,5 @@
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
+import 'package:conexio_dart_api/view/home_screen_school.dart';
 import 'package:conexio_dart_api/view/login_view.dart';
 import 'package:conexio_dart_api/view/sign_up_view.dart';
 import 'package:conexio_dart_api/view/splash_view.dart';
@@ -24,6 +25,10 @@ class Routes {
       case RoutesName.signUp:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SignUpView());
+      case RoutesName.school:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreenSchool());
+
       default:
         return MaterialPageRoute(builder: (_) {
           return const Scaffold(

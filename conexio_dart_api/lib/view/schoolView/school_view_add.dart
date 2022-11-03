@@ -1,4 +1,3 @@
-import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,14 +5,14 @@ import 'package:provider/provider.dart';
 import '../../res/components/round_button.dart';
 import '../../utils/utils.dart';
 
-class SchoolView extends StatefulWidget {
-  const SchoolView({super.key});
+class SchoolViewAdd extends StatefulWidget {
+  const SchoolViewAdd({super.key});
 
   @override
-  State<SchoolView> createState() => _SchoolViewState();
+  State<SchoolViewAdd> createState() => _SchoolViewAddState();
 }
 
-class _SchoolViewState extends State<SchoolView> {
+class _SchoolViewAddState extends State<SchoolViewAdd> {
   final TextEditingController _nameSchoolController = TextEditingController();
   final TextEditingController _claveSchoolController = TextEditingController();
   final TextEditingController _nivelEducativoController =

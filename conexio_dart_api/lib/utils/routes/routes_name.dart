@@ -7,11 +7,5 @@ class RoutesName {
 //nombre de las rutas de la pantalla de inicio
   static const String home = 'home_screen';
 
-  static const String homeSchool = 'home_screen_school';
-
-  static const String homeLocalidad = 'home_screen_localidad';
-
-  static const String homeMunicipio = 'home_screen_municipio';
-
-  static const String homeRegion = 'home_screen_region';
+  static const String school = 'home_screen_school';
 }

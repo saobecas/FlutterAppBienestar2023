@@ -39,28 +39,18 @@ class _LoginViewState extends State<LoginView> {
     final authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-        /*appBar: AppBar(
-          // backgroundColor: Color.fromARGB(255, 22, 78, 23).withOpacity(0.90),
-          //title: Text("LOGIN"),
-          centerTitle: true,
-        ),*/
         body: SafeArea(
       child: SingleChildScrollView(
-          //top: true,
           child: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           BarGradient(
               "Directorios Escolares De Educación Básica", Icons.school),
-          // const Padding(padding: EdgeInsets.only(left: 20.0)),
           Container(
             margin:
                 const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
             height: 80,
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
             child: TextFormField(
-              //textAlign: TextAlign.center,
               controller: _emailController,
               keyboardType: TextInputType.emailAddress,
               focusNode: emailFocusNode,
@@ -68,7 +58,6 @@ class _LoginViewState extends State<LoginView> {
                 hintText: 'Ingrese Su Correo Electronico',
                 labelText: 'Correo Electronico',
                 prefixIcon: Icon(Icons.email),
-                //border: InputBorder.none,
               ),
               onFieldSubmitted: (valu) {
                 Utils.fielFocusChange(
@@ -126,11 +115,6 @@ class _LoginViewState extends State<LoginView> {
                   'password': _passwordController.text.toString(),
                 };
 
-                /* Map data = {
-                  'email': 'yobany@gmail.com',
-                  'password': 'yobany123',
-                };
-*/
                 authViewModel.loginApi(data, context);
                 print("api pegar");
               }
