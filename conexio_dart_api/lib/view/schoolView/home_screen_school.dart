@@ -1,11 +1,12 @@
 import 'package:another_flushbar/flushbar.dart';
-import 'package:conexio_dart_api/view/bottom_navigator_bar.dart';
-import 'package:conexio_dart_api/view/schoolView/school_view_add.dart';
+import 'package:conexio_dart_api/view/bottom_navigator_bar_school.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_getAll.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_update.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import 'home_screen_school_home.dart';
+import 'schoolViewMethod/home_screen_school_Addhome.dart';
 
 class HomeScreenSchool extends StatefulWidget {
   const HomeScreenSchool({super.key});
@@ -16,11 +17,13 @@ class HomeScreenSchool extends StatefulWidget {
 
 class _HomeScreenSchoolState extends State<HomeScreenSchool> {
   List fragments = [
-    //agregar las vistas q mostraremos}
-    //SchoolViewAdd(),
+    HomeScreenSchoolGetAll(),
     HomeScreenHomeAdd(),
+    HomeScreenSchoolUpdate(),
   ];
+
   int currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

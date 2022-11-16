@@ -98,7 +98,7 @@ class _LoginViewState extends State<LoginView> {
             height: height * .085,
           ),
           RoundButton(
-            title: "Login",
+            title: "Iniciar Sesiòn",
             loading: authViewModel.loading,
             onPress: () {
               if (_emailController.text.isEmpty) {
@@ -116,7 +116,7 @@ class _LoginViewState extends State<LoginView> {
                 };
 
                 authViewModel.loginApi(data, context);
-                print("api pegar");
+                // print("api pegar");
               }
             },
           ),

@@ -8,8 +8,8 @@ class BarGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 20.0),
-      height: 220,
+      margin: EdgeInsets.only(bottom: 25.0),
+      height: 215,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.centerRight,
@@ -18,7 +18,7 @@ class BarGradient extends StatelessWidget {
                 Color.fromARGB(255, 22, 78, 23),
                 Color.fromARGB(255, 22, 78, 2).withOpacity(0.70)
               ]),
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(45))),
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(30))),
       child: Column(
         children: [
           Spacer(),
@@ -38,7 +38,7 @@ class BarGradient extends StatelessWidget {
               child: Text(
                 this.name,
                 style: TextStyle(
-                    color: Colors.white, fontSize: 25, letterSpacing: 10),
+                    color: Colors.white, fontSize: 22, letterSpacing: 5),
               ),
             ),
           )

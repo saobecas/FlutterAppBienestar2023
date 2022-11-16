@@ -14,13 +14,13 @@ class BottomNavigatorBar extends StatelessWidget {
       currentIndex: currentIndex,
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.add),
-          label: "Agregar escuela",
-          // backgroundColor: Colors.green.shade900,
-        ),
-        BottomNavigationBarItem(
           icon: Icon(Icons.list_alt),
           label: "Listar escuelas",
+          // backgroundColor: Colrs.green.shade900,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.add),
+          label: "Agregar escuela",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.update),

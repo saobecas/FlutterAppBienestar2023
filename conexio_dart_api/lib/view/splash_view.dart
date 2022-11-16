@@ -20,10 +20,15 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 34, 92, 64),
       body: Center(
         child: Text(
-          'Representación Estatal de Becas Benito Juárez',
-          style: Theme.of(context).textTheme.headline4,
+          'Representación Estatal de Becas Benito Juárez, Oaxaca',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+          ),
+          //style: Theme.of(context).textTheme.headline4,
         ),
       ),
     );

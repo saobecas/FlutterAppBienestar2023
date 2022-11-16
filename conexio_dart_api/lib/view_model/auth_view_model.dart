@@ -26,6 +26,11 @@ class AuthViewModel with ChangeNotifier {
     notifyListeners();
   }
 
+  /*Future<User?> saveOpUodate(dynamic data) async {
+    User user = User.fromJson(data);
+    return user;
+  }*/
+
   Future<void> loginApi(dynamic data, BuildContext context) async {
     setLoading(true);
 
@@ -34,7 +39,13 @@ class AuthViewModel with ChangeNotifier {
 
       final userPreferences =
           Provider.of<UserViewModel>(context, listen: false);
+      //User user = User.fromJson(data);
+      // user.employee!.fullName.toString();
       userPreferences.saveUser(UserModel(token: value['token'].toString()));
+      /*
+       userPreferences
+          .saveUser(UserModel(user: value['user'], token: value['token']));
+     */
 
       Utils.flushBarErrorMessage('Inicio De Sesion Correcta', context);
       Navigator.pushNamed(context, RoutesName.home);

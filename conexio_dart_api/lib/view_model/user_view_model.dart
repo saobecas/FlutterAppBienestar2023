@@ -2,8 +2,6 @@ import 'package:conexio_dart_api/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/user_model_info.dart';
-
 class UserViewModel with ChangeNotifier {
   Future<bool> saveUser(UserModel userSharedPre) async {
     final SharedPreferences sharedPre = await SharedPreferences.getInstance();
@@ -12,8 +10,10 @@ class UserViewModel with ChangeNotifier {
         "user", <String>["id", "email", "password", "roleId", "employeeId"]);
     //sharedPre.setString('user', userSharedPre.user.toString());
     notifyListeners();*/
+
     sharedPre.setString("token", userSharedPre.token.toString());
     notifyListeners();
+
     return true;
   }
 

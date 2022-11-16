@@ -1,18 +1,19 @@
-import 'package:conexio_dart_api/view/bar_gradient.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../res/components/round_button.dart';
-import '../../utils/utils.dart';
+import '../../../res/components/round_button.dart';
+import '../../../utils/utils.dart';
+import '../../../view_model/school/home_view_model_school.dart';
+import '../../bar_gradient.dart';
 
-class SchoolViewAdd extends StatefulWidget {
-  const SchoolViewAdd({super.key});
+class HomeScreenHomeAdd extends StatefulWidget {
+  const HomeScreenHomeAdd({super.key});
 
   @override
-  State<SchoolViewAdd> createState() => _SchoolViewAddState();
+  State<HomeScreenHomeAdd> createState() => _HomeScreenHomeAddState();
 }
 
-class _SchoolViewAddState extends State<SchoolViewAdd> {
+class _HomeScreenHomeAddState extends State<HomeScreenHomeAdd> {
   final TextEditingController _nameSchoolController = TextEditingController();
   final TextEditingController _claveSchoolController = TextEditingController();
   final TextEditingController _nivelEducativoController =
@@ -94,7 +95,7 @@ class _SchoolViewAddState extends State<SchoolViewAdd> {
 
   @override
   Widget build(BuildContext context) {
-    //final authViewModel = Provider.of<AuthViewModel>(context);
+    //final addSchoolViewModel = Provider.of<HomeViewModelScholl>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
         body: SafeArea(
@@ -498,33 +499,43 @@ class _SchoolViewAddState extends State<SchoolViewAdd> {
           ),
           RoundButton(
             title: "Crear Escuela",
-            //loading: authViewModel.signUpLoading,
+            // loading: addSchoolViewModel.addLoading,
             onPress: () {
-              Map data = {
-                'name_school': _nameSchoolController.text.toString(),
-                'cct': _claveSchoolController.text.toString(),
-                'nivel': _nivelEducativoController.text.toString(),
-                'calle': _calleController.text.toString(),
-                'noExterior': _numeroExteriorController.text.toString(),
-                'numeroInterior': _numeroInteriorController.text.toString(),
-                'asentamiento': _asentamientoController.text.toString(),
-                'email_school': _emailSchoolController.text.toString(),
-                'telefono': _telefonoController.text.toString(),
-                'localidadId': _localidadIdController.text.toString(),
-                'name_director': _nameDirectorController.text.toString(),
-                'sindicato': _sindicatoController.text.toString(),
-                'telephone': _telephoneController.text.toString(),
-                'puesto': _puestoController.text.toString(),
-                'email_director': _emailDirectorController.text.toString(),
-                'atencion': _atencionController.text.toString(),
-                'name_supervisor': _nameSupervisorController.text.toString(),
-                'telephone_supervisor':
-                    _telephoneSupervisorController.text.toString(),
-                'email_supervisor': _emailSupervisorController.text.toString(),
-                'recuperado': _recuperadoController.text.toString(),
-                'directorio_recuperado':
-                    _peridoDirectorioRecuperadoController.text.toString(),
-              };
+              if (_nameSchoolController.text.isEmpty ||
+                  _nameDirectorController.text.isEmpty ||
+                  _nameSupervisorController.text.isEmpty) {
+                Utils.flushBarErrorMessage(
+                    "Por Favor  Ingrese Todos Los Campos", context);
+              } else {
+                Map data = {
+                  'name_school': _nameSchoolController.text.toString(),
+                  'cct': _claveSchoolController.text.toString(),
+                  'nivel': _nivelEducativoController.text.toString(),
+                  'calle': _calleController.text.toString(),
+                  'noExterior': _numeroExteriorController.text.toString(),
+                  'numeroInterior': _numeroInteriorController.text.toString(),
+                  'asentamiento': _asentamientoController.text.toString(),
+                  'email_school': _emailSchoolController.text.toString(),
+                  'telefono': _telefonoController.text.toString(),
+                  'localidadId': _localidadIdController.text.toString(),
+                  'name_director': _nameDirectorController.text.toString(),
+                  'sindicato': _sindicatoController.text.toString(),
+                  'telephone': _telephoneController.text.toString(),
+                  'puesto': _puestoController.text.toString(),
+                  'email_director': _emailDirectorController.text.toString(),
+                  'atencion': _atencionController.text.toString(),
+                  'name_supervisor': _nameSupervisorController.text.toString(),
+                  'telephone_supervisor':
+                      _telephoneSupervisorController.text.toString(),
+                  'email_supervisor':
+                      _emailSupervisorController.text.toString(),
+                  'recuperado': _recuperadoController.text.toString(),
+                  'directorio_recuperado':
+                      _peridoDirectorioRecuperadoController.text.toString(),
+                };
+                // addSchoolViewModel.addSchoolApi(data, context);
+                print("Api agregar escuela");
+              }
             },
           ),
           SizedBox(

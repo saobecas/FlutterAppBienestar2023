@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     homeViewModel.fetchUserListApi();
+
     super.initState();
   }
 
@@ -58,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Kevin Uziel Hernandez Morales"),
+              accountName: Text(""),
               accountEmail: Text("KevinAdmin@gmail.com"),
               decoration: BoxDecoration(color: Colors.green[900]),
               currentAccountPicture: CircleAvatar(
@@ -144,7 +145,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.black,
               ),
               onTap: () {
-                Navigator.of(context).pop();
+               //Navigator.of(context).pop();
                 Navigator.pushNamed(context, RoutesName.school);
               },
             ),
@@ -170,131 +171,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      /*    drawer: Drawer(
-        child: ListView(
-          children: [
-            UserAccountsDrawerHeader(
-              accountName: Text("Yobany"),
-              accountEmail: Text("yobany@gmail.com"),
-              decoration: BoxDecoration(color: Colors.green[900]),
-              currentAccountPicture: CircleAvatar(
-                backgroundColor: Color.fromARGB(255, 166, 212, 168),
-                child: Text(
-                  "Y",
-                  style: TextStyle(fontSize: 40.0),
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text(
-                "Obtener Lista De Todas Las Escuelas",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.list,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              title: Text(
-                "Agregar Una Escuela",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.add,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-                title: Text(
-                  "Obtener Una Escuela",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                leading: Icon(
-                  Icons.list,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                }),
-            ListTile(
-              title: Text(
-                "Actualizar Una Escuela",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.update,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              title: Text(
-                "Eliminar Una Escuela",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.delete,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            ListTile(
-              title: Text(
-                "Obtener Todas Las escuelas De Una Misma Localidad",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.update,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            Divider(),
-            ListTile(
-              title: Text(
-                "Configuración",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              leading: Icon(
-                Icons.manage_accounts,
-                color: Colors.black,
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      ),
-      //drawer:
-*/
       body: ChangeNotifierProvider<HomeViewModel>(
         create: (BuildContext contex) => homeViewModel,
         child: Consumer<HomeViewModel>(
@@ -309,15 +185,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   itemCount: value.userList.data!.users!.length,
                   itemBuilder: (context, index) {
                     return Card(
-                      /* child: ListTile(
-                        title: Text(value.userList.data.toString()),
-                      ),*/
-                      child: ListTile(
-                        title: Text(
-                          value.userList.data!.users![index].id.toString(),
-                        ),
-                        subtitle: Text(value.userList.data!.users![index].email
-                            .toString()),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      margin: EdgeInsets.all(11),
+                      elevation: 8,
+                      child: Column(
+                        children: <Widget>[
+                          ListTile(
+                            contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
+                            title: Text(
+                              "Id Usuario: " +
+                                  value.userList.data!.users![index].employeeId
+                                      .toString(),
+                            ),
+                            subtitle: Text("Correo Electronico: " +
+                                value.userList.data!.users![index].email
+                                    .toString()),
+                          ),
+                        ],
                       ),
                     );
                   },
