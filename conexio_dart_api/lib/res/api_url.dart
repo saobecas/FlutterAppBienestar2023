@@ -8,6 +8,19 @@ class AppUrl {
 
   static var userListGellAllEndPoint = "$baseUrl/api/users";
 
+  //rutas para region
+  static var addRegionEndPoint = "$baseUrl/api/v1/region";
+  static var regionListGellAllEndPoint = "$baseUrl/api/v1/regiones";
+  static var regionUpdateEndPoint = "$baseUrl/api/v1/school/:id";
+
+  //rutas para municipio
+  static var addMunicipioEndPoint = "$baseUrl/api/v1/municipio";
+  static var municipioListGellAllEndPoint = "$baseUrl/api/v1/municipios";
+
+  //rutas para localidad
+  static var addLocalidadEndPoint = "$baseUrl/api/v1/localidad";
+  static var localidadListGellAllEndPoint = "$baseUrl/api/v1/localidades";
+
   // rutas para Scholls
   static var schoolListGellAllEndPoint = "$baseUrl/api/v1/schools";
   static var addSchollEndPoint = "$baseUrl/api/v1/school";

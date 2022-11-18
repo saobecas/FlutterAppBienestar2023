@@ -8,4 +8,11 @@ class RoutesName {
   static const String home = 'home_screen';
 
   static const String school = 'home_screen_school';
+  static const String schoolDetail = 'home_screen_school_getId_Detail';
+
+  static const String region = 'home_screen_region';
+
+  static const String municipio = 'home_screen_municipio';
+
+  static const String localidad = 'home_screen_localidad';
 }

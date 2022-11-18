@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text(""),
+              accountName: Text("kevin Uziel"),
               accountEmail: Text("KevinAdmin@gmail.com"),
               decoration: BoxDecoration(color: Colors.green[900]),
               currentAccountPicture: CircleAvatar(
@@ -83,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.pushNamed(context, RoutesName.home);
               },
             ),
             Divider(
@@ -102,6 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.pushNamed(context, RoutesName.region);
               },
             ),
             ListTile(
@@ -117,6 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               onTap: () {
                 Navigator.of(context).pop();
+                Navigator.pushNamed(context, RoutesName.municipio);
               },
             ),
             ListTile(
@@ -132,6 +135,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 onTap: () {
                   Navigator.of(context).pop();
+                  Navigator.pushNamed(context, RoutesName.localidad);
                 }),
             ListTile(
               title: Text(
@@ -145,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Colors.black,
               ),
               onTap: () {
-               //Navigator.of(context).pop();
+                Navigator.of(context).pop();
                 Navigator.pushNamed(context, RoutesName.school);
               },
             ),
@@ -194,8 +198,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ListTile(
                             contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
                             title: Text(
-                              "Id Usuario: " +
-                                  value.userList.data!.users![index].employeeId
+                              "Rol De Usuario: " +
+                                  value.userList.data!.users![index].roleId
                                       .toString(),
                             ),
                             subtitle: Text("Correo Electronico: " +

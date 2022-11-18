@@ -104,7 +104,11 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
                           children: <Widget>[
                             TextButton(
                               child: const Text('Detalles'),
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                Navigator.pushNamed(
+                                    context, RoutesName.schoolDetail);
+                              },
                             ),
                             const SizedBox(width: 8),
                           ],

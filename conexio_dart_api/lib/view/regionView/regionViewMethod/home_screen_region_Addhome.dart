@@ -1,7 +1,12 @@
+import 'package:conexio_dart_api/model/region/region_model.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
+import 'package:conexio_dart_api/view_model/region/home_view_model_region.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../view_model/auth_view_model.dart';
 
 class HomeScreenRegionAdd extends StatefulWidget {
   const HomeScreenRegionAdd({super.key});
@@ -11,6 +16,8 @@ class HomeScreenRegionAdd extends StatefulWidget {
 }
 
 class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
+  //  Future<RegionModel>? futureRegion;
+
   final TextEditingController _nameRegion = TextEditingController();
 
   FocusNode nameRegionFocusNode = FocusNode();
@@ -26,6 +33,8 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
 
   @override
   Widget build(BuildContext context) {
+    final regionViewModel = Provider.of<HomeViewModelRegion>(context);
+
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       body: SafeArea(
@@ -57,10 +66,16 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
             ),
             RoundButton(
                 title: "Crear Region",
+                loading: regionViewModel.addLoading,
                 onPress: () {
                   if (_nameRegion.text.isEmpty) {
                     Utils.flushBarErrorMessage(
                         "Por Favor Ingresa El Nombre De La Región", context);
+                  } else {
+                    Map data = {'nameRegion': _nameRegion.text.toString()};
+
+                    regionViewModel.addRegionApi(data, context);
+                    // regionViewModel.addregionApi(data, context);
                   }
                 })
           ],
