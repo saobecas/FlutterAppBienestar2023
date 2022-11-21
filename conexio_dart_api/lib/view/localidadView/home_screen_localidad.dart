@@ -17,7 +17,7 @@ class _HomeScreenLocalidadState extends State<HomeScreenLocalidad> {
   List fragments = [
     HomeScreenLocalidadGetAll(),
     HomeScreenLocalidadAdd(),
-    HomeScreenLocalidadUpdate()
+    //  HomeScreenLocalidadUpdate()
   ];
 
   int currentIndex = 0;

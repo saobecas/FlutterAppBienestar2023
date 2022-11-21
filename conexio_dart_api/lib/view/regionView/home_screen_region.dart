@@ -18,7 +18,7 @@ class _HomeScreenRegionState extends State<HomeScreenRegion> {
   List fragments = [
     HomeScreenRegionGetAll(),
     HomeScreenRegionAdd(),
-    HomeScreenRegionUpdate()
+    //HomeScreenRegionUpdate()
   ];
 
   int currentIndex = 0;

@@ -22,10 +22,10 @@ class BottomNavigatorBar extends StatelessWidget {
           icon: Icon(Icons.add),
           label: "Agregar escuela",
         ),
-        BottomNavigationBarItem(
+        /* BottomNavigationBarItem(
           icon: Icon(Icons.update),
           label: "Actualizar escuela",
-        ),
+        ),*/
       ],
     );
   }

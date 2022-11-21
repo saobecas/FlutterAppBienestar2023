@@ -17,7 +17,7 @@ class _HomeScreenMunicipioState extends State<HomeScreenMunicipio> {
   List fragments = [
     HomeScreenMuniGetAll(),
     HomeScreenMuniAdd(),
-    HomeScreenMuniUpdate()
+    //  HomeScreenMuniUpdate()
   ];
 
   int currentIndex = 0;

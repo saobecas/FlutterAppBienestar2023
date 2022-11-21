@@ -29,10 +29,10 @@ class BottomNavigatorBarRegion extends StatelessWidget {
           icon: Icon(Icons.add),
           label: "Agregar Region",
         ),
-        BottomNavigationBarItem(
+        /* BottomNavigationBarItem(
           icon: Icon(Icons.update),
           label: "Actualizar Region",
-        ),
+        ),*/
       ],
     );
   }

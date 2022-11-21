@@ -2,7 +2,7 @@ import 'package:conexio_dart_api/model/region/region_model.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
-import 'package:conexio_dart_api/view_model/region/home_view_model_region.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

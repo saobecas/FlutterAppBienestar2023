@@ -1,6 +1,6 @@
 import 'package:conexio_dart_api/data/response/api_response.dart';
 import 'package:conexio_dart_api/model/region/region_list_model.dart';
-import 'package:conexio_dart_api/repository/region/home_repository_region.dart';
+import 'package:conexio_dart_api/repository/repository_crud/home_repository_region.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:flutter/foundation.dart';

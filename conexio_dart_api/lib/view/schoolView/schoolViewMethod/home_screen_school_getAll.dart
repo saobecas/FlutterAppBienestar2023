@@ -1,4 +1,5 @@
 import 'package:conexio_dart_api/res/components/round_button.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_getId_Detail.dart';
 import 'package:conexio_dart_api/view_model/school/home_view_model_school.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -76,42 +77,83 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
                     child: Column(
                       children: <Widget>[
                         ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => SchoolGetIdDetail(
+                                    value.schoolList.data!.schols![index])));
+                          },
                           contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
                           title: Text(
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 18,
+                            ),
                             "Escuela: " +
                                 value.schoolList.data!.schols![index].nameSchool
-                                    .toString(),
+                                    .toString() +
+                                "\n",
                           ),
                           subtitle: Text(
-                            "Director: " +
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 16,
+                            ),
+                            "Director : " +
                                 value.schoolList.data!.schols![index].director!
                                     .name
                                     .toString(),
+                          ),
+                          trailing: Container(
+                            width: 70,
+                            child: Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                    child: IconButton(
+                                  color: AppColors.buttonColor,
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => SimpleDialog(
+                                        children: [
+                                          TextField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                value;
+                                              });
+                                            },
+                                          ),
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text('Actualizar'))
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.edit),
+                                )),
+                                Expanded(
+                                    child: IconButton(
+                                  color: AppColors.buttonColor,
+                                  onPressed: () {},
+                                  icon: Icon(Icons.delete),
+                                ))
+                              ],
+                            ),
                           ),
                           leading: Icon(Icons.home),
                         ),
                         Container(
                           padding: EdgeInsets.all(10),
                           child: Text(
-                            "localidad: " +
+                            "localidad : " +
                                 value.schoolList.data!.schols![index].localidad!
                                     .nameLoc
                                     .toString(),
+                            textAlign: TextAlign.center,
                           ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            TextButton(
-                              child: const Text('Detalles'),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                                Navigator.pushNamed(
-                                    context, RoutesName.schoolDetail);
-                              },
-                            ),
-                            const SizedBox(width: 8),
-                          ],
                         ),
                       ],
                     ),

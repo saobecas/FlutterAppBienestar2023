@@ -29,10 +29,10 @@ class BottomNavigatorBarMunicipio extends StatelessWidget {
           icon: Icon(Icons.add),
           label: "Agregar Municipio",
         ),
-        BottomNavigationBarItem(
+        /* BottomNavigationBarItem(
           icon: Icon(Icons.update),
           label: "Actualizar Municipio",
-        ),
+        ),*/
       ],
     );
   }

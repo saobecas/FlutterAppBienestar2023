@@ -1,11 +1,11 @@
 import 'package:conexio_dart_api/res/color.dart';
-import 'package:conexio_dart_api/view_model/region/home_view_model_region.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/response/status.dart';
 import '../../../view_model/user_view_model.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
 
 class HomeScreenRegionGetAll extends StatefulWidget {
   const HomeScreenRegionGetAll({super.key});
@@ -56,16 +56,60 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                         ListTile(
                           contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
                           title: Text(
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 18,
+                            ),
                             "REGION : " +
                                 value.regionList.data!.regiones![index]
                                     .nameRegion
-                                    .toString(),
+                                    .toString() +
+                                "\n",
                           ),
                           subtitle: Text(
                             "Creación: " +
                                 value.regionList.data!.regiones![index]
                                     .createdAt!
                                     .toString(),
+                          ),
+                          trailing: Container(
+                            width: 70,
+                            child: Row(
+                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                    child: IconButton(
+                                  color: AppColors.buttonColor,
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) => SimpleDialog(
+                                        children: [
+                                          TextField(
+                                            onChanged: (value) {
+                                              setState(() {
+                                                value;
+                                              });
+                                            },
+                                          ),
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text('Actualizar'))
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.edit),
+                                )),
+                                Expanded(
+                                    child: IconButton(
+                                  color: AppColors.buttonColor,
+                                  onPressed: () {},
+                                  icon: Icon(Icons.delete),
+                                ))
+                              ],
+                            ),
                           ),
                           leading: Icon(Icons.home),
                         ),

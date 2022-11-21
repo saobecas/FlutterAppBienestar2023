@@ -1,6 +1,6 @@
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view_model/auth_view_model.dart';
-import 'package:conexio_dart_api/view_model/region/home_view_model_region.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

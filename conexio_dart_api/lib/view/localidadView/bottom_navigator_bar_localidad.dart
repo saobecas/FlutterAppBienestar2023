@@ -28,10 +28,10 @@ class BottomNavigatorBarLocalidad extends StatelessWidget {
           icon: Icon(Icons.add),
           label: "Agregar Localidad",
         ),
-        BottomNavigationBarItem(
+        /*  BottomNavigationBarItem(
           icon: Icon(Icons.update),
           label: "Actualizar Localidad",
-        ),
+        ),*/
       ],
     );
   }
