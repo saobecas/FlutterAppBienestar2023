@@ -28,4 +28,15 @@ class HomeRepositoryRegion {
       throw e;
     }
   }
+
+  Future<dynamic> putRegionApi(int id, dynamic data) async {
+    try {
+      dynamic response = await _apiServices.getPutApiResponse(
+          AppUrl.addRegionEndPoint, id, data);
+
+      return response;
+    } catch (e) {
+      throw e;
+    }
+  }
 }

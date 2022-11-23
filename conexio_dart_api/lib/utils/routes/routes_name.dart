@@ -14,6 +14,7 @@ class RoutesName {
   static const String locate = 'get_localitation_view';
 
   static const String region = 'home_screen_region';
+  static const String regioPut = 'home_screen_region_update';
 
   static const String municipio = 'home_screen_municipio';
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/response/status.dart';
+import '../../../utils/routes/routes_name.dart';
 import '../../../view_model/user_view_model.dart';
 //import 'package:intl/intl.dart';
 
@@ -82,7 +83,9 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                     child: IconButton(
                                   color: AppColors.buttonColor,
                                   onPressed: () {
-                                    showDialog(
+                                    Navigator.pushNamed(
+                                        context, RoutesName.regioPut);
+                                    /*showDialog(
                                       context: context,
                                       builder: (context) => SimpleDialog(
                                         children: [
@@ -98,7 +101,7 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                               child: Text('Actualizar'))
                                         ],
                                       ),
-                                    );
+                                    );*/
                                   },
                                   icon: Icon(Icons.edit),
                                 )),

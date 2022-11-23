@@ -56,4 +56,34 @@ class HomeViewModelRegion with ChangeNotifier {
       }
     });
   }
+
+  bool _putLoading = false;
+  bool get putLoading => _putLoading;
+
+  setPutLoading(bool value) {
+    _putLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> putRegionApi(int id, dynamic data, BuildContext context) async {
+    setAddLoading(true);
+
+    _myRepo.putRegionApi(id, data).then((value) {
+      setPutLoading(false);
+
+      Utils.flushBarErrorMessage('Region Actuzalizada', context);
+
+      Navigator.pushNamed(context, RoutesName.regioPut);
+
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError((error, stackTrace) {
+      setAddLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
+  }
 }
