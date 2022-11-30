@@ -1,4 +1,12 @@
+import 'dart:convert';
+
+import 'package:conexio_dart_api/data/response/status.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_localidad.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_municipio.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../res/components/round_button.dart';
 import '../../../utils/utils.dart';
@@ -12,6 +20,10 @@ class HomeScreenLocalidadAdd extends StatefulWidget {
 }
 
 class _HomeScreenLocalidadAddState extends State<HomeScreenLocalidadAdd> {
+  HomeViewModelMunicipio homeViewModelMunicipio = HomeViewModelMunicipio();
+  dynamic? selectedValue;
+  final TextEditingController searchController = TextEditingController();
+
   final TextEditingController _nameLocalidad = TextEditingController();
   final TextEditingController _claveLocalidadOficial = TextEditingController();
   final TextEditingController _municipioId = TextEditingController();
@@ -32,8 +44,23 @@ class _HomeScreenLocalidadAddState extends State<HomeScreenLocalidadAdd> {
     municipioIdFocus.dispose();
   }
 
+  void setIdMunicipio() {
+    setState(() {
+      _municipioId.text = selectedValue.id.toString();
+      print("Select vaules desde metodo set: " + _municipioId.text.toString());
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    homeViewModelMunicipio.fechtMunicipioListApi();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final localidadViewModel = Provider.of<HomeViewModelLocalidad>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       body: SafeArea(
@@ -86,22 +113,146 @@ class _HomeScreenLocalidadAddState extends State<HomeScreenLocalidadAdd> {
               ),
             ),
             Container(
-              margin:
-                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-              height: 80,
-              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-              child: TextFormField(
-                controller: _municipioId,
-                keyboardType: TextInputType.text,
-                focusNode: municipioIdFocus,
-                autofocus: true,
-                decoration: const InputDecoration(
-                  hintText: 'Ingrese El Nombre Del Municipio',
-                  labelText: 'Nombre Del Municipio',
-                  prefixIcon: Icon(
-                    Icons.add_home_sharp,
-                  ),
-                ),
+              child: ChangeNotifierProvider<HomeViewModelMunicipio>(
+                create: (BuildContext context) => homeViewModelMunicipio,
+                child: Consumer<HomeViewModelMunicipio>(
+                    builder: (context, lista, _) {
+                  switch (lista.municipioList.status!) {
+                    case Status.LOADING:
+                      return Center(child: CircularProgressIndicator());
+                    case Status.ERROR:
+                      return Center(
+                          child: Text(lista.municipioList.message.toString()));
+                    case Status.COMPLETED:
+                      //var index;
+                      return Center(
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton2(
+                            //barrierColor: Colors.blue,
+                            buttonDecoration: BoxDecoration(
+                              color: Color.fromARGB(255, 235, 235, 235),
+                              borderRadius: BorderRadius.circular(30.0),
+                              border: Border.all(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  style: BorderStyle.solid,
+                                  width: 0.80),
+                            ),
+                            isExpanded: true,
+                            hint: Row(
+                              children: [
+                                Icon(
+                                  Icons.list,
+                                  size: 15,
+                                  color: Colors.black,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      'Selecciona el municipio',
+
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Theme.of(context).hintColor,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
+                                      //selectionColor: Colors.amberAccent,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+                            items: lista.municipioList.data!.municipios!
+                                //lista.regionList.data!.regiones!
+                                .map((nombre_municipio) =>
+                                    DropdownMenuItem<dynamic>(
+                                      //value: nombre_region.id.toString(),
+                                      value: nombre_municipio,
+
+                                      child: Text(
+                                        nombre_municipio.name.toString(),
+                                        //nombre_region.toString(),
+
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                    ))
+                                .toList(),
+
+                            value: selectedValue,
+
+                            onChanged: (value) {
+                              setState(() {
+                                selectedValue = value as dynamic;
+
+                                print(selectedValue.id);
+                              });
+                            },
+
+                            buttonHeight: 50,
+                            buttonWidth: 250,
+                            itemHeight: 50,
+                            dropdownMaxHeight: 400,
+                            dropdownPadding: null,
+                            dropdownDecoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(14),
+                              color: Color.fromARGB(255, 235, 235, 235),
+                            ),
+                            searchController: searchController,
+                            searchInnerWidget: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 8,
+                                bottom: 4,
+                                right: 8,
+                                left: 8,
+                              ),
+                              child: TextFormField(
+                                controller: searchController,
+                                decoration: InputDecoration(
+                                  isDense: false,
+                                  contentPadding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 8,
+                                  ),
+                                  hintText: 'Buscar...',
+                                  hintStyle: const TextStyle(
+                                    fontSize: 12,
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                //validator: (selectedValue),
+                              ),
+                            ),
+                            searchMatchFn: (nombre_municipio, searchValue) {
+                              //print("Holamundo");
+                              var name = nombre_municipio.value!.name!
+                                  .toString()
+                                  .toUpperCase()
+                                  //.toLowerCase()
+                                  .contains(searchValue);
+                              if (kDebugMode) {
+                                print(
+                                    "===============================${jsonEncode(nombre_municipio.value)}");
+                              }
+                              return name;
+                            },
+                            //This to clear the search value when you close the menu
+                            onMenuStateChange: (isOpen) {
+                              if (!isOpen) {
+                                searchController.clear();
+                              }
+                            },
+                          ),
+                        ),
+                      );
+                  }
+                }),
               ),
             ),
             SizedBox(
@@ -110,11 +261,23 @@ class _HomeScreenLocalidadAddState extends State<HomeScreenLocalidadAdd> {
             RoundButton(
                 title: "Crear Localidad",
                 onPress: () {
+                  setIdMunicipio();
                   if (_nameLocalidad.text.isEmpty ||
-                      _claveLocalidadOficial.text.isEmpty ||
-                      _municipioId.text.isEmpty) {
+                          _claveLocalidadOficial.text.isEmpty //||
+                      //_municipioId.text.isEmpty
+                      ) {
                     Utils.flushBarErrorMessage(
                         "Por Favor Ingresa Todos Los Campos", context);
+                  } else {
+                    Map data = {
+                      'nameLoc': _nameLocalidad.text.toString(),
+                      'claveLocOfi': _claveLocalidadOficial.text.toString(),
+                      'municipioId': _municipioId.text.toString(),
+                    };
+
+                    localidadViewModel.addLocalidadApi(data, context);
+                    //regionViewModel.addRegionApi(data, context);
+
                   }
                 })
           ],

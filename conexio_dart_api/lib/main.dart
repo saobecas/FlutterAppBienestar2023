@@ -1,5 +1,7 @@
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view_model/auth_view_model.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_localidad.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_municipio.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
         ChangeNotifierProvider(create: (_) => UserViewModel()),
         ChangeNotifierProvider(create: (_) => HomeViewModelRegion()),
+        ChangeNotifierProvider(create: (_) => HomeViewModelMunicipio()),
+        ChangeNotifierProvider(create: (_) => HomeViewModelLocalidad()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

@@ -36,26 +36,6 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
         title: Text("Lista De Escuelas"),
         centerTitle: true,
         backgroundColor: AppColors.grenSnackBar,
-        /* actions: [
-          InkWell(
-            onTap: () {
-              userPreferences.remove().then(
-                (value) {
-                  Navigator.pushNamed(context, RoutesName.login);
-                },
-              );
-            },
-            child: const Center(
-              child: Icon(
-                Icons.exit_to_app,
-              ),
-            ),
-            //child: Center(child: Text("Cerrar Sesión")),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-        ],*/
       ),
       body: ChangeNotifierProvider<HomeViewModelScholl>(
         create: (BuildContext context) => homeViewModelScholl,

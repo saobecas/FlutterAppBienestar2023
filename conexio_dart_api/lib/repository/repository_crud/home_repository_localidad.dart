@@ -17,4 +17,14 @@ class HomeRepositoryLocalidad {
       throw e;
     }
   }
+
+  Future<dynamic> addLocalidadApi(dynamic data) async {
+    try {
+      dynamic response = await _apiServices.getPostApiResponse(
+          AppUrl.addLocalidadEndPoint, data);
+      return response;
+    } catch (e) {
+      throw e;
+    }
+  }
 }

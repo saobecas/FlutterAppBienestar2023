@@ -1,6 +1,6 @@
 class AppUrl {
   //static var baseUrl = "https://directoriosapi-production.up.railway.app";
-  static var baseUrl = "https://api-becas.onrender.com";
+  static var baseUrl = "https://becas-api.onrender.com";
 //http://10.0.2.16:5000
   static var loginEndPoint = "$baseUrl/api/users/signin";
 
@@ -12,7 +12,7 @@ class AppUrl {
   static var addRegionEndPoint = "$baseUrl/api/v1/region";
   static var regionListGellAllEndPoint = "$baseUrl/api/v1/regiones";
   static var regionUpdateEndPoint = "$baseUrl/api/v1/school/:id";
-
+  static var regionGetIdEndPoint = "$baseUrl/api/v1/region/:id";
   //rutas para municipio
   static var addMunicipioEndPoint = "$baseUrl/api/v1/municipio";
   static var municipioListGellAllEndPoint = "$baseUrl/api/v1/municipios";

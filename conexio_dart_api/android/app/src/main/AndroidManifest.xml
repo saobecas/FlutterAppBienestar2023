@@ -8,6 +8,8 @@
         android:label="conexio_dart_api"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyCdniLdk6ObOWW8trRHJblvZFPRFgPqoTg"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

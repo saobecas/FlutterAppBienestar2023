@@ -17,4 +17,14 @@ class HomeRepositoryMunicipio {
       throw e;
     }
   }
+
+  Future<dynamic> addMunicipioApi(dynamic data) async {
+    try {
+      dynamic response = await _apiServices.getPostApiResponse(
+          AppUrl.addMunicipioEndPoint, data);
+      return response;
+    } catch (e) {
+      throw e;
+    }
+  }
 }

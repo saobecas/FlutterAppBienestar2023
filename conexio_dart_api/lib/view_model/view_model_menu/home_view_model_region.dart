@@ -1,5 +1,6 @@
 import 'package:conexio_dart_api/data/response/api_response.dart';
 import 'package:conexio_dart_api/model/region/region_list_model.dart';
+import 'package:conexio_dart_api/model/region/region_model_get_id.dart';
 import 'package:conexio_dart_api/repository/repository_crud/home_repository_region.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
@@ -17,7 +18,7 @@ class HomeViewModelRegion with ChangeNotifier {
     notifyListeners();
   }
 
-/* metodos get y gets */
+/* metodos gets */
   ApiResponse<RegionModelGet> regionList = ApiResponse.loading();
 
   setRegionList(ApiResponse<RegionModelGet> response) {
@@ -32,6 +33,25 @@ class HomeViewModelRegion with ChangeNotifier {
       setRegionList(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
       setRegionList(ApiResponse.error(error.toString()));
+    });
+  }
+
+// metodo get id
+
+  ApiResponse<ModelRegionGetId> regionIdList = ApiResponse.loading();
+
+  setRegionIdList(ApiResponse<ModelRegionGetId> response) {
+    regionIdList = response;
+    notifyListeners();
+  }
+
+  Future<void> fechtIdRegionListApi(int id) async {
+    setRegionIdList(ApiResponse.loading());
+
+    _myRepo.fechtRegionIdDetails(id).then((value) {
+      setRegionIdList(ApiResponse.completed(value));
+    }).onError((error, stackTrace) {
+      setRegionIdList(ApiResponse.error(error.toString()));
     });
   }
 
@@ -73,7 +93,7 @@ class HomeViewModelRegion with ChangeNotifier {
 
       Utils.flushBarErrorMessage('Region Actuzalizada', context);
 
-      Navigator.pushNamed(context, RoutesName.regioPut);
+      Navigator.pushNamed(context, RoutesName.regionPut);
 
       if (kDebugMode) {
         print(value.toString());

@@ -1,4 +1,5 @@
 import 'package:conexio_dart_api/res/color.dart';
+import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -83,8 +84,21 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                     child: IconButton(
                                   color: AppColors.buttonColor,
                                   onPressed: () {
-                                    Navigator.pushNamed(
-                                        context, RoutesName.regioPut);
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            HomeScreenRegionUpdate(
+                                                /* region: value.regionList.data!
+                                              .regiones![index],*/
+                                                ),
+                                      ),
+                                    );
+                                    /* Navigator.pushNamed(
+                                        context, RoutesName.regionPut);*/
+                                    /* final regionId = value
+                                        .regionList.data!.regiones![index].id
+                                        .toString();
+                                    print(regionId);*/
                                     /*showDialog(
                                       context: context,
                                       builder: (context) => SimpleDialog(
@@ -105,12 +119,6 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                   },
                                   icon: Icon(Icons.edit),
                                 )),
-                                Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {},
-                                  icon: Icon(Icons.delete),
-                                ))
                               ],
                             ),
                           ),
@@ -127,3 +135,20 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
     );
   }
 }
+
+/*
+
+children: posts
+                  .map(
+                    (Post post) => ListTile(
+                      title: Text(post.title),
+                      subtitle: Text("${post.userId}"),
+                      onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => PostDetail(
+                            post: post,
+                          ),
+                        ),
+                      ),
+                    ),
+                    */

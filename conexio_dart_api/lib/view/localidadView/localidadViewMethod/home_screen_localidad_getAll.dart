@@ -93,12 +93,12 @@ class _HomeScreenLocalidadGetAllState extends State<HomeScreenLocalidadGetAll> {
                                   },
                                   icon: Icon(Icons.edit),
                                 )),
-                                Expanded(
+                                /* Expanded(
                                     child: IconButton(
                                   color: AppColors.buttonColor,
                                   onPressed: () {},
                                   icon: Icon(Icons.delete),
-                                ))
+                                ))*/
                               ],
                             ),
                           ),

@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:conexio_dart_api/data/app_exceptions.dart';
 import 'package:conexio_dart_api/data/network/base_api_service.dart';
 import 'package:conexio_dart_api/model/region/region_list_model.dart';
+import 'package:conexio_dart_api/model/region/region_model_get_id.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 //import 'package:http/http.dart';
@@ -21,6 +22,21 @@ class NetworkApiService extends BaseApiService {
       throw FechtDataException("No tiene conexion a internet");
     }
 
+    return responseJson;
+  }
+
+  @override
+  Future getGetIdApiResponse(String url, int id) async {
+    dynamic responseJson;
+    try {
+      final response = await http
+          .get(Uri.parse(url + '$id'))
+          .timeout(const Duration(seconds: 10));
+
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FechtDataException("No tiene conexion a internet");
+    }
     return responseJson;
   }
 
@@ -48,7 +64,8 @@ class NetworkApiService extends BaseApiService {
     print("Data $url+$data");
     try {
       http.Response response = await http
-          .put(Uri.parse("$url/$id"),
+          //.put(Uri.parse("$url$id"),
+          .put(Uri.parse(url + '$id'),
               //headers: {'Authorization': 'Bearer ${token}'},
               //body: "$data['id']")
               body: data)

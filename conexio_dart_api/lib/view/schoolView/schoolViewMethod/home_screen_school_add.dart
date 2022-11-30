@@ -293,7 +293,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
             ),
           ),
           RoundButton(
-              title: "Ubicacion",
+              title: "Siguiete",
               onPress: () {
                 Navigator.pushNamed(context, RoutesName.locate);
                 // addSchoolViewModel.addSchoolApi(data, context);
@@ -301,7 +301,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
           SizedBox(
             height: height * .085,
           ),
-          RoundButton(
+          /*  RoundButton(
             title: "siguiente",
             // loading: addSchoolViewModel.addLoading,
             onPress: () {
@@ -343,7 +343,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                 print("Api agregar escuela");
               }
             },
-          ),
+          ),*/
           SizedBox(
             height: height * .03,
           ),
