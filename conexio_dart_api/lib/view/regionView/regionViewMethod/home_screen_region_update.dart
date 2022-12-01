@@ -14,8 +14,7 @@ class HomeScreenRegionUpdate extends StatefulWidget {
   final idRegion;
   final nameRegion;
 
-  HomeScreenRegionUpdate(
-      {super.key, required this.idRegion, required this.nameRegion});
+  HomeScreenRegionUpdate({super.key, this.idRegion, this.nameRegion});
 
   @override
   State<HomeScreenRegionUpdate> createState() => _HomeScreenRegionUpdateState();
@@ -27,7 +26,7 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
 
   @override
   void getRegion() {
-    _editNameRegion.text = widget.nameRegion;
+    _editNameRegion.text = widget.nameRegion.toString();
     _idRegion.text = widget.idRegion.toString();
   }
 

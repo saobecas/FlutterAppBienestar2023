@@ -19,23 +19,6 @@ class HomeScreenRegionGetAll extends StatefulWidget {
 class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
   HomeViewModelRegion homeViewModelRegion = HomeViewModelRegion();
 
-  /* final TextEditingController _nameRegion = TextEditingController();
-  final TextEditingController _idRegion = TextEditingController();
-
-  FocusNode nameRegionFocusNode = FocusNode();
-  FocusNode idRegionFocusNode = FocusNode();
-
-  @override
-  void dispose() {
-    super.dispose();
-
-    _nameRegion.dispose();
-    _idRegion.dispose();
-
-    nameRegionFocusNode.dispose();
-    idRegionFocusNode.dispose();
-  }*/
-
   @override
   void initState() {
     homeViewModelRegion.fechtRegionListApi();
@@ -124,29 +107,6 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                     );
                                     print(
                                         "Valor final del id region $regionId");
-                                    /* Navigator.pushNamed(
-                                        context, RoutesName.regionPut);*/
-                                    /* final regionId = value
-                                        .regionList.data!.regiones![index].id
-                                        .toString();
-                                    print(regionId);*/
-                                    /*showDialog(
-                                      context: context,
-                                      builder: (context) => SimpleDialog(
-                                        children: [
-                                          TextField(
-                                            onChanged: (value) {
-                                              setState(() {
-                                                value;
-                                              });
-                                            },
-                                          ),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              child: Text('Actualizar'))
-                                        ],
-                                      ),
-                                    );*/
                                   },
                                   icon: Icon(Icons.edit),
                                 )),

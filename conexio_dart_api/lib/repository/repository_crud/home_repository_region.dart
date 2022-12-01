@@ -4,6 +4,7 @@ import 'package:conexio_dart_api/model/region/region_list_model.dart';
 import 'package:conexio_dart_api/model/region/region_model.dart';
 import 'package:conexio_dart_api/model/region/region_model_get_id.dart';
 import 'package:conexio_dart_api/res/api_url.dart';
+import 'package:flutter/foundation.dart';
 
 class HomeRepositoryRegion {
   BaseApiService _apiServices = NetworkApiService();
@@ -49,6 +50,10 @@ class HomeRepositoryRegion {
       print(response);
       return response;
     } catch (e) {
+      kDebugMode() {
+        print("Respuesyta: ....$e");
+      }
+
       throw e;
     }
   }

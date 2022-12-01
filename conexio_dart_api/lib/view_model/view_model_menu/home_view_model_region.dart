@@ -91,11 +91,12 @@ class HomeViewModelRegion with ChangeNotifier {
 
     _myRepo.putRegionApi(id, data).then((value) {
       setPutLoading(false);
+//*****TODO: Cambiar a toastMessage en todos los metodos
+      //Utils.flushBarErrorMessage('Region Actuzalizada', context);
+      Utils.toastMessage("Region Actuzalizada");
 
-      Utils.flushBarErrorMessage('Region Actuzalizada', context);
-
-      Navigator.pushNamed(context, RoutesName.regionPut);
-
+      //Navigator.pushNamed(context, RoutesName.regionPut);
+      Navigator.pushNamed(context, RoutesName.region);
       if (kDebugMode) {
         print(value.toString());
       }

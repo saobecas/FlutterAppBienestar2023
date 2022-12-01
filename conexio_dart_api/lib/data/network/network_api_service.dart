@@ -68,12 +68,9 @@ class NetworkApiService extends BaseApiService {
     try {
       http.Response response = await http
           .put(Uri.parse("$url$id"),
-              //.put(Uri.parse(url + id),
-              //headers: {'Authorization': 'Bearer ${token}'},
-              //body: "$data['id']")
+              // headers: {'Authorization': 'Bearer ${token}'},
               body: data)
-          // body: jsonEncode(data))
-          .timeout(const Duration(seconds: 60));
+          .timeout(const Duration(seconds: 30));
       responseJson = returnResponse(response);
 
       if (kDebugMode) {
@@ -89,10 +86,11 @@ class NetworkApiService extends BaseApiService {
   dynamic returnResponse(http.Response response) {
     // dynamic returnResponse(Response response) {
     switch (response.statusCode) {
+      case 201:
       case 200:
         dynamic responseJson = jsonDecode(response.body);
         return responseJson;
-      case 201:
+
       case 400:
         throw BadRequestException(response.body.toString());
       case 401:

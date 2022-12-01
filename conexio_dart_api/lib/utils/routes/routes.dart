@@ -24,6 +24,7 @@ import '../../view/schoolView/schoolViewMethod/home_screen_school_add.dart';
 
 class Routes {
   //final int id;
+  //late String name;
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // final argume = settings.arguments;
 
@@ -59,7 +60,7 @@ class Routes {
                   nameRegion: null,
                 ));
       /*
-                 builder: (BuildContext context) => HomeScreenRegionUpdate(
+                builder: (BuildContext context) => HomeScreenRegionUpdate(
                  idRegion: null,
                 )*/
 
