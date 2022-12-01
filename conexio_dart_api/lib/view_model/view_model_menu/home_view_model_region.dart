@@ -45,7 +45,7 @@ class HomeViewModelRegion with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fechtIdRegionListApi(int id) async {
+  Future<void> fechtIdRegionListApi(String id) async {
     setRegionIdList(ApiResponse.loading());
 
     _myRepo.fechtRegionIdDetails(id).then((value) {
@@ -85,7 +85,8 @@ class HomeViewModelRegion with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> putRegionApi(int id, dynamic data, BuildContext context) async {
+  Future<void> putRegionApi(
+      String id, dynamic data, BuildContext context) async {
     setAddLoading(true);
 
     _myRepo.putRegionApi(id, data).then((value) {

@@ -136,13 +136,6 @@ class _HomeScreenMuniAddState extends State<HomeScreenMuniAdd> {
                                 ),
                               ],
                             ),
-                            /*Text(
-                              'Selecciona la region',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Theme.of(context).hintColor,
-                              ),
-                            ),*/
 
                             items: lista.regionList.data!.regiones!
                                 //lista.regionList.data!.regiones!
@@ -167,12 +160,6 @@ class _HomeScreenMuniAddState extends State<HomeScreenMuniAdd> {
                                 selectedValue = value as dynamic;
 
                                 print(selectedValue.id);
-                                /*items: [
-                        lista.regionList.data!.regiones!.map((e) => null)
-                      ];*/
-                                //regionIdFocusNode = value.id;
-                                //_regionId = value.id.toString();
-                                //print(value.id.toString());
                               });
                             },
                             buttonHeight: 50,

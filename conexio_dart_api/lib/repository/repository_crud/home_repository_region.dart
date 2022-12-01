@@ -19,7 +19,7 @@ class HomeRepositoryRegion {
     }
   }
 
-  Future<ModelRegionGetId> fechtRegionIdDetails(int id) async {
+  Future<ModelRegionGetId> fechtRegionIdDetails(String id) async {
     try {
       dynamic response = await _apiServices.getGetIdApiResponse(
           AppUrl.regionGetIdEndPoint, id);
@@ -41,11 +41,12 @@ class HomeRepositoryRegion {
     }
   }
 
-  Future<dynamic> putRegionApi(int id, dynamic data) async {
+  Future<dynamic> putRegionApi(String id, dynamic data) async {
     try {
       dynamic response = await _apiServices.getPutApiResponse(
           AppUrl.regionUpdateEndPoint, id, data);
-
+      print("putRegionApi: ${id}");
+      print(response);
       return response;
     } catch (e) {
       throw e;

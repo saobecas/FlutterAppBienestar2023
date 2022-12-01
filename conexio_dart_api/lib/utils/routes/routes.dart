@@ -23,6 +23,7 @@ import '../../view/regionView/home_screen_region.dart';
 import '../../view/schoolView/schoolViewMethod/home_screen_school_add.dart';
 
 class Routes {
+  //final int id;
   static Route<dynamic> generateRoute(RouteSettings settings) {
     // final argume = settings.arguments;
 
@@ -53,12 +54,15 @@ class Routes {
             builder: (BuildContext context) => const HomeScreenRegion());
       case RoutesName.regionPut:
         return MaterialPageRoute(
-            builder: (BuildContext context) => HomeScreenRegionUpdate());
+            builder: (BuildContext context) => HomeScreenRegionUpdate(
+                  idRegion: null,
+                  nameRegion: null,
+                ));
+      /*
+                 builder: (BuildContext context) => HomeScreenRegionUpdate(
+                 idRegion: null,
+                )*/
 
-      /*     
-return MaterialPageRoute(
-           builder: (BuildContext context) => const HomeScreenRegionUpdate(idRegion: 1,));
-           */
       case RoutesName.municipio:
         return MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreenMunicipio());

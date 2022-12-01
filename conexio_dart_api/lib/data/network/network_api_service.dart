@@ -26,7 +26,7 @@ class NetworkApiService extends BaseApiService {
   }
 
   @override
-  Future getGetIdApiResponse(String url, int id) async {
+  Future getGetIdApiResponse(String url, String id) async {
     dynamic responseJson;
     try {
       final response = await http
@@ -59,24 +59,30 @@ class NetworkApiService extends BaseApiService {
   }
 
   @override
-  Future getPutApiResponse(String url, int id, data) async {
+  Future getPutApiResponse(String url, String id, data) async {
     dynamic responseJson;
-    print("Data $url+$data");
+    print("Data Network $url");
+    print("Data Network $id ");
+    print("Data Network $data");
+
     try {
       http.Response response = await http
-          //.put(Uri.parse("$url$id"),
-          .put(Uri.parse(url + '$id'),
+          .put(Uri.parse("$url$id"),
+              //.put(Uri.parse(url + id),
               //headers: {'Authorization': 'Bearer ${token}'},
               //body: "$data['id']")
               body: data)
-          .timeout(const Duration(seconds: 10));
+          // body: jsonEncode(data))
+          .timeout(const Duration(seconds: 60));
       responseJson = returnResponse(response);
+
       if (kDebugMode) {
         print(response.toString());
       }
     } on SocketException {
       throw FechtDataException("No tiene conexion a internet");
     }
+    print("URL: $url$id .......datos desde NETWOK: $responseJson");
     return responseJson;
   }
 

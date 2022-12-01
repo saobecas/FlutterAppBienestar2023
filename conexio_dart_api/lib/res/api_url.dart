@@ -11,7 +11,7 @@ class AppUrl {
   //rutas para region
   static var addRegionEndPoint = "$baseUrl/api/v1/region";
   static var regionListGellAllEndPoint = "$baseUrl/api/v1/regiones";
-  static var regionUpdateEndPoint = "$baseUrl/api/v1/school/:id";
+  static var regionUpdateEndPoint = "$baseUrl/api/v1/region/";
   static var regionGetIdEndPoint = "$baseUrl/api/v1/region/:id";
   //rutas para municipio
   static var addMunicipioEndPoint = "$baseUrl/api/v1/municipio";

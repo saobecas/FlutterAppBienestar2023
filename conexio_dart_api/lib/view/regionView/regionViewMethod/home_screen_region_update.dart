@@ -9,46 +9,160 @@ import '../../../res/components/round_button.dart';
 import '../../../utils/utils.dart';
 import '../../bar_gradient.dart';
 
-class HomeScreenRegionUpdate extends StatelessWidget {
-  //final Region region;
-  // HomeScreenRegionUpdate(this.region, {super.key});
-  HomeScreenRegionUpdate({super.key});
+class HomeScreenRegionUpdate extends StatefulWidget {
+  // final Region region;
+  final idRegion;
+  final nameRegion;
+
+  HomeScreenRegionUpdate(
+      {super.key, required this.idRegion, required this.nameRegion});
+
+  @override
+  State<HomeScreenRegionUpdate> createState() => _HomeScreenRegionUpdateState();
+}
+
+class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
+  TextEditingController _editNameRegion = TextEditingController();
+  TextEditingController _idRegion = TextEditingController();
+
+  @override
+  void getRegion() {
+    _editNameRegion.text = widget.nameRegion;
+    _idRegion.text = widget.idRegion.toString();
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getRegion();
+  }
+
+  FocusNode nameRegionFocusNode = FocusNode();
+  FocusNode idRegionFocusNode = FocusNode();
+  //get nameRegion => nameRegion;
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    // _nameRegion.dispose();
+    _editNameRegion.dispose();
+    nameRegionFocusNode.dispose();
+    _idRegion.dispose();
+    idRegionFocusNode.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final regionViewModel = Provider.of<HomeViewModelRegion>(context);
+
+    final height = MediaQuery.of(context).size.height * 1;
+    //print("valor de la segunda pantalla $_idRegion $_editNameRegion ");
     return Scaffold(
-        appBar: AppBar(
-            // title: Text(region.id.toString()),
-            ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              children: <Widget>[
-                Card(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      ListTile(
-                        title: Text("Title"),
-                        //     subtitle: Text(region.nameRegion.toString()),
-                      ),
-                      ListTile(
-                        title: Text("ID"),
-                        //      subtitle: Text("${region.id}"),
-                      ),
-                      RoundButton(
-                          title: "Actualizar",
-                          // loading: regionViewModel.addLoading,
-                          onPress: () {})
-                    ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              BarGradient("Actualizar Region", Icons.update),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                /* tamaño del colum */ height: 80,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                child: TextFormField(
+                  controller: _editNameRegion,
+                  //initialValue: nameRegion,
+                  keyboardType: TextInputType.text,
+                  focusNode: nameRegionFocusNode,
+                  autofocus: true,
+                  decoration: InputDecoration(
+                    hintText: 'Ingrese El Nombre De La Region ',
+                    labelText: 'Nombre De La Region',
+                    prefixIcon: Icon(
+                      Icons.add_home_sharp,
+                    ),
                   ),
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: height * .030,
+              ),
+              RoundButton(
+                title: "Actualizar",
+                loading: regionViewModel.putLoading,
+                onPress: () {
+                  // print(_editNameRegion);
+                  // print(_idRegion);
+                  if (_editNameRegion.text.isEmpty) {
+                    Utils.flushBarErrorMessage(
+                        "Por Favor Ingresa El Nombre De La Región", context);
+                  } else {
+                    Map data = {'nameRegion': _editNameRegion.text.toString()};
+
+                    regionViewModel.putRegionApi(
+                        widget.idRegion, data, context);
+                    //  regionViewModel.addRegionApi (idRegion ,data, context);
+                    // regionViewModel.addregionApi(data, context);
+                    // print("Valore Boton: $widget.idRegion");
+                    // print("Valore Boton: $data");
+                  }
+                },
+              )
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
+/*
+
+
+Column(
+                 
+                  children: <Widget>[
+                    ListTile(
+                      title: Text("Title ${widget.nameRegion}"),
+                    ),
+                    ListTile(
+                      title: Text("ID ${widget.idRegion}"),
+                      //      subtitle: Text("${region.id}"),
+                    ),
+                    RoundButton(
+                        title: "Actualizar",
+                        // loading: regionViewModel.addLoading,
+                        onPress: () {})
+                  ],
+                ),
+                
+Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: <Widget>[
+              Card(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    ListTile(
+                      title: Text("Title ${widget.nameRegion}"),
+                      //     subtitle: Text(region.nameRegion.toString()),
+                    ),
+                    ListTile(
+                      title: Text("ID ${widget.idRegion}"),
+                      //      subtitle: Text("${region.id}"),
+                    ),
+                    RoundButton(
+                        title: "Actualizar",
+                        // loading: regionViewModel.addLoading,
+                        onPress: () {})
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+*/
 
 /*class HomeScreenRegionUpdate extends StatefulWidget {
   // final int idRegion;
