@@ -13,23 +13,10 @@ class AuthViewModel with ChangeNotifier {
   bool _loading = false;
   bool get loading => _loading;
 
-  bool _signUpLoading = false;
-  bool get signUpLoading => _signUpLoading;
-
   setLoading(bool value) {
     _loading = value;
     notifyListeners();
   }
-
-  setSignUpLoading(bool value) {
-    _signUpLoading = value;
-    notifyListeners();
-  }
-
-  /*Future<User?> saveOpUodate(dynamic data) async {
-    User user = User.fromJson(data);
-    return user;
-  }*/
 
   Future<void> loginApi(dynamic data, BuildContext context) async {
     setLoading(true);
@@ -39,17 +26,12 @@ class AuthViewModel with ChangeNotifier {
 
       final userPreferences =
           Provider.of<UserViewModel>(context, listen: false);
-      //User user = User.fromJson(data);
-      // user.employee!.fullName.toString();
-      userPreferences.saveUser(UserModel(token: value['token'].toString()));
-      /*
-       userPreferences
-          .saveUser(UserModel(user: value['user'], token: value['token']));
-     */
+      var userInstance = User.fromJson(value['user']);
+      userPreferences.saveUser(
+          UserModel(user: userInstance, token: value['token'].toString()));
 
       Utils.flushBarErrorMessage('Inicio De Sesion Correcta', context);
       Navigator.pushNamed(context, RoutesName.home);
-
       if (kDebugMode) {
         print(value.toString());
       }
@@ -63,13 +45,21 @@ class AuthViewModel with ChangeNotifier {
     });
   }
 
+  bool _signUpLoading = false;
+  bool get signUpLoading => _signUpLoading;
+  setSignUpLoading(bool value) {
+    _signUpLoading = value;
+    notifyListeners();
+  }
+
   Future<void> signUpApi(dynamic data, BuildContext context) async {
     setSignUpLoading(true);
 
     _myRepo.signUpApi(data).then((value) {
       setSignUpLoading(false);
-      Utils.flushBarErrorMessage('Cuenta creada', context);
-      Navigator.pushNamed(context, RoutesName.home);
+
+      //Navigator.pushNamed(context, RoutesName.home);
+      Navigator.pushNamed(context, RoutesName.login);
 
       if (kDebugMode) {
         print(value.toString());

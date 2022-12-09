@@ -1,3 +1,5 @@
+import 'package:conexio_dart_api/view/municipioView/municipioViewMethod/home_screen_muni_update.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_municipio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -17,10 +19,19 @@ class HomeScreenMuniGetAll extends StatefulWidget {
 class _HomeScreenMuniGetAllState extends State<HomeScreenMuniGetAll> {
   HomeViewModelMunicipio homeViewModelMuni = HomeViewModelMunicipio();
 
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
   @override
   void initState() {
-    homeViewModelMuni.fechtMunicipioListApi();
+    getSharedPreferences;
     super.initState();
+    getSharedPreferences.getUser().then((value) => {
+          token = value.token,
+          setState(() {
+            homeViewModelMuni.fechtMunicipioListApi(token.toString());
+          })
+        });
   }
 
   @override
@@ -70,30 +81,59 @@ class _HomeScreenMuniGetAllState extends State<HomeScreenMuniGetAll> {
                             child: Row(
                               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Expanded(
+                                /* Expanded(
                                     child: IconButton(
                                   color: AppColors.buttonColor,
                                   onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => SimpleDialog(
-                                        children: [
-                                          TextField(
-                                            onChanged: (value) {
-                                              setState(() {
-                                                value;
-                                              });
-                                            },
-                                          ),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              child: Text('Actualizar'))
-                                        ],
+                                    final municipioId = value.municipioList
+                                        .data!.municipios![index].id
+                                        .toString();
+                                    final nameMunic = value.municipioList.data!
+                                        .municipios![index].name
+                                        .toString();
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            HomeScreenMuniUpdate(
+                                                // idRegion: regionId as int,
+                                                idmunicipio: municipioId,
+                                                nameMunicipio: nameMunic),
                                       ),
                                     );
                                   },
                                   icon: Icon(Icons.edit),
-                                )),
+                                )),*/
+                                Expanded(
+                                    child: IconButton(
+                                  color: AppColors.buttonColor,
+                                  onPressed: () {
+                                    final municipioId = value.municipioList
+                                        .data!.municipios![index].id
+                                        .toString();
+                                    final nameMunic = value.municipioList.data!
+                                        .municipios![index].name
+                                        .toString();
+                                    final regionId = value.municipioList.data!
+                                        .municipios![index].region!.id
+                                        .toString();
+
+                                    final nameRegion = value.municipioList.data!
+                                        .municipios![index].region!.nameRegion
+                                        .toString();
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            HomeScreenMuniUpdate(
+                                                // idRegion: regionId as int,
+                                                idmunicipio: municipioId,
+                                                nameMunicipio: nameMunic,
+                                                nameRegion: nameRegion,
+                                                regionId: regionId),
+                                      ),
+                                    );
+                                  },
+                                  icon: Icon(Icons.edit),
+                                ))
                                 /*  Expanded(
                                     child: IconButton(
                                   color: AppColors.buttonColor,

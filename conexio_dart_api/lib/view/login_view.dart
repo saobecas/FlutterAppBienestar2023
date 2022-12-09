@@ -38,98 +38,103 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height * 1;
-    return Scaffold(
-        body: SafeArea(
-      child: SingleChildScrollView(
-          child: Column(
-        children: [
-          BarGradient(
-              "Directorios Escolares De Educación Básica", Icons.school),
-          Container(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-            child: TextFormField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              focusNode: emailFocusNode,
-              decoration: const InputDecoration(
-                hintText: 'Ingrese Su Correo Electronico',
-                labelText: 'Correo Electronico',
-                prefixIcon: Icon(Icons.email),
-              ),
-              onFieldSubmitted: (valu) {
-                Utils.fielFocusChange(
-                    context, emailFocusNode, passwordFocusNode);
-              },
-            ),
-          ),
-          ValueListenableBuilder(
-              valueListenable: _obscurePassword,
-              builder: (context, value, child) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
-                  height: 80,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    obscureText: _obscurePassword.value,
-                    focusNode: passwordFocusNode,
-                    obscuringCharacter: "*",
-                    decoration: InputDecoration(
-                      hintText: 'Ingrese Su Contraseña',
-                      labelText: 'Contraseña',
-                      prefixIcon: Icon(Icons.lock),
-                      suffixIcon: InkWell(
-                          onTap: () {
-                            _obscurePassword.value = !_obscurePassword.value;
-                          },
-                          child: Icon(_obscurePassword.value
-                              ? Icons.visibility_off
-                              : Icons.visibility)),
-                    ),
+    return WillPopScope(
+        onWillPop: () => Utils.closedApp(context),
+        //_closeApp(context),
+        child: Scaffold(
+            body: SafeArea(
+          child: SingleChildScrollView(
+              child: Column(
+            children: [
+              BarGradient(
+                  "Directorios Escolares De Educación Básica", Icons.school),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                    horizontal: 30.0, vertical: 10.0),
+                height: 80,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                child: TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  focusNode: emailFocusNode,
+                  decoration: const InputDecoration(
+                    hintText: 'Ingrese Su Correo Electronico',
+                    labelText: 'Correo Electronico',
+                    prefixIcon: Icon(Icons.email),
                   ),
-                );
-              }),
-          SizedBox(
-            height: height * .085,
-          ),
-          RoundButton(
-            title: "Iniciar Sesiòn",
-            loading: authViewModel.loading,
-            onPress: () {
-              if (_emailController.text.isEmpty) {
-                Utils.flushBarErrorMessage(
-                    "Por Favor Ingresa El Correo Electronico", context);
-              } else if (_passwordController.text.isEmpty ||
-                  _passwordController.text.length < 8) {
-                Utils.flushBarErrorMessage(
-                    "Por Favor Ingresa La Contraseña Con Minimo 8 Carcateres",
-                    context);
-              } else {
-                Map data = {
-                  'email': _emailController.text.toString(),
-                  'password': _passwordController.text.toString(),
-                };
+                  onFieldSubmitted: (valu) {
+                    Utils.fielFocusChange(
+                        context, emailFocusNode, passwordFocusNode);
+                  },
+                ),
+              ),
+              ValueListenableBuilder(
+                  valueListenable: _obscurePassword,
+                  builder: (context, value, child) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 30.0, vertical: 10.0),
+                      height: 80,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      child: TextFormField(
+                        controller: _passwordController,
+                        obscureText: _obscurePassword.value,
+                        focusNode: passwordFocusNode,
+                        obscuringCharacter: "*",
+                        decoration: InputDecoration(
+                          hintText: 'Ingrese Su Contraseña',
+                          labelText: 'Contraseña',
+                          prefixIcon: Icon(Icons.lock),
+                          suffixIcon: InkWell(
+                              onTap: () {
+                                _obscurePassword.value =
+                                    !_obscurePassword.value;
+                              },
+                              child: Icon(_obscurePassword.value
+                                  ? Icons.visibility_off
+                                  : Icons.visibility)),
+                        ),
+                      ),
+                    );
+                  }),
+              SizedBox(
+                height: height * .085,
+              ),
+              RoundButton(
+                title: "Iniciar Sesiòn",
+                loading: authViewModel.loading,
+                onPress: () {
+                  if (_emailController.text.isEmpty) {
+                    Utils.flushBarErrorMessage(
+                        "Por Favor Ingresa El Correo Electronico", context);
+                  } else if (_passwordController.text.isEmpty ||
+                      _passwordController.text.length < 8) {
+                    Utils.flushBarErrorMessage(
+                        "Por Favor Ingresa La Contraseña Con Minimo 8 Carcateres",
+                        context);
+                  } else {
+                    Map data = {
+                      'email': _emailController.text.toString(),
+                      'password': _passwordController.text.toString(),
+                    };
 
-                authViewModel.loginApi(data, context);
-                // print("api pegar");
-              }
-            },
-          ),
-          SizedBox(
-            height: height * .02,
-          ),
-          InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, RoutesName.signUp);
-              },
-              child: Text("No tienes cuenta? Crear Cuenta"))
-        ],
-      )),
-    ));
+                    authViewModel.loginApi(data, context);
+                    // print("api pegar");
+                  }
+                },
+              ),
+              SizedBox(
+                height: height * .02,
+              ),
+              InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, RoutesName.signUp);
+                  },
+                  child: Text("No tienes cuenta? Crear Cuenta"))
+            ],
+          )),
+        )));
   }
 }

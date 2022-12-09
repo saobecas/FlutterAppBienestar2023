@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:conexio_dart_api/data/response/status.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_localidad.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_municipio.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
@@ -51,11 +52,19 @@ class _HomeScreenLocalidadAddState extends State<HomeScreenLocalidadAdd> {
     });
   }
 
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
   @override
   void initState() {
+    getSharedPreferences;
     super.initState();
-
-    homeViewModelMunicipio.fechtMunicipioListApi();
+    getSharedPreferences.getUser().then((value) => {
+          token = value.token,
+          setState(() {
+            homeViewModelMunicipio.fechtMunicipioListApi(token.toString());
+          })
+        });
   }
 
   @override
@@ -275,7 +284,8 @@ class _HomeScreenLocalidadAddState extends State<HomeScreenLocalidadAdd> {
                       'municipioId': _municipioId.text.toString(),
                     };
 
-                    localidadViewModel.addLocalidadApi(data, context);
+                    localidadViewModel.addLocalidadApi(
+                        data, token.toString(), context);
                     //regionViewModel.addRegionApi(data, context);
 
                   }

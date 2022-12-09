@@ -1,10 +1,10 @@
 import 'dart:convert';
 
 import 'package:conexio_dart_api/data/response/status.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_municipio.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -41,10 +41,19 @@ class _HomeScreenMuniAddState extends State<HomeScreenMuniAdd> {
     nameFocusNode.dispose();
   }
 
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
   @override
   void initState() {
+    getSharedPreferences;
     super.initState();
-    homeViewModelRegion.fechtRegionListApi();
+    getSharedPreferences.getUser().then((value) => {
+          token = value.token,
+          setState(() {
+            homeViewModelRegion.fechtRegionListApi(token.toString());
+          })
+        });
   }
 
   void setIdNameRegion() {
@@ -240,7 +249,8 @@ class _HomeScreenMuniAddState extends State<HomeScreenMuniAdd> {
                       'regionId': _regionId.text.toString()
                     };
 
-                    municipioViewModel.addMunicipioApi(data, context);
+                    municipioViewModel.addMunicipioApi(
+                        data, token.toString(), context);
                     //regionViewModel.addRegionApi(data, context);
 
                   }

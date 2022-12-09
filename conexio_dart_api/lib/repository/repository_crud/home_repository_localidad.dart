@@ -7,10 +7,10 @@ import '../../res/api_url.dart';
 class HomeRepositoryLocalidad {
   BaseApiService _apiServices = NetworkApiService();
 
-  Future<LocalidadModelGet> fechtLocalidadList() async {
+  Future<LocalidadModelGet> fechtLocalidadList(String token) async {
     try {
-      dynamic response = await _apiServices
-          .getGetApiResponse(AppUrl.localidadListGellAllEndPoint);
+      dynamic response = await _apiServices.getGetApiResponse(
+          AppUrl.localidadListGellAllEndPoint, token);
 
       return response = LocalidadModelGet.fromJson(response);
     } catch (e) {
@@ -18,12 +18,28 @@ class HomeRepositoryLocalidad {
     }
   }
 
-  Future<dynamic> addLocalidadApi(dynamic data) async {
+  Future<dynamic> addLocalidadApi(dynamic data, String token) async {
     try {
       dynamic response = await _apiServices.getPostApiResponse(
-          AppUrl.addLocalidadEndPoint, data);
+          AppUrl.addLocalidadEndPoint, data, token);
       return response;
     } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<dynamic> putLocalidadApi(String id, dynamic data, String token) async {
+    try {
+      dynamic response = await _apiServices.getPutApiResponse(
+          AppUrl.localidadUpdateEndPoint, id, data, token);
+      print("putUpdateLocalidadApi: ${id}");
+      print(response);
+      return response;
+    } catch (e) {
+      kDebugMode() {
+        print("Respuesyta: ....$e");
+      }
+
       throw e;
     }
   }

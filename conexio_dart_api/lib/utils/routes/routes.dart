@@ -1,22 +1,20 @@
-import 'package:conexio_dart_api/model/region/region_list_model.dart';
-import 'package:conexio_dart_api/model/region/region_model_get_id.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view/localidadView/home_screen_localidad.dart';
 import 'package:conexio_dart_api/view/localitation/get_localitation_view.dart';
 import 'package:conexio_dart_api/view/municipioView/home_screen_municipio.dart';
-import 'package:conexio_dart_api/view/municipioView/municipioViewMethod/home_screen_muni_addhome.dart';
-import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_getAll.dart';
+import 'package:conexio_dart_api/view/municipioView/municipioViewMethod/home_screen_muni_update.dart';
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
 import 'package:conexio_dart_api/view/schoolView/home_screen_school.dart';
 import 'package:conexio_dart_api/view/login_view.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_add_super.dart';
-import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_getId_Detail.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_directorUpdate.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_superUpdate.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_update.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_shool_add_direc.dart';
 import 'package:conexio_dart_api/view/sign_up_view.dart';
 import 'package:conexio_dart_api/view/splash_view.dart';
-import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
+import 'package:conexio_dart_api/view/update_user_pass.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../../view/home_screen.dart';
 import '../../view/regionView/home_screen_region.dart';
@@ -38,6 +36,10 @@ class Routes {
       case RoutesName.login:
         return MaterialPageRoute(
             builder: (BuildContext context) => const LoginView());
+      case RoutesName.updateUser:
+        return MaterialPageRoute(
+            builder: (BuildContext context) =>
+                const HomeScreenUserPasswordUpdate());
       case RoutesName.locate:
         return MaterialPageRoute(
             builder: (BuildContext context) => const GetLocations());
@@ -59,11 +61,14 @@ class Routes {
                   idRegion: null,
                   nameRegion: null,
                 ));
-      /*
-                builder: (BuildContext context) => HomeScreenRegionUpdate(
-                 idRegion: null,
-                )*/
-
+      case RoutesName.municipioPut:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreenMuniUpdate(
+                  idmunicipio: null,
+                  nameMunicipio: null,
+                  nameRegion: null,
+                  regionId: null,
+                ));
       case RoutesName.municipio:
         return MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreenMunicipio());
@@ -76,6 +81,32 @@ class Routes {
       case RoutesName.datDirectorview:
         return MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreenDataDirector());
+      case RoutesName.schoolPut:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreenSchoolUpdate(
+                  id: null,
+                  name: null,
+                  clave: null,
+                  nivel: null,
+                  calle: null,
+                  noExterior: null,
+                  noInteriror: null,
+                  asentamiento: null,
+                  email: null,
+                  telefono: null,
+                  localidadId: null,
+                  nameLoc: null,
+                ));
+
+      case RoutesName.supervisorPut:
+        return MaterialPageRoute(
+            builder: (BuildContext context) =>
+                const HomeScreenSupervisorUpdate());
+      case RoutesName.directorPut:
+        return MaterialPageRoute(
+            builder: (BuildContext context) =>
+                const HomeScreenDirectorUpdate());
+
       case RoutesName.datSupervisorview:
         return MaterialPageRoute(
             builder: (BuildContext context) =>

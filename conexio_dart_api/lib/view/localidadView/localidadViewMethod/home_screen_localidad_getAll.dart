@@ -1,3 +1,5 @@
+import 'package:conexio_dart_api/view/localidadView/localidadViewMethod/home_screen_localidad_update.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_localidad.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -19,10 +21,19 @@ class HomeScreenLocalidadGetAll extends StatefulWidget {
 class _HomeScreenLocalidadGetAllState extends State<HomeScreenLocalidadGetAll> {
   HomeViewModelLocalidad homeViewModelLocalidad = HomeViewModelLocalidad();
 
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
   @override
   void initState() {
-    homeViewModelLocalidad.fechtLocalidadListApi();
+    getSharedPreferences;
     super.initState();
+    getSharedPreferences.getUser().then((value) => {
+          token = value.token,
+          setState(() {
+            homeViewModelLocalidad.fechtLocalidadListApi(token.toString());
+          })
+        });
   }
 
   @override
@@ -70,35 +81,39 @@ class _HomeScreenLocalidadGetAllState extends State<HomeScreenLocalidadGetAll> {
                             child: Row(
                               children: [
                                 Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => SimpleDialog(
-                                        children: [
-                                          TextField(
-                                            onChanged: (value) {
-                                              setState(() {
-                                                value;
-                                              });
-                                            },
+                                  child: IconButton(
+                                    color: AppColors.buttonColor,
+                                    onPressed: () {
+                                      final localidadId = value.localidadList
+                                          .data!.localidades![index].id
+                                          .toString();
+                                      final nameLoc = value.localidadList.data!
+                                          .localidades![index].nameLoc
+                                          .toString();
+                                      final claveLocOfi = value.localidadList
+                                          .data!.localidades![index].claveLocOfi
+                                          .toString();
+
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              HomeScreenLocalidadUpdate(
+                                            localidadId: localidadId,
+                                            nameLoc: nameLoc,
+                                            claveLocOfi: claveLocOfi,
                                           ),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              child: Text('Actualizar'))
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  icon: Icon(Icons.edit),
-                                )),
-                                /* Expanded(
+                                        ),
+                                      );
+                                    },
+                                    icon: Icon(Icons.edit),
+                                  ),
+                                ),
+                                /*  Expanded(
                                     child: IconButton(
                                   color: AppColors.buttonColor,
                                   onPressed: () {},
                                   icon: Icon(Icons.delete),
-                                ))*/
+                               ))*/
                               ],
                             ),
                           ),

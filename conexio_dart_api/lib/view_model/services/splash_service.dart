@@ -9,8 +9,6 @@ class SplashService {
 
   void checkAuthentication(BuildContext context) async {
     getUserDate().then((value) async {
-      print(value.token.toString());
-
       if (value.token.toString() == 'null' || value.token.toString() == "") {
         //await Future.delayed(Duration(days: 3));
         await Future.delayed(Duration(seconds: 2));
@@ -18,6 +16,8 @@ class SplashService {
       } else {
         await Future.delayed(Duration(seconds: 2));
         Navigator.pushNamed(context, RoutesName.home);
+        print(value.token.toString());
+        print(value.user!.toJson().toString());
       }
     }).onError((error, stackTrace) {
       if (kDebugMode) {

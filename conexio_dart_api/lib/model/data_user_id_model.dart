@@ -1,12 +1,10 @@
-class UserModel {
+class DataUserIdModel {
   User? user;
-  String? token;
 
-  UserModel({this.user, this.token});
+  DataUserIdModel({this.user});
 
-  UserModel.fromJson(Map<String, dynamic> json) {
+  DataUserIdModel.fromJson(Map<String, dynamic> json) {
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
-    token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -14,7 +12,6 @@ class UserModel {
     if (this.user != null) {
       data['user'] = this.user!.toJson();
     }
-    data['token'] = this.token;
     return data;
   }
 }
@@ -25,8 +22,8 @@ class User {
   String? password;
   int? roleId;
   int? employeeId;
-  Employee? employee;
   Role? role;
+  Employee? employee;
 
   User(
       {this.id,
@@ -34,8 +31,8 @@ class User {
       this.password,
       this.roleId,
       this.employeeId,
-      this.employee,
-      this.role});
+      this.role,
+      this.employee});
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -43,10 +40,10 @@ class User {
     password = json['password'];
     roleId = json['roleId'];
     employeeId = json['employeeId'];
+    role = json['role'] != null ? new Role.fromJson(json['role']) : null;
     employee = json['employee'] != null
         ? new Employee.fromJson(json['employee'])
         : null;
-    role = json['role'] != null ? new Role.fromJson(json['role']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -56,12 +53,31 @@ class User {
     data['password'] = this.password;
     data['roleId'] = this.roleId;
     data['employeeId'] = this.employeeId;
-    if (this.employee != null) {
-      data['employee'] = this.employee!.toJson();
-    }
     if (this.role != null) {
       data['role'] = this.role!.toJson();
     }
+    if (this.employee != null) {
+      data['employee'] = this.employee!.toJson();
+    }
+    return data;
+  }
+}
+
+class Role {
+  int? id;
+  String? nameRole;
+
+  Role({this.id, this.nameRole});
+
+  Role.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    nameRole = json['name_role'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['name_role'] = this.nameRole;
     return data;
   }
 }
@@ -91,25 +107,6 @@ class Employee {
     data['email'] = this.email;
     data['number_phone'] = this.numberPhone;
     data['oficina'] = this.oficina;
-    return data;
-  }
-}
-
-class Role {
-  int? id;
-  String? nameRole;
-
-  Role({this.id, this.nameRole});
-
-  Role.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    nameRole = json['name_role'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name_role'] = this.nameRole;
     return data;
   }
 }

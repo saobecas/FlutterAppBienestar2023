@@ -7,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import 'schoolViewMethod/home_screen_school_Addhome.dart';
-
 class HomeScreenSchool extends StatefulWidget {
   const HomeScreenSchool({super.key});
 

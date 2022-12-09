@@ -1,9 +1,19 @@
+import 'dart:convert';
+
+import 'package:conexio_dart_api/data/response/status.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
+import 'package:conexio_dart_api/view/localitation/get_localitation_view.dart';
+import 'package:conexio_dart_api/view_model/school/home_view_model_school.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
+import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_localidad.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:email_validator/email_validator.dart';
 
 class HomeScreenSchoolAdd extends StatefulWidget {
   const HomeScreenSchoolAdd({super.key});
@@ -13,6 +23,13 @@ class HomeScreenSchoolAdd extends StatefulWidget {
 }
 
 class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
+  bool _active = false;
+
+  HomeViewModelLocalidad homeViewModelLocalidad = HomeViewModelLocalidad();
+  dynamic? selectedValue;
+  final TextEditingController searchController = TextEditingController();
+
+  //Datos de la escuela
   final TextEditingController _nameSchoolController = TextEditingController();
   final TextEditingController _claveSchoolController = TextEditingController();
   final TextEditingController _nivelEducativoController =
@@ -24,24 +41,9 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
       TextEditingController();
   final TextEditingController _asentamientoController = TextEditingController();
   final TextEditingController _emailSchoolController = TextEditingController();
-  final TextEditingController _telefonoController = TextEditingController();
+  final TextEditingController _telefonoSchoolController =
+      TextEditingController();
   final TextEditingController _localidadIdController = TextEditingController();
-  final TextEditingController _nameDirectorController = TextEditingController();
-  final TextEditingController _sindicatoController = TextEditingController();
-  final TextEditingController _telephoneController = TextEditingController();
-  final TextEditingController _puestoController = TextEditingController();
-  final TextEditingController _emailDirectorController =
-      TextEditingController();
-  final TextEditingController _atencionController = TextEditingController();
-  final TextEditingController _nameSupervisorController =
-      TextEditingController();
-  final TextEditingController _telephoneSupervisorController =
-      TextEditingController();
-  final TextEditingController _emailSupervisorController =
-      TextEditingController();
-  final TextEditingController _recuperadoController = TextEditingController();
-  final TextEditingController _peridoDirectorioRecuperadoController =
-      TextEditingController();
 
   FocusNode emailFocusNode = FocusNode();
   FocusNode nameSchoolFocusNode = FocusNode();
@@ -52,23 +54,11 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
   FocusNode numeroInteriorFocusNode = FocusNode();
   FocusNode asentamientoFocusNode = FocusNode();
   FocusNode emailSchoolFocusNode = FocusNode();
-  FocusNode telefonoFocusNode = FocusNode();
+  FocusNode telefonoSchoolFocusNode = FocusNode();
   FocusNode localidadIFocusNode = FocusNode();
-  FocusNode nameDirectorFocusNode = FocusNode();
-  FocusNode sindicatoFocusNode = FocusNode();
-  FocusNode telephoneFocusNode = FocusNode();
-  FocusNode puestoFocusNode = FocusNode();
-  FocusNode emailDirectorFocusNode = FocusNode();
-  FocusNode atencionFocusNode = FocusNode();
-  FocusNode nameSupervisoFocusNode = FocusNode();
-  FocusNode telephoneSupervisoFocusNode = FocusNode();
-  FocusNode emailSupervisorFocusNode = FocusNode();
-  FocusNode recuperadoFocusNode = FocusNode();
-  FocusNode peridoDirectorioRecuperadoFocusNode = FocusNode();
   @override
   void dispose() {
     super.dispose();
-
     _nameSchoolController.dispose();
     _claveSchoolController.dispose();
     _nivelEducativoController.dispose();
@@ -77,24 +67,52 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
     _numeroInteriorController.dispose();
     _asentamientoController.dispose();
     _emailSchoolController.dispose();
-    _telefonoController.dispose();
+    _telefonoSchoolController.dispose();
     _localidadIdController.dispose();
-    _nameDirectorController.dispose();
-    _sindicatoController.dispose();
-    _telephoneController.dispose();
-    _puestoController.dispose();
-    _emailDirectorController.dispose();
-    _atencionController.dispose();
-    _nameSupervisorController.dispose();
-    _telephoneSupervisorController.dispose();
-    _emailSupervisorController.dispose();
-    _recuperadoController.dispose();
-    _peridoDirectorioRecuperadoController.dispose();
+  }
+
+  void setIdLocalidad() {
+    setState(() {
+      _localidadIdController.text = selectedValue.id.toString();
+      print("Select vaules desde metodo set: " +
+          _localidadIdController.text.toString());
+    });
+  }
+
+  /*void validateEmail(String val) {
+    if (val.isEmpty) {
+      setState(() {
+        print("Email can not be empty");
+      });
+    } else if (!EmailValidator.validate(val, true)) {
+      setState(() {
+        print("Invalid Email Address");
+      });
+    } else {
+      setState(() {
+        print("");
+      });
+    }
+  }*/
+
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
+  @override
+  void initState() {
+    getSharedPreferences;
+    super.initState();
+    getSharedPreferences.getUser().then((value) => {
+          token = value.token,
+          setState(() {
+            homeViewModelLocalidad.fechtLocalidadListApi(token.toString());
+          })
+        });
   }
 
   @override
   Widget build(BuildContext context) {
-    //final addSchoolViewModel = Provider.of<HomeViewModelScholl>(context);
+    final addSchoolViewModel = Provider.of<HomeViewModelScholl>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
         body: SafeArea(
@@ -125,18 +143,19 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
           Container(
             margin:
                 const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
+            height: 90,
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
             child: TextFormField(
               controller: _claveSchoolController,
               keyboardType: TextInputType.number,
-              maxLines: 10,
-              minLines: 10,
+              maxLines: 9,
+              minLines: 9,
+              maxLength: 9,
               focusNode: claveSchoolFocusNode,
               decoration: const InputDecoration(
                 hintText: 'Ingrese La Clave',
                 labelText: 'Clave De La Escuela',
-                prefixIcon: Icon(Icons.email),
+                prefixIcon: Icon(Icons.key),
               ),
               onEditingComplete: () =>
                   Utils.fielFocusGeneral(context, nivelEducativoFocusNode),
@@ -154,11 +173,155 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
               decoration: const InputDecoration(
                 hintText: 'Ingrese El Nivel Educativo',
                 labelText: 'Nivel Educativo',
-                prefixIcon: Icon(Icons.phone),
+                prefixIcon: Icon(Icons.perm_data_setting_outlined),
               ),
               onEditingComplete: () =>
                   Utils.fielFocusGeneral(context, calleFocus),
               textInputAction: TextInputAction.next,
+            ),
+          ),
+          Container(
+            child: ChangeNotifierProvider<HomeViewModelLocalidad>(
+              create: (BuildContext context) => homeViewModelLocalidad,
+              child: Consumer<HomeViewModelLocalidad>(
+                  builder: (context, lista, _) {
+                switch (lista.localidadList.status!) {
+                  case Status.LOADING:
+                    return Center(child: CircularProgressIndicator());
+                  case Status.ERROR:
+                    return Center(
+                        child: Text(lista.localidadList.message.toString()));
+                  case Status.COMPLETED:
+                    //var index;
+                    return Center(
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton2(
+                          //barrierColor: Colors.blue,
+                          buttonDecoration: BoxDecoration(
+                            color: Color.fromARGB(255, 235, 235, 235),
+                            borderRadius: BorderRadius.circular(30.0),
+                            border: Border.all(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                style: BorderStyle.solid,
+                                width: 0.80),
+                          ),
+                          isExpanded: true,
+                          hint: Row(
+                            children: [
+                              Icon(
+                                Icons.list,
+                                size: 15,
+                                color: Colors.black,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Expanded(
+                                child: Center(
+                                  child: Text(
+                                    'Selecciona la localidad',
+
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      color: Theme.of(context).hintColor,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                    //selectionColor: Colors.amberAccent,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          items: lista.localidadList.data!.localidades!
+                              //lista.regionList.data!.regiones!
+                              .map((nombre_localidad) =>
+                                  DropdownMenuItem<dynamic>(
+                                    //value: nombre_region.id.toString(),
+                                    value: nombre_localidad,
+
+                                    child: Text(
+                                      nombre_localidad.nameLoc.toString(),
+                                      //nombre_region.toString(),
+
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+
+                          value: selectedValue,
+
+                          onChanged: (value) {
+                            setState(() {
+                              selectedValue = value as dynamic;
+
+                              print(selectedValue.id);
+                            });
+                          },
+
+                          buttonHeight: 50,
+                          buttonWidth: 250,
+                          itemHeight: 50,
+                          dropdownMaxHeight: 400,
+                          dropdownPadding: null,
+                          dropdownDecoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: Color.fromARGB(255, 235, 235, 235),
+                          ),
+                          searchController: searchController,
+                          searchInnerWidget: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 8,
+                              bottom: 4,
+                              right: 8,
+                              left: 8,
+                            ),
+                            child: TextFormField(
+                              controller: searchController,
+                              decoration: InputDecoration(
+                                isDense: false,
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 8,
+                                ),
+                                hintText: 'Buscar...',
+                                icon: Icon(Icons.search),
+                                hintStyle: const TextStyle(
+                                  fontSize: 12,
+                                ),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              //validator: (selectedValue),
+                            ),
+                          ),
+                          searchMatchFn: (nombre_localidad, searchValue) {
+                            //print("Holamundo");
+                            var name = nombre_localidad.value!.nameLoc!
+                                .toString()
+                                .toUpperCase()
+                                //.toLowerCase()
+                                .contains(searchValue);
+                            if (kDebugMode) {
+                              print(
+                                  "===============================${jsonEncode(nombre_localidad.value)}");
+                            }
+                            return name;
+                          },
+                          //This to clear the search value when you close the menu
+                          onMenuStateChange: (isOpen) {
+                            if (!isOpen) {
+                              searchController.clear();
+                            }
+                          },
+                        ),
+                      ),
+                    );
+                }
+              }),
             ),
           ),
           Container(
@@ -172,7 +335,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
               decoration: const InputDecoration(
                 hintText: 'Ingrese La Calle',
                 labelText: 'Nombre De La Calle',
-                prefixIcon: Icon(Icons.phone),
+                prefixIcon: Icon(Icons.stairs_rounded),
               ),
               onEditingComplete: () =>
                   Utils.fielFocusGeneral(context, numeroExteriorFocusNode),
@@ -191,7 +354,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
               decoration: const InputDecoration(
                 hintText: 'Ingrese El Numero exterior',
                 labelText: 'Numero Exterior',
-                prefixIcon: Icon(Icons.phone),
+                prefixIcon: Icon(Icons.numbers),
               ),
               onEditingComplete: () =>
                   Utils.fielFocusGeneral(context, numeroInteriorFocusNode),
@@ -210,7 +373,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
               decoration: const InputDecoration(
                 hintText: 'Ingrese El Numero Interior',
                 labelText: 'Numero Interior',
-                prefixIcon: Icon(Icons.phone),
+                prefixIcon: Icon(Icons.numbers),
               ),
               onEditingComplete: () =>
                   Utils.fielFocusGeneral(context, asentamientoFocusNode),
@@ -228,7 +391,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
               decoration: const InputDecoration(
                 hintText: 'Ingrese El Asentamiento',
                 labelText: 'Asentamiento',
-                prefixIcon: Icon(Icons.phone),
+                prefixIcon: Icon(Icons.holiday_village_sharp),
               ),
               onEditingComplete: () =>
                   Utils.fielFocusGeneral(context, emailSchoolFocusNode),
@@ -247,21 +410,35 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
               decoration: const InputDecoration(
                 hintText: 'Ingrese Su Correo Electronico',
                 labelText: 'Correo Electronico Institucional',
-                prefixIcon: Icon(Icons.phone),
+                prefixIcon: Icon(Icons.email),
               ),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Enter your Email address';
+                }
+                if (!RegExp(
+                        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                    .hasMatch(value)) {
+                  return 'Enter a Valid Email address';
+                }
+                return null;
+              },
+              /* onChanged: (val) {
+                validateEmail(val);
+              },*/
               onEditingComplete: () =>
-                  Utils.fielFocusGeneral(context, telefonoFocusNode),
+                  Utils.fielFocusGeneral(context, telefonoSchoolFocusNode),
               textInputAction: TextInputAction.next,
             ),
           ),
           Container(
             margin:
                 const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
+            height: 90,
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
             child: TextFormField(
-              controller: _telefonoController,
-              focusNode: telefonoFocusNode,
+              controller: _telefonoSchoolController,
+              focusNode: telefonoSchoolFocusNode,
               keyboardType: TextInputType.phone,
               maxLength: 10,
               decoration: const InputDecoration(
@@ -270,80 +447,45 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                 prefixIcon: Icon(Icons.phone),
               ),
               onEditingComplete: () =>
-                  Utils.fielFocusGeneral(context, localidadIFocusNode),
+                  Utils.fielFocusGeneral(context, telefonoSchoolFocusNode),
               textInputAction: TextInputAction.next,
             ),
           ),
-          Container(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-            child: TextFormField(
-              controller: _localidadIdController,
-              focusNode: localidadIFocusNode,
-              decoration: const InputDecoration(
-                hintText: 'Ingrese La Localidad',
-                labelText: 'Nombre De La Localidad',
-                prefixIcon: Icon(Icons.phone),
-              ),
-              onEditingComplete: () =>
-                  Utils.fielFocusGeneral(context, nameDirectorFocusNode),
-              textInputAction: TextInputAction.next,
-            ),
-          ),
-          RoundButton(
-              title: "Siguiete",
-              onPress: () {
-                Navigator.pushNamed(context, RoutesName.locate);
-                // addSchoolViewModel.addSchoolApi(data, context);
-              }),
           SizedBox(
             height: height * .085,
           ),
-          /*  RoundButton(
-            title: "siguiente",
+          RoundButton(
+            title: "Siguiente",
             // loading: addSchoolViewModel.addLoading,
             onPress: () {
-              if (_nameSchoolController.text.isEmpty
-                  //_nameDirectorController.text.isEmpty ||
-                  //_nameSupervisorController.text.isEmpty
-                  ) {
-                Utils.flushBarErrorMessage(
-                    "Por Favor  Ingrese Todos Los Campos", context);
+              setIdLocalidad();
+
+              //_atencionController.text = _active.toString();
+              print("valod del active: " + _active.toString());
+
+              print("Valor de localidad: " +
+                  _localidadIdController.text.toString());
+              if (_nameSchoolController.text.isEmpty ||
+                  _claveSchoolController.text.isEmpty) {
+                Utils.flushBarErrorMessage("Rellene todos los campos", context);
               } else {
-                Map data = {
-                  'name_school': _nameSchoolController.text.toString(),
-                  'cct': _claveSchoolController.text.toString(),
-                  'nivel': _nivelEducativoController.text.toString(),
-                  'calle': _calleController.text.toString(),
-                  'noExterior': _numeroExteriorController.text.toString(),
-                  'numeroInterior': _numeroInteriorController.text.toString(),
-                  'asentamiento': _asentamientoController.text.toString(),
-                  'email_school': _emailSchoolController.text.toString(),
-                  'telefono': _telefonoController.text.toString(),
-                  'localidadId': _localidadIdController.text.toString(),
-                  'name_director': _nameDirectorController.text.toString(),
-                  'sindicato': _sindicatoController.text.toString(),
-                  'telephone': _telephoneController.text.toString(),
-                  'puesto': _puestoController.text.toString(),
-                  'email_director': _emailDirectorController.text.toString(),
-                  'atencion': _atencionController.text.toString(),
-                  'name_supervisor': _nameSupervisorController.text.toString(),
-                  'telephone_supervisor':
-                      _telephoneSupervisorController.text.toString(),
-                  'email_supervisor':
-                      _emailSupervisorController.text.toString(),
-                  'recuperado': _recuperadoController.text.toString(),
-                  'directorio_recuperado':
-                      _peridoDirectorioRecuperadoController.text.toString(),
-                };
-                Navigator.pushNamed(context, RoutesName.datDirectorview);
-                // addSchoolViewModel.addSchoolApi(data, context);
-                print("Api agregar escuela");
+                /* Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => GetLocations(
+                          name_school: _nameSchoolController.text.toString(),
+                          cct: _claveSchoolController.text.toString(),
+                          nivel: _nivelEducativoController.text.toString(),
+                          calle: _calleController.text.toString(),
+                          noExterior: _numeroExteriorController.text.toString(),
+                          numeroInteriofinal:
+                              _numeroInteriorController.text.toString(),
+                          asentamiento: _asentamientoController.text.toString(),
+                          email_school: _emailSchoolController.text.toString(),
+                          telefono: _telefonoSchoolController.text.toString(),
+                          localidadId: _localidadIdController.text.toString(),
+                        )));*/
               }
             },
-          ),*/
+          ),
           SizedBox(
             height: height * .03,
           ),

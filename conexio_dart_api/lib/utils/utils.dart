@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/material.dart';
@@ -51,5 +53,54 @@ class Utils {
   static snackBar(String message, BuildContext context) {
     return ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(backgroundColor: Colors.red, content: Text(message)));
+  }
+
+  static closedApp(BuildContext context) async {
+    bool? exitApp = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            title: const Text(
+                textAlign: TextAlign.center,
+                'ALERTA',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                )),
+            content: const Text(
+                textAlign: TextAlign.center, '¿Deseas salir de la aplicacion?'),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: const Text('No',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                      ))),
+              TextButton(
+                  onPressed: () {
+                    //Navigator.of(context).pop(true);
+                    exit(0);
+                  },
+                  child: const Text('Si',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 20,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                      )))
+            ],
+          );
+        });
+    return exitApp ?? false;
   }
 }

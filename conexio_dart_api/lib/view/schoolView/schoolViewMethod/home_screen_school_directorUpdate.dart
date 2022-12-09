@@ -1,45 +1,40 @@
 import 'package:conexio_dart_api/res/components/round_button.dart';
-import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
-import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_add_super.dart';
-import 'package:flutter/material.dart';
+import 'package:conexio_dart_api/view_model/school/home_view_model_school.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
 
-class HomeScreenDataDirector extends StatefulWidget {
-  final name_school;
-  final cct;
-  final nivel;
-  final calle;
-  final noExterior;
-  final numeroInteriofinal;
-  final asentamiento;
-  final email_school;
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+class HomeScreenDirectorUpdate extends StatefulWidget {
+  final id;
+  final name;
+  final sindicato;
   final telefono;
-  final localidadId;
-  final latitud;
-  final longitud;
-  const HomeScreenDataDirector(
-      {super.key,
-      this.name_school,
-      this.cct,
-      this.nivel,
-      this.calle,
-      this.noExterior,
-      this.numeroInteriofinal,
-      this.asentamiento,
-      this.email_school,
-      this.telefono,
-      this.localidadId,
-      this.latitud,
-      this.longitud});
+  final puesto;
+  final email;
+  final atencion;
+
+  const HomeScreenDirectorUpdate({
+    super.key,
+    this.name,
+    this.id,
+    this.sindicato,
+    this.telefono,
+    this.puesto,
+    this.email,
+    this.atencion,
+  });
 
   @override
-  State<HomeScreenDataDirector> createState() => _HomeScreenDataDirectorState();
+  State<HomeScreenDirectorUpdate> createState() =>
+      _HomeScreenDirectorUpdateState();
 }
 
-class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
-  bool _active = false;
-
+class _HomeScreenDirectorUpdateState extends State<HomeScreenDirectorUpdate> {
+  bool activarDefault = false;
+  bool activar = false;
   final TextEditingController _nameDirectorController = TextEditingController();
   final TextEditingController _sindicatoController = TextEditingController();
   final TextEditingController _telephoneDirectorController =
@@ -66,16 +61,52 @@ class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
     _atencionController.dispose();
   }
 
+  void getDataDirector() {
+    _nameDirectorController.text = this.widget.name.toString();
+    _sindicatoController.text = this.widget.sindicato.toString();
+    _telephoneDirectorController.text = this.widget.telefono.toString();
+    _puestoController.text = this.widget.puesto.toString();
+    _emailDirectorController.text = this.widget.email.toString();
+    _atencionController.text = this.widget.atencion.toString();
+  }
+
+  void activarDesactivarBoton() async {
+    setState(() {
+      if (_atencionController.text == "Si" ||
+          _atencionController.text == "si") {
+        activar = true;
+      } else if (_atencionController.text == "No" ||
+          _atencionController.text == "no") {
+        activar = false;
+      }
+    });
+  }
+
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
+  @override
+  void initState() {
+    getSharedPreferences;
+    super.initState();
+    getSharedPreferences
+        .getUser()
+        .then((value) => {token = value.token, setState(() {})});
+    getDataDirector();
+    activarDesactivarBoton();
+  }
+
   @override
   Widget build(BuildContext context) {
-    //final addSchoolViewModel = Provider.of<HomeViewModelScholl>(context);
+    final updateDataDirectorViewModel =
+        Provider.of<HomeViewModelScholl>(context);
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
         body: SafeArea(
             child: SingleChildScrollView(
       child: Column(
         children: [
-          BarGradient("Crear Escuela", Icons.create_new_folder),
+          BarGradient("Actualizar Datos del Director", Icons.create_new_folder),
           Container(
             margin:
                 const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
@@ -197,7 +228,7 @@ class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
                   padding: const EdgeInsets.all(8.0),
                   child: Icon(
                     Icons.library_add_check_rounded,
-                    color: _active
+                    color: activar
                         ? Color.fromARGB(255, 86, 253, 53)
                         : Color.fromARGB(255, 176, 176, 176),
                     size: 60,
@@ -207,8 +238,9 @@ class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
                   onTap: () {
                     setState(() {
                       // Toggle light when tapped.
-                      _active = !_active;
-                      if (_active != true) {
+                      //activarDesactivarBoton();
+                      activar = !activar;
+                      if (activar != true) {
                         _atencionController.text = "No";
                         print(_atencionController.text.toString());
                       } else {
@@ -219,14 +251,14 @@ class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
                     });
                   },
                   child: Container(
-                    color: _active
+                    color: activar
                         ? Color.fromARGB(255, 86, 253, 53)
                         : Color.fromARGB(255, 176, 176, 176),
                     padding: const EdgeInsets.all(8),
                     height: 40,
                     width: 90,
                     // Change button text when light changes state.
-                    child: Center(child: Text(_active ? 'Activa' : 'Inactivo')),
+                    child: Center(child: Text(activar ? 'Activa' : 'Inactivo')),
                   ),
                 ),
               ],
@@ -237,8 +269,8 @@ class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
             height: height * .085,
           ),
           RoundButton(
-            title: "siguiente",
-            // loading: addSchoolViewModel.addLoading,
+            title: "guardar",
+            loading: updateDataDirectorViewModel.putLoading,
             onPress: () {
               if (
                   //_nameSchoolController.text.isEmpty
@@ -251,30 +283,18 @@ class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
                 Utils.flushBarErrorMessage(
                     "Por Favor  Ingrese Todos Los Campos", context);
               } else {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreenSchoolSupervisor(
-                      name_school: this.widget.name_school,
-                      cct: this.widget.cct,
-                      nivel: this.widget.nivel,
-                      calle: this.widget.calle,
-                      noExterior: this.widget.noExterior,
-                      numeroInteriofinal: this.widget.numeroInteriofinal,
-                      asentamiento: this.widget.asentamiento,
-                      email_school: this.widget.email_school,
-                      telefono: this.widget.telefono,
-                      localidadId: this.widget.localidadId,
-                      latitud: this.widget.latitud,
-                      longitud: this.widget.longitud,
-                      nameDirector: _nameDirectorController.text.toString(),
-                      sindicato: _sindicatoController.text.toString(),
-                      telephoneDirector:
-                          _telephoneDirectorController.text.toString(),
-                      puesto: _puestoController.text.toString(),
-                      atencion: _atencionController.text.toString(),
-                    ),
-                  ),
-                );
+                Map data = {
+                  'name': _nameDirectorController.text.toString(),
+                  'sindicato': _sindicatoController.text.toString(),
+                  'telephone': _telephoneDirectorController.text.toString(),
+                  'puesto': _puestoController.text.toString(),
+                  'email_director': _emailDirectorController.text.toString(),
+                  'atencion': _atencionController.text.toString(),
+                };
+
+                updateDataDirectorViewModel.putDataDirectorApi(
+                    this.widget.id, data, token.toString(), context);
+                //print(this.widget.id);
               }
             },
           ),

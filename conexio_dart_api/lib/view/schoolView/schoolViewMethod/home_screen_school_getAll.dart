@@ -21,10 +21,19 @@ class HomeScreenSchoolGetAll extends StatefulWidget {
 class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
   HomeViewModelScholl homeViewModelScholl = HomeViewModelScholl();
 
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
   @override
   void initState() {
-    homeViewModelScholl.fechtSchoolListApi();
+    getSharedPreferences;
     super.initState();
+    getSharedPreferences.getUser().then((value) => {
+          token = value.token,
+          setState(() {
+            homeViewModelScholl.fechtSchoolListApi(token.toString());
+          })
+        });
   }
 
   @override
@@ -84,44 +93,6 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
                                 value.schoolList.data!.schols![index].director!
                                     .name
                                     .toString(),
-                          ),
-                          trailing: Container(
-                            width: 70,
-                            child: Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {
-                                    showDialog(
-                                      context: context,
-                                      builder: (context) => SimpleDialog(
-                                        children: [
-                                          TextField(
-                                            onChanged: (value) {
-                                              setState(() {
-                                                value;
-                                              });
-                                            },
-                                          ),
-                                          ElevatedButton(
-                                              onPressed: () {},
-                                              child: Text('Actualizar'))
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  icon: Icon(Icons.edit),
-                                )),
-                                Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {},
-                                  icon: Icon(Icons.delete),
-                                ))
-                              ],
-                            ),
                           ),
                           leading: Icon(Icons.home),
                         ),

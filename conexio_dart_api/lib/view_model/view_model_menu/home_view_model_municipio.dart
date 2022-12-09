@@ -16,10 +16,12 @@ class HomeViewModelMunicipio with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fechtMunicipioListApi() async {
+  Future<void> fechtMunicipioListApi(
+    String token,
+  ) async {
     setMunicipioList(ApiResponse.loading());
 
-    _muyRepo.fechtMunicipioList().then((value) {
+    _muyRepo.fechtMunicipioList(token).then((value) {
       setMunicipioList(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
       setMunicipioList(ApiResponse.error(error.toString()));
@@ -33,13 +35,44 @@ class HomeViewModelMunicipio with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addMunicipioApi(dynamic data, BuildContext context) async {
+  Future<void> addMunicipioApi(
+      dynamic data, String token, BuildContext context) async {
     setAddLoading(true);
-    _muyRepo.addMunicipioApi(data).then((value) {
+    _muyRepo.addMunicipioApi(data, token).then((value) {
       setAddLoading(false);
       Utils.flushBarErrorMessage('Municipio agregado', context);
       Navigator.pushNamed(context, RoutesName.municipio);
 
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError((error, stackTrace) {
+      setAddLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
+  }
+
+  bool _putLoading = false;
+  bool get putLoading => _putLoading;
+
+  setPutLoading(bool value) {
+    _putLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> putMunicipioApi(
+      String id, dynamic data, String token, BuildContext context) async {
+    setAddLoading(true);
+
+    _muyRepo.putMunicipioApi(id, data, token).then((value) {
+      setPutLoading(false);
+      Utils.toastMessage("Municipio Actuzalizado");
+
+      //Navigator.pushNamed(context, RoutesName.regionPut);
+      Navigator.pushNamed(context, RoutesName.municipio);
       if (kDebugMode) {
         print(value.toString());
       }

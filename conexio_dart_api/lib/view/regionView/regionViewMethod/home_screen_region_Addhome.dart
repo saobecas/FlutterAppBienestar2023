@@ -1,12 +1,12 @@
-import 'package:conexio_dart_api/model/region/region_model.dart';
+import 'package:conexio_dart_api/model/user_model.dart';
+import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
+import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../../../view_model/auth_view_model.dart';
 
 class HomeScreenRegionAdd extends StatefulWidget {
   const HomeScreenRegionAdd({super.key});
@@ -21,6 +21,18 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
   final TextEditingController _nameRegion = TextEditingController();
 
   FocusNode nameRegionFocusNode = FocusNode();
+
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
+  @override
+  void initState() {
+    getSharedPreferences;
+    super.initState();
+    getSharedPreferences
+        .getUser()
+        .then((value) => {token = value.token, setState(() {})});
+  }
 
   @override
   void dispose() {
@@ -65,7 +77,7 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
               height: height * .030,
             ),
             RoundButton(
-                title: "Crear Region",
+                title: "Agregar",
                 loading: regionViewModel.addLoading,
                 onPress: () {
                   if (_nameRegion.text.isEmpty) {
@@ -73,8 +85,9 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
                         "Por Favor Ingresa El Nombre De La Región", context);
                   } else {
                     Map data = {'nameRegion': _nameRegion.text.toString()};
-
-                    regionViewModel.addRegionApi(data, context);
+                    //print("token:$token");
+                    regionViewModel.addRegionApi(
+                        data, token.toString(), context);
                     // regionViewModel.addregionApi(data, context);
                   }
                 })

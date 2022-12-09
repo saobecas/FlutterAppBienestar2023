@@ -1,5 +1,6 @@
 import 'package:conexio_dart_api/data/response/status.dart';
 import 'package:conexio_dart_api/model/municipio/municipio_list_model.dart';
+import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
@@ -30,11 +31,17 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
     _idRegion.text = widget.idRegion.toString();
   }
 
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
+    getSharedPreferences;
     getRegion();
+    super.initState();
+    getSharedPreferences
+        .getUser()
+        .then((value) => {token = value.token, setState(() {})});
   }
 
   FocusNode nameRegionFocusNode = FocusNode();
@@ -100,11 +107,11 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
                     Map data = {'nameRegion': _editNameRegion.text.toString()};
 
                     regionViewModel.putRegionApi(
-                        widget.idRegion, data, context);
-                    //  regionViewModel.addRegionApi (idRegion ,data, context);
-                    // regionViewModel.addregionApi(data, context);
-                    // print("Valore Boton: $widget.idRegion");
-                    // print("Valore Boton: $data");
+                        widget.idRegion, data, token.toString(), context);
+
+                    //Future.delayed(Duration(seconds: 2));
+                    Navigator.pushNamed(context, RoutesName.region);
+                    Navigator.pop(context);
                   }
                 },
               )

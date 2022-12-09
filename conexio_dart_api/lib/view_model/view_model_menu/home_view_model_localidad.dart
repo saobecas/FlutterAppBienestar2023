@@ -17,10 +17,10 @@ class HomeViewModelLocalidad with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fechtLocalidadListApi() async {
+  Future<void> fechtLocalidadListApi(String token) async {
     setLocalidadList(ApiResponse.loading());
 
-    _myRepo.fechtLocalidadList().then((value) {
+    _myRepo.fechtLocalidadList(token).then((value) {
       setLocalidadList(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
       setLocalidadList(ApiResponse.error(error.toString()));
@@ -34,9 +34,10 @@ class HomeViewModelLocalidad with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addLocalidadApi(dynamic data, BuildContext context) async {
+  Future<void> addLocalidadApi(
+      dynamic data, String token, BuildContext context) async {
     setAddLoading(true);
-    _myRepo.addLocalidadApi(data).then((value) {
+    _myRepo.addLocalidadApi(data, token).then((value) {
       setAddLoading(false);
       Utils.flushBarErrorMessage('Localidad agregado', context);
       Navigator.pushNamed(context, RoutesName.localidad);
@@ -46,6 +47,35 @@ class HomeViewModelLocalidad with ChangeNotifier {
       }
     }).onError((error, stackTrace) {
       setAddLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
+  }
+
+  bool _putLoading = false;
+  bool get putLoading => _putLoading;
+
+  setPutLoading(bool value) {
+    _putLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> putLocalidadApi(
+      String id, dynamic data, String token, BuildContext context) async {
+    setPutLoading(true);
+
+    _myRepo.putLocalidadApi(id, data, token).then((value) {
+      setPutLoading(false);
+      Utils.toastMessage("Municipio Actuzalizado");
+
+      Navigator.pushNamed(context, RoutesName.localidad);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError((error, stackTrace) {
+      setPutLoading(false);
       Utils.flushBarErrorMessage(error.toString(), context);
       if (kDebugMode) {
         print(error.toString());

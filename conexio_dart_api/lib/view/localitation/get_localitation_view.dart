@@ -1,9 +1,9 @@
 import 'dart:async';
-
 import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_shool_add_direc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -12,7 +12,29 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GetLocations extends StatefulWidget {
-  const GetLocations({super.key});
+  final name_school;
+  final cct;
+  final nivel;
+  final calle;
+  final noExterior;
+  final numeroInteriofinal;
+  final asentamiento;
+  final email_school;
+  final telefono;
+  final localidadId;
+
+  const GetLocations(
+      {super.key,
+      this.name_school,
+      this.cct,
+      this.nivel,
+      this.calle,
+      this.noExterior,
+      this.numeroInteriofinal,
+      this.asentamiento,
+      this.email_school,
+      this.telefono,
+      this.localidadId});
 
   @override
   State<GetLocations> createState() => _GetLocationsState();
@@ -86,6 +108,19 @@ class _GetLocationsState extends State<GetLocations> {
       controller.animateCamera(CameraUpdate.newCameraPosition(_kGoogle));
     });
   }
+
+  /*void getDataSchool(){
+    name_school 
+      cct 
+      nivel 
+      calle 
+      noExterior 
+      numeroInteriofinal 
+      asentamiento 
+      email_school 
+      telefono 
+      localidadId 
+  }*/
 
   @override
   void initState() {
@@ -206,6 +241,7 @@ class _GetLocationsState extends State<GetLocations> {
                           height: 100,
                           alignment: Alignment.center,
                           child: FloatingActionButton.extended(
+                            heroTag: "btn1",
                             onPressed: () {
                               _locateCurrent();
                               if (kDebugMode) {
@@ -228,20 +264,41 @@ class _GetLocationsState extends State<GetLocations> {
                       height: 100,
                       alignment: Alignment.center,
                       child: FloatingActionButton.extended(
+                        heroTag: "btn2",
                         onPressed: () {
                           if (_lat.text.isEmpty || _long.text.isEmpty) {
                             Utils.flushBarErrorMessage(
                                 "Antes de continuar asegurese de obtener las coordenadas",
                                 context);
                           } else {
-                            Map data = {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => HomeScreenDataDirector(
+                                  name_school: this.widget.name_school,
+                                  cct: this.widget.cct,
+                                  nivel: this.widget.nivel,
+                                  calle: this.widget.calle,
+                                  noExterior: this.widget.noExterior,
+                                  numeroInteriofinal:
+                                      this.widget.numeroInteriofinal,
+                                  asentamiento: this.widget.asentamiento,
+                                  email_school: this.widget.email_school,
+                                  telefono: this.widget.telefono,
+                                  localidadId: this.widget.localidadId,
+                                  latitud: _lat.text.toString(),
+                                  longitud: _long.text.toString(),
+                                ),
+                              ),
+                            );
+                            /*Map data = {
                               'latitud': _lat.text.toString(),
                               'longitud': _long.text.toString(),
-                            };
-                            Navigator.pushNamed(
-                                context, RoutesName.datDirectorview);
-                            // addSchoolViewModel.addSchoolApi(data, context);
-                            print("Api agregar escuela");
+                            };*/
+                            /*Navigator.pushNamed(
+                                context, RoutesName.datDirectorview);*/
+
+                            // addSchoolViewModel.addSchoolApi(data, context);*/
+                            print("${this.widget.name_school}");
                           }
                         },
                         label: const Text('Siguiente'),

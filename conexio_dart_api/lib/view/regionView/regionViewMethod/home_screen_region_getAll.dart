@@ -1,11 +1,10 @@
 import 'package:conexio_dart_api/res/color.dart';
+import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../../data/response/status.dart';
-import '../../../utils/routes/routes_name.dart';
 import '../../../view_model/user_view_model.dart';
 //import 'package:intl/intl.dart';
 
@@ -19,17 +18,25 @@ class HomeScreenRegionGetAll extends StatefulWidget {
 class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
   HomeViewModelRegion homeViewModelRegion = HomeViewModelRegion();
 
+  UserViewModel getSharedPreferences = UserViewModel();
+  String? token;
+
   @override
   void initState() {
-    homeViewModelRegion.fechtRegionListApi();
+    // super.initState();
+    getSharedPreferences;
     super.initState();
+    getSharedPreferences.getUser().then((value) => {
+          token = value.token,
+          setState(() {
+            homeViewModelRegion.fechtRegionListApi(token.toString());
+          })
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     final userPreferences = Provider.of<UserViewModel>(context);
-    // final dateTime = DateFormat("dd MMM yyyy");
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista De Regiones"),
@@ -81,35 +88,94 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {
-                                    final regionId = value
-                                        .regionList.data!.regiones![index].id
-                                        .toString();
-                                    print(regionId);
+                                  child: IconButton(
+                                    color: AppColors.buttonColor,
+                                    onPressed: () {
+                                      final regionId = value
+                                          .regionList.data!.regiones![index].id
+                                          .toString();
+                                      print(regionId);
 
-                                    final nameRegion = value.regionList.data!
-                                        .regiones![index].nameRegion
-                                        .toString();
-                                    print(nameRegion);
-                                    /* Navigator.push(context,
-                                        MaterialPageRoute(builder: (context)=> HomeScreenRegionUpdate(region: ,)));*/
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            HomeScreenRegionUpdate(
-                                          // idRegion: regionId as int,
-                                          idRegion: regionId,
-                                          nameRegion: nameRegion,
+                                      final nameRegion = value.regionList.data!
+                                          .regiones![index].nameRegion
+                                          .toString();
+                                      print(nameRegion);
+                                      Navigator.pop(context);
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              HomeScreenRegionUpdate(
+                                            idRegion: regionId,
+                                            nameRegion: nameRegion,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                    print(
-                                        "Valor final del id region $regionId");
-                                  },
-                                  icon: Icon(Icons.edit),
-                                )),
+                                      );
+
+                                      // Navigator.pop(context);
+                                      print(
+                                          "Valor final del id region $regionId");
+                                    },
+                                    icon: Icon(Icons.edit),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: IconButton(
+                                    color: AppColors.buttonColor,
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                "¿ Deseas Eliminar La Region ${value.regionList.data!.regiones![index].nameRegion.toString()}?"),
+                                            actions: [
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary:
+                                                        Colors.green.shade900),
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Cancelar'),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary: Colors.red),
+                                                child: const Text('Eliminar'),
+                                                onPressed: () {
+                                                  //
+                                                  final regionId = value
+                                                      .regionList
+                                                      .data!
+                                                      .regiones![index]
+                                                      .id
+                                                      .toString();
+                                                  print(
+                                                      "DATo desde vista: $regionId");
+
+                                                  setState(
+                                                    () {
+                                                      homeViewModelRegion
+                                                          .deleteRegionApi(
+                                                        regionId,
+                                                        token.toString(),
+                                                        context,
+                                                      );
+                                                      //Navigator.of(context).pop();
+                                                    },
+                                                  );
+                                                  //Future.delayed(Duration(seconds: 2));
+                                                  print(
+                                                      "Valor final del id region $regionId");
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    icon: Icon(Icons.delete),
+                                  ),
+                                )
                               ],
                             ),
                           ),
@@ -126,20 +192,36 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
     );
   }
 }
+/*  //UTILIZANDO LA PAGES DELETE SCREEN
 
-/*
+ Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              HomeScreenRegionDelete(
+                                            idRegion: regionId,
+                                            nameRegion: nameRegion,
+                                          ),
+                                        ),
 
-children: posts
-                  .map(
-                    (Post post) => ListTile(
-                      title: Text(post.title),
-                      subtitle: Text("${post.userId}"),
-                      onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => PostDetail(
-                            post: post,
-                          ),
-                        ),
-                      ),
-                    ),
-                    */
+
+                                        /*********** */
+
+
+
+
+
+
+final regionId = value
+                                          .regionList.data!.regiones![index].id
+                                          .toString();
+                                      print(regionId);
+
+                                      setState(
+                                        () {
+                                          homeViewModelRegion.deleteRegionApi(
+                                              regionId, context);
+                                        },
+                                      );
+
+                                      print(
+                                          "Valor final del id region $regionId");*/

@@ -1,5 +1,9 @@
 import 'package:conexio_dart_api/model/school/school_list_model.dart';
 import 'package:conexio_dart_api/model/school/school_model.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_directorUpdate.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_superUpdate.dart';
+import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_update.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -61,6 +65,30 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                   "DETALLES DE LA ESCUELA :"),
             ),
             ListTile(
+              onTap: () {
+                if (kDebugMode) {
+                  print(widget.schols!.id.toString());
+                }
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => HomeScreenSchoolUpdate(
+                          id: this.widget.schols!.id.toString(),
+                          name: this.widget.schols!.nameSchool.toString(),
+                          clave: this.widget.schols!.cct.toString(),
+                          nivel: this.widget.schols!.nivel.toString(),
+                          calle: this.widget.schols!.calle.toString(),
+                          noExterior: this.widget.schols!.noExterior.toString(),
+                          noInteriror:
+                              this.widget.schols!.numeroInterior.toString(),
+                          asentamiento:
+                              this.widget.schols!.asentamiento.toString(),
+                          email: this.widget.schols!.email.toString(),
+                          telefono: this.widget.schols!.telefono.toString(),
+                          localidadId:
+                              this.widget.schols!.localidadId.toString(),
+                          nameLoc:
+                              this.widget.schols!.localidad!.nameLoc.toString(),
+                        )));
+              },
               title: Text(
                   style: const TextStyle(
                     color: Colors.black87,
@@ -85,6 +113,33 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                   "DETALLES DEL DIRECTOR :"),
             ),
             ListTile(
+              onTap: () {
+                if (kDebugMode) {
+                  print(widget.schols!.id.toString());
+                }
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => HomeScreenDirectorUpdate(
+                          id: this.widget.schols!.director!.id.toString(),
+                          name: this.widget.schols!.director!.name.toString(),
+                          sindicato: this
+                              .widget
+                              .schols!
+                              .director!
+                              .sindicato
+                              .toString(),
+                          telefono: this
+                              .widget
+                              .schols!
+                              .director!
+                              .telephone
+                              .toString(),
+                          puesto:
+                              this.widget.schols!.director!.puesto.toString(),
+                          email: this.widget.schols!.director!.email.toString(),
+                          atencion:
+                              this.widget.schols!.director!.atencion.toString(),
+                        )));
+              },
               title: Text(
                   style: const TextStyle(
                     color: Colors.black87,
@@ -113,6 +168,46 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                     fontSize: 18,
                   ),
                   "Supervisor: ${widget.schols!.director!.supervisor!.name.toString().toUpperCase()}\n\nTelefono: ${widget.schols!.director!.supervisor!.telephone.toString().toUpperCase()}\n\nCorreo Electronico: ${widget.schols!.director!.supervisor!.email.toString().toUpperCase()}\n\nRecuperado: ${widget.schols!.director!.supervisor!.recuperado.toString().toUpperCase()}\n\nFecha Del Directorio Recuperado: ${widget.schols!.director!.supervisor!.directorioRecuperado.toString().toUpperCase()} \n\nFecha de la Creacion de la Escuela: ${widget.schols!.director!.supervisor!.createdAt.toString().toUpperCase()}"),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => HomeScreenSupervisorUpdate(
+                      id: this
+                          .widget
+                          .schols!
+                          .director!
+                          .supervisor!
+                          .id
+                          .toString(),
+                      name: this
+                          .widget
+                          .schols!
+                          .director!
+                          .supervisor!
+                          .name
+                          .toString(),
+                      telefono:
+                          this.widget.schols!.director!.supervisor!.telephone,
+                      recuperado:
+                          this.widget.schols!.director!.supervisor!.recuperado,
+                      email: this
+                          .widget
+                          .schols!
+                          .director!
+                          .supervisor!
+                          .email
+                          .toString(),
+                      directorioRecuperador: this
+                          .widget
+                          .schols!
+                          .director!
+                          .supervisor!
+                          .directorioRecuperado
+                          .toString(),
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
