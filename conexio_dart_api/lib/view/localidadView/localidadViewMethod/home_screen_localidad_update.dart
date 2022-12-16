@@ -128,9 +128,9 @@ class _HomeScreenLocalidadUpdateState extends State<HomeScreenLocalidadUpdate> {
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
                 controller: _claveLocalidadOficial,
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.number,
                 focusNode: claveLocalidadFocus,
-                autofocus: true,
+                maxLength: 9,
                 decoration: const InputDecoration(
                   hintText: 'Ingrese La Clave De La Localidad',
                   labelText: 'Clave Oficial De Localidad',
@@ -214,7 +214,7 @@ class _HomeScreenLocalidadUpdateState extends State<HomeScreenLocalidadUpdate> {
                               });
                             },
                             buttonHeight: 50,
-                            buttonWidth: 250,
+                            buttonWidth: 350,
                             itemHeight: 50,
                             dropdownMaxHeight: 400,
                             dropdownPadding: null,

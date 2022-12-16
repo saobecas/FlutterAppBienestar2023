@@ -146,27 +146,16 @@ class HomeViewModelRegion with ChangeNotifier {
       },
     );
   }
-/*
-  Future<void> addProtecRegionApi(
-      dynamic data, String token, BuildContext context) async {
-    setAddLoading(true);
 
-    _myRepo.addProtecRegionApi(data, token).then((value) {
-      setAddLoading(false);
+  Future<void> fechtRegionMuniListApi(
+    String token,
+  ) async {
+    setRegionList(ApiResponse.loading());
 
-      //  Utils.flushBarErrorMessage('Region Creada', context);
-      Utils.toastMessage('Region Agregada');
-      Navigator.pushNamed(context, RoutesName.region);
-
-      if (kDebugMode) {
-        print(value.toString());
-      }
+    _myRepo.fechtRegionAndMuniList(token).then((value) {
+      setRegionList(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
-      setAddLoading(false);
-      Utils.flushBarErrorMessage(error.toString(), context);
-      if (kDebugMode) {
-        print(error.toString());
-      }
+      setRegionList(ApiResponse.error(error.toString()));
     });
-  }*/
+  }
 }

@@ -13,7 +13,7 @@ import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_sc
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_shool_add_direc.dart';
 import 'package:conexio_dart_api/view/sign_up_view.dart';
 import 'package:conexio_dart_api/view/splash_view.dart';
-import 'package:conexio_dart_api/view/update_user_pass.dart';
+import 'package:conexio_dart_api/view/update_user_password.dart';
 import 'package:flutter/material.dart';
 
 import '../../view/home_screen.dart';
@@ -39,7 +39,9 @@ class Routes {
       case RoutesName.updateUser:
         return MaterialPageRoute(
             builder: (BuildContext context) =>
-                const HomeScreenUserPasswordUpdate());
+                const HomeScreenUserPasswordUpdate(
+                  userId: null,
+                ));
       case RoutesName.locate:
         return MaterialPageRoute(
             builder: (BuildContext context) => const GetLocations());

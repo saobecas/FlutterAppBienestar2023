@@ -57,6 +57,8 @@ oficinaFocusNode = FocusNode();
     _obscurePassword.dispose();
   }
 
+  final _keyForm = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
@@ -68,162 +70,199 @@ oficinaFocusNode = FocusNode();
         ),*/
         body: SafeArea(
             child: SingleChildScrollView(
-      child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        //crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          BarGradient("Crear Cuenta", Icons.edit_calendar),
-          Container(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-            child: TextFormField(
-              controller: _fullNameController,
-              //se agrego
-              keyboardType: TextInputType.text,
-              //textAlign: TextAlign.center,
-              //fina agregado
-              focusNode: fullNameFocusNode,
-              autofocus: true,
-              decoration: const InputDecoration(
-                hintText: 'Ingrese Su Nombre Completo',
-                labelText: 'Nombre Completo',
-                prefixIcon: Icon(Icons.person_add_alt_1_sharp),
+      child: Form(
+        key: _keyForm,
+        child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          //crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            BarGradient("Crear Cuenta", Icons.edit_calendar),
+            Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+              height: 80,
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              child: TextFormField(
+                controller: _fullNameController,
+                keyboardType: TextInputType.text,
+                focusNode: fullNameFocusNode,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: 'Ingrese Su Nombre Completo',
+                  labelText: 'Nombre Completo',
+                  prefixIcon: Icon(Icons.person_add_alt_1_sharp),
+                ),
+                validator: (valor) {
+                  if (valor!.isEmpty) {
+                    return "Ingresar Su Nombre Completo";
+                  }
+                  return null;
+                },
+                onEditingComplete: () =>
+                    Utils.fielFocusSignUp(context, emailFocusNode),
+                textInputAction: TextInputAction.next,
               ),
-              onEditingComplete: () =>
-                  Utils.fielFocusSignUp(context, emailFocusNode),
-              textInputAction: TextInputAction.next,
             ),
-          ),
-          Container(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-            child: TextFormField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              focusNode: emailFocusNode,
-              decoration: const InputDecoration(
-                hintText: 'Ingrese Su Correo Electronico',
-                labelText: 'Correo Electronico',
-                prefixIcon: Icon(Icons.email),
+            Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+              height: 80,
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              child: TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                focusNode: emailFocusNode,
+                decoration: const InputDecoration(
+                  hintText: 'Ingrese Su Correo Electronico',
+                  labelText: 'Correo Electronico',
+                  prefixIcon: Icon(Icons.email),
+                ),
+                validator: (value) {
+                  if (value!.isEmpty || !value.contains('@')) {
+                    return 'Formato incorrecto Ejemplo: correo@dominio.com';
+                  }
+                  return null;
+                },
+                onEditingComplete: () =>
+                    Utils.fielFocusSignUp(context, passwordFocusNode),
+                textInputAction: TextInputAction.next,
               ),
-              onEditingComplete: () =>
-                  Utils.fielFocusSignUp(context, passwordFocusNode),
-              textInputAction: TextInputAction.next,
             ),
-          ),
-          ValueListenableBuilder(
-              valueListenable: _obscurePassword,
-              builder: (context, value, child) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
-                  height: 80,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  child: TextFormField(
-                    controller: _passwordController,
-                    obscureText: _obscurePassword.value,
-                    focusNode: passwordFocusNode,
-                    obscuringCharacter: "*",
-                    decoration: InputDecoration(
-                      hintText: 'Ingrese Su Contraseña',
-                      labelText: 'Contraseña',
-                      prefixIcon: Icon(Icons.lock),
-                      suffixIcon: InkWell(
-                          onTap: () {
-                            _obscurePassword.value = !_obscurePassword.value;
-                          },
-                          child: Icon(_obscurePassword.value
-                              ? Icons.visibility_off
-                              : Icons.visibility)),
+            ValueListenableBuilder(
+                valueListenable: _obscurePassword,
+                builder: (context, value, child) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(
+                        horizontal: 30.0, vertical: 10.0),
+                    height: 80,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                    child: TextFormField(
+                      controller: _passwordController,
+                      obscureText: _obscurePassword.value,
+                      focusNode: passwordFocusNode,
+                      obscuringCharacter: "*",
+                      decoration: InputDecoration(
+                        hintText: 'Ingrese Su Contraseña',
+                        labelText: 'Contraseña',
+                        prefixIcon: Icon(Icons.lock),
+                        suffixIcon: InkWell(
+                            onTap: () {
+                              _obscurePassword.value = !_obscurePassword.value;
+                            },
+                            child: Icon(_obscurePassword.value
+                                ? Icons.visibility_off
+                                : Icons.visibility)),
+                      ),
+                      validator: (value) {
+                        if (value!.length < 8) {
+                          return "Ingrese minimo 8 caracteres";
+                        }
+                        return null;
+                      },
+                      onEditingComplete: () =>
+                          Utils.fielFocusSignUp(context, phoneFocusNode),
+                      textInputAction: TextInputAction.next,
                     ),
-                    onEditingComplete: () =>
-                        Utils.fielFocusSignUp(context, phoneFocusNode),
-                    textInputAction: TextInputAction.next,
-                  ),
-                );
-              }),
-          Container(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-            child: TextFormField(
-              controller: _phoneController,
-              focusNode: phoneFocusNode,
-              maxLength: 10,
-              decoration: const InputDecoration(
-                hintText: 'Ingrese Su Numero De Telefono',
-                labelText: 'Telefono',
-                prefixIcon: Icon(Icons.phone),
-              ),
-              onEditingComplete: () =>
-                  Utils.fielFocusSignUp(context, oficinaFocusNode),
-              textInputAction: TextInputAction.next,
-            ),
-          ),
-          Container(
-            margin:
-                const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
-            height: 80,
-            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-            child: TextFormField(
-              controller: _oficinaController,
-              focusNode: oficinaFocusNode,
-              decoration: const InputDecoration(
-                hintText: 'Ingrese El Nombre De La Oficina',
-                labelText: 'Nombre De La Oficna',
-                prefixIcon: Icon(Icons.add_business),
+                  );
+                }),
+            Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+              height: 90,
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              child: TextFormField(
+                controller: _phoneController,
+                focusNode: phoneFocusNode,
+                maxLength: 10,
+                keyboardType: TextInputType.phone,
+                decoration: const InputDecoration(
+                  hintText: 'Ingrese Su Numero De Telefono',
+                  labelText: 'Telefono',
+                  prefixIcon: Icon(Icons.phone),
+                ),
+                onEditingComplete: () =>
+                    Utils.fielFocusSignUp(context, oficinaFocusNode),
+                textInputAction: TextInputAction.next,
               ),
             ),
-          ),
-          SizedBox(
-            height: height * .085,
-          ),
-          RoundButton(
-            title: "Crear Cuenta",
-            loading: authViewModel.signUpLoading,
-            onPress: () {
-              if (_emailController.text.isEmpty) {
-                Utils.flushBarErrorMessage(
-                    "Por Favor Ingresa El Correo Electronico", context);
-              } else if (_passwordController.text.isEmpty ||
-                  _passwordController.text.length < 8) {
-                Utils.flushBarErrorMessage(
-                    "Por Favor Ingresa La Contraseña Con Minimo 8 Carcateres",
-                    context);
-              } else if (_fullNameController.text.isEmpty ||
-                  _phoneController.text.isEmpty ||
-                  _oficinaController.text.isEmpty) {
-                Utils.flushBarErrorMessage(
-                    "Por Favor Ingresa Todos Los Campos", context);
-              } else {
-                Map data = {
-                  'full_name': _fullNameController.text.toString(),
-                  'email': _emailController.text.toString(),
-                  'password': _passwordController.text.toString(),
-                  'number_phone': _phoneController.text.toString(),
-                  'oficina': _oficinaController.text.toString(),
-                };
-                authViewModel.signUpApi(data, context);
-                print("api pegar");
-                //FocusScope.of(context).requestFocus(oficinaFocusNode);
-              }
-            },
-          ),
-          SizedBox(
-            height: height * .02,
-          ),
-          InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, RoutesName.login);
+            Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+              height: 80,
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              child: TextFormField(
+                controller: _oficinaController,
+                focusNode: oficinaFocusNode,
+                decoration: const InputDecoration(
+                  hintText: 'Ingrese El Nombre De La Oficina',
+                  labelText: 'Nombre De La Oficna',
+                  prefixIcon: Icon(Icons.add_business),
+                ),
+                validator: (valor) {
+                  if (valor!.isEmpty) {
+                    return "Campo requerido";
+                  }
+                  return null;
+                },
+              ),
+            ),
+            SizedBox(
+              height: height * .085,
+            ),
+            RoundButton(
+              title: "Crear Cuenta",
+              loading: authViewModel.signUpLoading,
+              onPress: () {
+                if (_keyForm.currentState!.validate()) {
+                  print("validadcion correcta");
+                  Map data = {
+                    'full_name': _fullNameController.text.toString(),
+                    'email': _emailController.text.toString(),
+                    'password': _passwordController.text.toString(),
+                    'number_phone': _phoneController.text.toString(),
+                    'oficina': _oficinaController.text.toString(),
+                  };
+                  authViewModel.signUpApi(data, context);
+                  print("api pegar");
+                } else {
+                  Utils.flushBarErrorMessage(
+                      "Rellenar los campos en rojo", context);
+                  print("validacion incorrecta");
+                }
+
+                /* if (_emailController.text.isEmpty) {
+                  Utils.flushBarErrorMessage(
+                      "Por Favor Ingresa El Correo Electronico", context);
+                } else if (_passwordController.text.isEmpty ||
+                    _passwordController.text.length < 8) {
+                  Utils.flushBarErrorMessage(
+                      "Por Favor Ingresa La Contraseña Con Minimo 8 Carcateres",
+                      context);
+                } else if (_fullNameController.text.isEmpty ||
+                    _phoneController.text.isEmpty ||
+                    _oficinaController.text.isEmpty) {
+                  Utils.flushBarErrorMessage(
+                      "Por Favor Ingresa Todos Los Campos", context);
+                } else {
+                 
+                 
+                }*/
               },
-              child: Text("¿Tienes una cuenta? Iniciar Sesión"))
-        ],
+            ),
+            SizedBox(
+              height: height * .02,
+            ),
+            InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, RoutesName.login);
+                },
+                child: Text("¿Tienes una cuenta? Iniciar Sesión")),
+            SizedBox(
+              height: height * .060,
+            ),
+          ],
+        ),
       ),
     )));
   }

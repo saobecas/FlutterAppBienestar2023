@@ -1,14 +1,15 @@
 class AppUrl {
   //static var baseUrl = "https://directoriosapi-production.up.railway.app";
   static var baseUrl = "https://becas-api.onrender.com";
-//http://10.0.2.16:5000
   // static var baseUrl = "http://localhost:5000";
-  static var loginEndPoint = "$baseUrl/api/users/signin";
 
+  static var loginEndPoint = "$baseUrl/api/users/signin";
   static var registerEndPoint = "$baseUrl/api/users/signup";
 
   static var userListGellAllEndPoint = "$baseUrl/api/users";
+
   static var userUpdatePassword = '$baseUrl/api/users/update/';
+  static var employeeDataUpdate = '$baseUrl/api/employee-data/';
   static var userIdDataEndPoint = "$baseUrl/api/user-data/";
 
   //rutas para region
@@ -21,19 +22,26 @@ class AppUrl {
   static var addMunicipioEndPoint = "$baseUrl/api/v1/municipio";
   static var municipioListGellAllEndPoint = "$baseUrl/api/v1/municipios";
   static var municipioUpdateAllEndPoint = "$baseUrl/api/v1/municipio/";
+  static var municipioDeleteEndPoint = "$baseUrl/api/v1/municipio/";
 
   //rutas para localidad
   static var addLocalidadEndPoint = "$baseUrl/api/v1/localidad";
   static var localidadListGellAllEndPoint = "$baseUrl/api/v1/localidades";
   static var localidadUpdateEndPoint = "$baseUrl/api/v1/localidades/";
+  static var localidDeleteEndPoint = "$baseUrl/api/v1/localidades/";
 
   // rutas para Scholls
   static var schoolListGellAllEndPoint = "$baseUrl/api/v1/schools";
   static var addSchollEndPoint = "$baseUrl/api/v1/school";
-
   static var schoolUpdateEndPoint = "$baseUrl/api/v1/school/";
-
   static var directorUpdateEndPoint = "$baseUrl/api/v1/directorUpdate/";
-
   static var supervisorUpdateEndPoint = "$baseUrl/api/v1/supervisorUpdate/";
+  static var schoollDeleteEndPoint = "$baseUrl/api/v1/school/";
+
+  //todas los municipios que le pertenecen a una region
+  static var muniRegionListGellAllEndPoint =
+      "$baseUrl/api/v1/regiones/1/municipios";
+  // ruta para traer todas las localides que le pertenecen a un municipio
+  static var localidadMuniListGellAllEndPoint =
+      "$baseUrl/api/v1/municipios/:id/localidades";
 }

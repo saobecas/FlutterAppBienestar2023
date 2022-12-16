@@ -193,7 +193,7 @@ class _HomeScreenMuniUpdateState extends State<HomeScreenMuniUpdate> {
                               });
                             },
                             buttonHeight: 50,
-                            buttonWidth: 250,
+                            buttonWidth: 350,
                             itemHeight: 50,
                             dropdownMaxHeight: 400,
                             dropdownPadding: null,

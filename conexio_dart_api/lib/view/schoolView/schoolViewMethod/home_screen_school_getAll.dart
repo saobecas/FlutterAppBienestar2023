@@ -89,14 +89,78 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
                               color: Colors.black87,
                               fontSize: 16,
                             ),
-                            "Director : " +
-                                value.schoolList.data!.schols![index].director!
-                                    .name
+                            "Clave: " +
+                                value.schoolList.data!.schols![index].cct
                                     .toString(),
+                          ),
+                          trailing: Container(
+                            width: 70,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: IconButton(
+                                    color: AppColors.buttonColor,
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                "¿ Deseas Eliminar La Escuela ${value.schoolList.data!.schols![index].nameSchool.toString()}?"),
+                                            actions: [
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary:
+                                                        Colors.green.shade900),
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Cancelar'),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary: Colors.red),
+                                                child: const Text('Eliminar'),
+                                                onPressed: () {
+                                                  //
+                                                  final regionId = value
+                                                      .schoolList
+                                                      .data!
+                                                      .schols![index]
+                                                      .id
+                                                      .toString();
+                                                  print(
+                                                      "DATo desde vista: $regionId");
+
+                                                  setState(
+                                                    () {
+                                                      homeViewModelScholl
+                                                          .deleteSchollApi(
+                                                        regionId,
+                                                        token.toString(),
+                                                        context,
+                                                      );
+                                                    },
+                                                  );
+                                                  //Future.delayed(Duration(seconds: 2));
+                                                  print(
+                                                      "Valor final del id region $regionId");
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    icon: Icon(Icons.delete),
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                           leading: Icon(Icons.home),
                         ),
-                        Container(
+
+                        /*Container(
                           padding: EdgeInsets.all(10),
                           child: Text(
                             "localidad : " +
@@ -105,7 +169,7 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
                                     .toString(),
                             textAlign: TextAlign.center,
                           ),
-                        ),
+                        ),*/
                       ],
                     ),
                   );

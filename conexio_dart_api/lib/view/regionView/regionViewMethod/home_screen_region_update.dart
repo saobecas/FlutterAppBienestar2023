@@ -14,8 +14,10 @@ class HomeScreenRegionUpdate extends StatefulWidget {
   // final Region region;
   final idRegion;
   final nameRegion;
+  final nameJefe;
 
-  HomeScreenRegionUpdate({super.key, this.idRegion, this.nameRegion});
+  HomeScreenRegionUpdate(
+      {super.key, this.idRegion, this.nameRegion, this.nameJefe});
 
   @override
   State<HomeScreenRegionUpdate> createState() => _HomeScreenRegionUpdateState();
@@ -24,11 +26,13 @@ class HomeScreenRegionUpdate extends StatefulWidget {
 class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
   TextEditingController _editNameRegion = TextEditingController();
   TextEditingController _idRegion = TextEditingController();
+  TextEditingController _nameJefe = TextEditingController();
 
   @override
   void getRegion() {
     _editNameRegion.text = widget.nameRegion.toString();
     _idRegion.text = widget.idRegion.toString();
+    _nameJefe.text = widget.nameJefe.toString();
   }
 
   UserViewModel getSharedPreferences = UserViewModel();
@@ -46,6 +50,7 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
 
   FocusNode nameRegionFocusNode = FocusNode();
   FocusNode idRegionFocusNode = FocusNode();
+  FocusNode nameJefeFocusNode = FocusNode();
   //get nameRegion => nameRegion;
 
   @override
@@ -55,8 +60,10 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
     // _nameRegion.dispose();
     _editNameRegion.dispose();
     nameRegionFocusNode.dispose();
+    _nameJefe.dispose();
     _idRegion.dispose();
     idRegionFocusNode.dispose();
+    nameJefeFocusNode.dispose();
   }
 
   @override
@@ -89,6 +96,30 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
                       Icons.add_home_sharp,
                     ),
                   ),
+                  onEditingComplete: () =>
+                      Utils.fielFocusGeneral(context, nameJefeFocusNode),
+                  textInputAction: TextInputAction.next,
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(
+                    horizontal: 30.0, vertical: 10.0),
+                height: 80,
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                child: TextFormField(
+                  controller: _nameJefe,
+                  keyboardType: TextInputType.text,
+                  focusNode: nameJefeFocusNode,
+                  autofocus: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Ingrese El Nombre Del Jefe de La Region',
+                    labelText: 'Jefe De La Region',
+                    prefixIcon: Icon(
+                      Icons.person,
+                    ),
+                  ),
+                  textInputAction: TextInputAction.next,
                 ),
               ),
               SizedBox(

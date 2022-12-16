@@ -50,4 +50,16 @@ class HomeRepository {
       rethrow;
     }
   }
+
+  Future<dynamic> putEmployeeDataApi(
+      String id, dynamic data, String token) async {
+    try {
+      dynamic response = await _apiServices.getPutApiResponse(
+          AppUrl.employeeDataUpdate, id, data, token);
+
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

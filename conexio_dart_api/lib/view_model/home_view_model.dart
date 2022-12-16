@@ -80,7 +80,29 @@ class HomeViewModel with ChangeNotifier {
 
       Utils.toastMessage("Contraseña Actualizada");
 
-      Navigator.pushNamed(context, RoutesName.home);
+      Navigator.pushNamed(context, RoutesName.login);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError((error, stackTrace) {
+      setPutLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
+  }
+
+  Future<void> putEmployeeData(
+      String id, dynamic data, String token, BuildContext context) async {
+    setPutLoading(true);
+
+    _myRepo.putEmployeeDataApi(id, data, token).then((value) {
+      setPutLoading(false);
+
+      Utils.toastMessage("Datos Actualizados");
+
+      Navigator.pushNamed(context, RoutesName.login);
       if (kDebugMode) {
         print(value.toString());
       }

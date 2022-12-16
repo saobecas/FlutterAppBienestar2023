@@ -39,7 +39,7 @@ class HomeViewModelLocalidad with ChangeNotifier {
     setAddLoading(true);
     _myRepo.addLocalidadApi(data, token).then((value) {
       setAddLoading(false);
-      Utils.flushBarErrorMessage('Localidad agregado', context);
+      Utils.toastMessage('Localidad Agregada');
       Navigator.pushNamed(context, RoutesName.localidad);
 
       if (kDebugMode) {
@@ -81,5 +81,37 @@ class HomeViewModelLocalidad with ChangeNotifier {
         print(error.toString());
       }
     });
+  }
+
+  bool _deleteLoading = false;
+  bool get deleteLoading => _deleteLoading;
+
+  setDeleteLoading(bool value) {
+    _deleteLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> deleteLocalidadApi(
+      String id, String token, BuildContext context) async {
+    setDeleteLoading(true);
+
+    _myRepo.deleteLocalidadApi(id, token).then((value) {
+      setDeleteLoading(false);
+      Utils.toastMessage("Localidad Eliminada");
+
+      //Navigator.pushNamed(context, RoutesName.regionPut);
+      Navigator.pushNamed(context, RoutesName.localidad);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError(
+      (error, stackTrace) {
+        // setDeleteLoading(false);
+        Utils.flushBarErrorMessage(error.toString(), context);
+        if (kDebugMode) {
+          print(error.toString());
+        }
+      },
+    );
   }
 }

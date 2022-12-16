@@ -32,15 +32,20 @@ class HomeRepositoryMunicipio {
     try {
       dynamic response = await _apiServices.getPutApiResponse(
           AppUrl.municipioUpdateAllEndPoint, id, data, token);
-      print("putRegionApi: ${id}");
-      print(response);
+
       return response;
     } catch (e) {
-      kDebugMode() {
-        print("Respuesyta: ....$e");
-      }
+      rethrow;
+    }
+  }
 
-      throw e;
+  Future<dynamic> deleteMunicipioApi(String id, String token) async {
+    try {
+      dynamic response = await _apiServices.getDeleteApiResponse(
+          AppUrl.municipioDeleteEndPoint, id, token);
+      return response;
+    } catch (e) {
+      rethrow;
     }
   }
 }

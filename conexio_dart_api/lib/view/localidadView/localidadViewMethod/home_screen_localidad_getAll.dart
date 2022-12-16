@@ -108,12 +108,63 @@ class _HomeScreenLocalidadGetAllState extends State<HomeScreenLocalidadGetAll> {
                                     icon: Icon(Icons.edit),
                                   ),
                                 ),
-                                /*  Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {},
-                                  icon: Icon(Icons.delete),
-                               ))*/
+                                Expanded(
+                                  child: IconButton(
+                                    color: AppColors.buttonColor,
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                "¿ Deseas Eliminar La Localidad ${value.localidadList.data!.localidades![index].nameLoc.toString()}?"),
+                                            actions: [
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary:
+                                                        Colors.green.shade900),
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Cancelar'),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary: Colors.red),
+                                                child: const Text('Eliminar'),
+                                                onPressed: () {
+                                                  //
+                                                  final regionId = value
+                                                      .localidadList
+                                                      .data!
+                                                      .localidades![index]
+                                                      .id
+                                                      .toString();
+                                                  print(
+                                                      "DATo desde vista: $regionId");
+
+                                                  setState(
+                                                    () {
+                                                      homeViewModelLocalidad
+                                                          .deleteLocalidadApi(
+                                                        regionId,
+                                                        token.toString(),
+                                                        context,
+                                                      );
+                                                    },
+                                                  );
+                                                  //Future.delayed(Duration(seconds: 2));
+                                                  print(
+                                                      "Valor final del id region $regionId");
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    icon: Icon(Icons.delete),
+                                  ),
+                                )
                               ],
                             ),
                           ),

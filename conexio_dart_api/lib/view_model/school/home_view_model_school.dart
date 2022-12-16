@@ -135,4 +135,36 @@ class HomeViewModelScholl with ChangeNotifier {
       }
     });
   }
+
+  bool _deleteLoading = false;
+  bool get deleteLoading => _deleteLoading;
+
+  setDeleteLoading(bool value) {
+    _deleteLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> deleteSchollApi(
+      String id, String token, BuildContext context) async {
+    setDeleteLoading(true);
+
+    _myRepo.deleteSchoolApi(id, token).then((value) {
+      setDeleteLoading(false);
+      Utils.toastMessage("Escuela Eliminada");
+
+      //Navigator.pushNamed(context, RoutesName.regionPut);
+      Navigator.pushNamed(context, RoutesName.school);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError(
+      (error, stackTrace) {
+        // setDeleteLoading(false);
+        Utils.flushBarErrorMessage(error.toString(), context);
+        if (kDebugMode) {
+          print(error.toString());
+        }
+      },
+    );
+  }
 }

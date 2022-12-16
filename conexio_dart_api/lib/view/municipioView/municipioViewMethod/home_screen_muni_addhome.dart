@@ -99,142 +99,146 @@ class _HomeScreenMuniAddState extends State<HomeScreenMuniAdd> {
             Container(
               child: ChangeNotifierProvider<HomeViewModelRegion>(
                 create: (BuildContext context) => homeViewModelRegion,
-                child:
-                    Consumer<HomeViewModelRegion>(builder: (context, lista, _) {
-                  switch (lista.regionList.status!) {
-                    case Status.LOADING:
-                      return Center(child: CircularProgressIndicator());
-                    case Status.ERROR:
-                      return Center(
-                          child: Text(lista.regionList.message.toString()));
-                    case Status.COMPLETED:
-                      //var index;
-                      return Center(
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton2(
-                            //barrierColor: Colors.blue,
-                            buttonDecoration: BoxDecoration(
-                              color: Color.fromARGB(255, 235, 235, 235),
-                              borderRadius: BorderRadius.circular(30.0),
-                              border: Border.all(
-                                  color: Color.fromARGB(255, 0, 0, 0),
-                                  style: BorderStyle.solid,
-                                  width: 0.80),
-                            ),
-                            isExpanded: true,
-                            hint: Row(
-                              children: [
-                                Icon(
-                                  Icons.list,
-                                  size: 15,
-                                  color: Colors.black,
-                                ),
-                                SizedBox(
-                                  width: 5,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    'Selecciona la region',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Theme.of(context).hintColor,
-                                    ),
-                                    overflow: TextOverflow.ellipsis,
-                                    //selectionColor: Colors.amberAccent,
+                child: Consumer<HomeViewModelRegion>(
+                  builder: (context, lista, _) {
+                    switch (lista.regionList.status!) {
+                      case Status.LOADING:
+                        return Center(child: CircularProgressIndicator());
+                      case Status.ERROR:
+                        return Center(
+                            child: Text(lista.regionList.message.toString()));
+                      case Status.COMPLETED:
+                        //var index;
+                        return Center(
+                          child: DropdownButtonHideUnderline(
+                            child: DropdownButton2(
+                              //barrierColor: Colors.blue,
+                              buttonDecoration: BoxDecoration(
+                                color: Color.fromARGB(255, 235, 235, 235),
+                                borderRadius: BorderRadius.circular(30.0),
+                                border: Border.all(
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    style: BorderStyle.solid,
+                                    width: 0.80),
+                              ),
+                              isExpanded: true,
+                              hint: Row(
+                                children: [
+                                  Icon(
+                                    Icons.list,
+                                    size: 15,
+                                    color: Colors.black,
                                   ),
-                                ),
-                              ],
-                            ),
-
-                            items: lista.regionList.data!.regiones!
-                                //lista.regionList.data!.regiones!
-                                .map((nombre_region) =>
-                                    DropdownMenuItem<dynamic>(
-                                      //value: nombre_region.id.toString(),
-                                      value: nombre_region,
-
-                                      child: Text(
-                                        nombre_region.nameRegion.toString(),
-                                        //nombre_region.toString(),
-
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                        ),
+                                  SizedBox(
+                                    width: 5,
+                                  ),
+                                  Expanded(
+                                    child: Text(
+                                      'Selecciona la region',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Theme.of(context).hintColor,
                                       ),
-                                    ))
-                                .toList(),
-                            value: selectedValue,
-                            onChanged: (value) {
-                              setState(() {
-                                selectedValue = value as dynamic;
-
-                                print(selectedValue.id);
-                              });
-                            },
-                            buttonHeight: 50,
-                            buttonWidth: 250,
-                            itemHeight: 50,
-                            dropdownMaxHeight: 400,
-                            dropdownPadding: null,
-                            dropdownDecoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(14),
-                              color: Color.fromARGB(255, 235, 235, 235),
-                            ),
-                            searchController: searchController,
-                            searchInnerWidget: Padding(
-                              padding: const EdgeInsets.only(
-                                top: 8,
-                                bottom: 4,
-                                right: 8,
-                                left: 8,
+                                      overflow: TextOverflow.ellipsis,
+                                      //selectionColor: Colors.amberAccent,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              child: TextFormField(
-                                controller: searchController,
-                                decoration: InputDecoration(
-                                  isDense: false,
-                                  contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 10,
-                                    vertical: 8,
-                                  ),
-                                  hintText: 'Buscar...',
-                                  hintStyle: const TextStyle(
-                                    fontSize: 12,
-                                  ),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
+
+                              items: lista.regionList.data!.regiones!
+                                  //lista.regionList.data!.regiones!
+                                  .map((nombre_region) =>
+                                      DropdownMenuItem<dynamic>(
+                                        //value: nombre_region.id.toString(),
+                                        value: nombre_region,
+
+                                        child: Text(
+                                          textAlign: TextAlign.center,
+                                          nombre_region.nameRegion.toString(),
+                                          //nombre_region.toString(),
+
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                              value: selectedValue,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedValue = value as dynamic;
+
+                                  print(selectedValue.id);
+                                });
+                              },
+                              buttonHeight: 50,
+                              buttonWidth: 350,
+                              itemHeight: 50,
+                              dropdownMaxHeight: 400,
+                              dropdownPadding: null,
+                              dropdownDecoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(14),
+                                color: Color.fromARGB(255, 235, 235, 235),
+                              ),
+                              searchController: searchController,
+                              searchInnerWidget: Padding(
+                                padding: const EdgeInsets.only(
+                                  top: 8,
+                                  bottom: 4,
+                                  right: 8,
+                                  left: 8,
+                                ),
+                                child: TextFormField(
+                                  controller: searchController,
+                                  decoration: InputDecoration(
+                                    isDense: false,
+                                    contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 8,
+                                    ),
+                                    hintText: 'Buscar...',
+                                    hintStyle: const TextStyle(
+                                      fontSize: 12,
+                                    ),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
                                   ),
                                 ),
                               ),
+                              searchMatchFn: (nombre_region, searchValue) {
+                                //print("Holamundo");
+                                var name = nombre_region.value!.nameRegion!
+                                    .toString()
+                                    .toUpperCase()
+                                    //.toLowerCase()
+                                    .contains(searchValue);
+                                if (kDebugMode) {
+                                  print(
+                                      "===============================${jsonEncode(nombre_region.value)}");
+                                }
+                                return name;
+                              },
+                              //This to clear the search value when you close the menu
+                              onMenuStateChange: (isOpen) {
+                                if (!isOpen) {
+                                  searchController.clear();
+                                }
+                              },
                             ),
-                            searchMatchFn: (nombre_region, searchValue) {
-                              //print("Holamundo");
-                              var name = nombre_region.value!.nameRegion!
-                                  .toString()
-                                  .toUpperCase()
-                                  //.toLowerCase()
-                                  .contains(searchValue);
-                              if (kDebugMode) {
-                                print(
-                                    "===============================${jsonEncode(nombre_region.value)}");
-                              }
-                              return name;
-                            },
-                            //This to clear the search value when you close the menu
-                            onMenuStateChange: (isOpen) {
-                              if (!isOpen) {
-                                searchController.clear();
-                              }
-                            },
                           ),
-                        ),
-                      );
-                  }
-                }),
+                        );
+                    }
+                  },
+                ),
               ),
             ),
+
             SizedBox(
-              height: height * .030,
+              height: height * .060,
             ),
+
             RoundButton(
                 title: "Crear Municipio",
                 loading: municipioViewModel.addLoading,

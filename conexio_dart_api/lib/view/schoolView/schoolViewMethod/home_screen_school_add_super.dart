@@ -97,6 +97,8 @@ class _HomeScreenSchoolSupervisorState
         .then((value) => {token = value.token, setState(() {})});
   }
 
+  final _keyForm = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     //final addSchoolViewModel = Provider.of<HomeViewModelScholl>(context);
@@ -106,164 +108,184 @@ class _HomeScreenSchoolSupervisorState
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              BarGradient("Crear Escuela", Icons.create_new_folder),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameSupervisorController,
-                  focusNode: nameSupervisoFocusNode,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese El Nombre Completo',
-                    labelText: 'Nombre Del Supervisor',
-                    prefixIcon: Icon(Icons.phone),
-                  ),
-                  onEditingComplete: () => Utils.fielFocusGeneral(
-                      context, telephoneSupervisoFocusNode),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _telephoneSupervisorController,
-                  focusNode: telephoneSupervisoFocusNode,
-                  keyboardType: TextInputType.phone,
-                  maxLines: 10,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese El Telefono',
-                    labelText: 'Numero De Telefono Del Supervisor',
-                    prefixIcon: Icon(Icons.phone),
-                  ),
-                  onEditingComplete: () =>
-                      Utils.fielFocusGeneral(context, emailSupervisorFocusNode),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _emailSupervisorController,
-                  focusNode: emailSupervisorFocusNode,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese Su Correo Electronico',
-                    labelText: 'Correo Electronico Del Supervisor',
-                    prefixIcon: Icon(Icons.phone),
-                  ),
-                  onEditingComplete: () =>
-                      Utils.fielFocusGeneral(context, recuperadoFocusNode),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _recuperadoController,
-                  focusNode: recuperadoFocusNode,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese El Modo de Recuperacion ',
-                    labelText: 'Modo De Recuperación',
-                    prefixIcon: Icon(Icons.phone),
-                  ),
-                  onEditingComplete: () => Utils.fielFocusGeneral(
-                      context, peridoDirectorioRecuperadoFocusNode),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _peridoDirectorioRecuperadoController,
-                  focusNode: peridoDirectorioRecuperadoFocusNode,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese La Fecha Del Periodo',
-                    labelText: 'Perido De Recuperacion',
-                    prefixIcon: Icon(Icons.add_business),
+          child: Form(
+            key: _keyForm,
+            child: Column(
+              children: [
+                BarGradient("Crear Escuela", Icons.create_new_folder),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  height: 80,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  child: TextFormField(
+                    controller: _nameSupervisorController,
+                    focusNode: nameSupervisoFocusNode,
+                    decoration: const InputDecoration(
+                      hintText: 'Ingrese El Nombre Completo',
+                      labelText: 'Nombre Del Supervisor',
+                      prefixIcon: Icon(Icons.person),
+                    ),
+                    onEditingComplete: () => Utils.fielFocusGeneral(
+                        context, telephoneSupervisoFocusNode),
+                    textInputAction: TextInputAction.next,
                   ),
                 ),
-              ),
-              SizedBox(
-                height: height * .085,
-              ),
-              RoundButton(
-                title: "Crear Escuela",
-                // loading: addSchoolViewModel.addLoading,
-                onPress: () {
-                  if (
-                      /*_nameSchoolController.text.isEmpty ||
-                  _nameDirectorController.text.isEmpty ||*/
-                      _nameSupervisorController.text.isEmpty) {
-                    Utils.flushBarErrorMessage(
-                        "Por Favor  Ingrese Todos Los Campos", context);
-                  } else {
-                    Map data = {
-                      "name_school": widget.name_school.toString(),
-                      "cct": widget.cct.toString(),
-                      "nivel": widget.nivel.toString(),
-                      "calle": widget.calle.toString(),
-                      "noExterior": widget.noExterior.toString(),
-                      "numeroInterior": widget.numeroInteriofinal.toString(),
-                      "asentamiento": widget.asentamiento.toString(),
-                      "email_school": widget.email_school.toString(),
-                      "telefono": widget.telefono.toString(),
-                      "localidadId": widget.localidadId.toString(),
-                      //COORDENADAS
-                      "lat": widget.latitud.toString(),
-                      "long": widget.longitud.toString(),
-                      //Falat id del usuario por implementar
-                      //Director
-                      "name_director": widget.nameDirector.toString(),
-                      "sindicato": widget.sindicato.toString(),
-                      "telephone": widget.telephoneDirector.toString(),
-                      "puesto": widget.puesto.toString(),
-                      "email_director": widget.emailDirector.toString(),
-                      //"status": true,
-                      "atencion": widget.atencion,
-                      //supervisor
-                      "name_supervisor":
-                          _nameSupervisorController.text.toString(),
-                      "telephone_supervisor":
-                          _telephoneSupervisorController.text.toString(),
-                      "email_supervisor":
-                          _emailSupervisorController.text.toString(),
-                      "recuperado": _recuperadoController.text.toString(),
-                      'directorio_recuperado':
-                          _peridoDirectorioRecuperadoController.text.toString(),
-                    };
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  height: 90,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  child: TextFormField(
+                    controller: _telephoneSupervisorController,
+                    focusNode: telephoneSupervisoFocusNode,
+                    keyboardType: TextInputType.phone,
+                    maxLength: 10,
+                    decoration: const InputDecoration(
+                      hintText: 'Ingrese El Telefono',
+                      labelText: 'Numero De Telefono Del Supervisor',
+                      prefixIcon: Icon(Icons.phone),
+                    ),
+                    validator: (value) {
+                      if (value!.length < 10 || value.length > 10) {
+                        return "Ingrese los 10 caracteres";
+                      }
+                      return null;
+                    },
+                    onEditingComplete: () => Utils.fielFocusGeneral(
+                        context, emailSupervisorFocusNode),
+                    textInputAction: TextInputAction.next,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  height: 90,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  child: TextFormField(
+                    controller: _emailSupervisorController,
+                    focusNode: emailSupervisorFocusNode,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      hintText: 'Ingrese Su Correo Electronico',
+                      labelText: 'Correo Electronico Del Supervisor',
+                      prefixIcon: Icon(Icons.email),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty || !value.contains('@')) {
+                        return 'Formato incorrecto Ejemplo: correo@dominio.com';
+                      }
+                      return null;
+                    },
+                    onEditingComplete: () =>
+                        Utils.fielFocusGeneral(context, recuperadoFocusNode),
+                    textInputAction: TextInputAction.next,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  height: 80,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  child: TextFormField(
+                    controller: _recuperadoController,
+                    focusNode: recuperadoFocusNode,
+                    decoration: const InputDecoration(
+                      hintText: 'Ingrese El Modo de Recuperacion ',
+                      labelText: 'Modo De Recuperación',
+                      prefixIcon: Icon(Icons.home_max),
+                    ),
+                    onEditingComplete: () => Utils.fielFocusGeneral(
+                        context, peridoDirectorioRecuperadoFocusNode),
+                    textInputAction: TextInputAction.next,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 10.0),
+                  height: 80,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                  child: TextFormField(
+                    controller: _peridoDirectorioRecuperadoController,
+                    focusNode: peridoDirectorioRecuperadoFocusNode,
+                    decoration: const InputDecoration(
+                      hintText: 'Ingrese La Fecha Del Periodo',
+                      labelText: 'Perido De Recuperacion',
+                      prefixIcon: Icon(Icons.calendar_month_rounded),
+                    ),
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Campo requerido";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: height * .085,
+                ),
+                RoundButton(
+                  title: "Crear Escuela",
+                  // loading: addSchoolViewModel.addLoading,
+                  onPress: () {
+                    if (_keyForm.currentState!.validate()) {
+                      print("validadcion correcta");
+                      Map data = {
+                        "name_school": widget.name_school.toString(),
+                        "cct": widget.cct.toString(),
+                        "nivel": widget.nivel.toString(),
+                        "calle": widget.calle.toString(),
+                        "noExterior": widget.noExterior.toString(),
+                        "numeroInterior": widget.numeroInteriofinal.toString(),
+                        "asentamiento": widget.asentamiento.toString(),
+                        "email_school": widget.email_school.toString(),
+                        "telefono": widget.telefono.toString(),
+                        "localidadId": widget.localidadId.toString(),
+                        //COORDENADAS
+                        "lat": widget.latitud.toString(),
+                        "long": widget.longitud.toString(),
+                        //Falat id del usuario por implementar
+                        //Director
+                        "name_director": widget.nameDirector.toString(),
+                        "sindicato": widget.sindicato.toString(),
+                        "telephone": widget.telephoneDirector.toString(),
+                        "puesto": widget.puesto.toString(),
+                        "email_director": widget.emailDirector.toString(),
+                        //"status": true,
+                        "atencion": widget.atencion,
+                        //supervisor
+                        "name_supervisor":
+                            _nameSupervisorController.text.toString(),
+                        "telephone_supervisor":
+                            _telephoneSupervisorController.text.toString(),
+                        "email_supervisor":
+                            _emailSupervisorController.text.toString(),
+                        "recuperado": _recuperadoController.text.toString(),
+                        'directorio_recuperado':
+                            _peridoDirectorioRecuperadoController.text
+                                .toString(),
+                      };
 
-                    addSchoolViewModel.addSchoolApi(
-                        data, token.toString(), context);
+                      addSchoolViewModel.addSchoolApi(
+                          data, token.toString(), context);
 
-                    print(data.toString());
-                  }
-                },
-              ),
-              SizedBox(
-                height: height * .03,
-              ),
-            ],
+                      print(data.toString());
+                    } else {
+                      Utils.flushBarErrorMessage(
+                          "Por Favor  Ingrese Todos Los Campos", context);
+                    }
+                  },
+                ),
+                SizedBox(
+                  height: height * .03,
+                ),
+              ],
+            ),
           ),
         ),
       ),

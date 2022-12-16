@@ -78,4 +78,15 @@ class HomeRepositorySchool {
       throw e;
     }
   }
+
+  Future<dynamic> deleteSchoolApi(String id, String token) async {
+    try {
+      dynamic response = await _apiServices.getDeleteApiResponse(
+          AppUrl.schoollDeleteEndPoint, id, token);
+
+      return response;
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

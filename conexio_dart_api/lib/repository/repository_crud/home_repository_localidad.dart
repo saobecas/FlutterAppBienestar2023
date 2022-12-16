@@ -32,15 +32,26 @@ class HomeRepositoryLocalidad {
     try {
       dynamic response = await _apiServices.getPutApiResponse(
           AppUrl.localidadUpdateEndPoint, id, data, token);
-      print("putUpdateLocalidadApi: ${id}");
-      print(response);
+      /*  print("putUpdateLocalidadApi: ${id}");
+      print(response);*/
       return response;
     } catch (e) {
-      kDebugMode() {
+      /*  kDebugMode() {
         print("Respuesyta: ....$e");
-      }
+      }*/
 
       throw e;
+    }
+  }
+
+  Future<dynamic> deleteLocalidadApi(String id, String token) async {
+    try {
+      dynamic response = await _apiServices.getDeleteApiResponse(
+          AppUrl.localidDeleteEndPoint, id, token);
+
+      return response;
+    } catch (e) {
+      rethrow;
     }
   }
 }

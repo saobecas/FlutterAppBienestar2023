@@ -40,7 +40,7 @@ class HomeViewModelMunicipio with ChangeNotifier {
     setAddLoading(true);
     _muyRepo.addMunicipioApi(data, token).then((value) {
       setAddLoading(false);
-      Utils.flushBarErrorMessage('Municipio agregado', context);
+      Utils.toastMessage('Municipio agregado');
       Navigator.pushNamed(context, RoutesName.municipio);
 
       if (kDebugMode) {
@@ -83,5 +83,37 @@ class HomeViewModelMunicipio with ChangeNotifier {
         print(error.toString());
       }
     });
+  }
+
+  bool _deleteLoading = false;
+  bool get deleteLoading => _deleteLoading;
+
+  setDeleteLoading(bool value) {
+    _deleteLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> deleteMunicipioApi(
+      String id, String token, BuildContext context) async {
+    setDeleteLoading(true);
+
+    _muyRepo.deleteMunicipioApi(id, token).then((value) {
+      setDeleteLoading(false);
+      Utils.toastMessage("Municipio Eliminado");
+
+      //Navigator.pushNamed(context, RoutesName.regionPut);
+      Navigator.pushNamed(context, RoutesName.municipio);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError(
+      (error, stackTrace) {
+        // setDeleteLoading(false);
+        Utils.flushBarErrorMessage(error.toString(), context);
+        if (kDebugMode) {
+          print(error.toString());
+        }
+      },
+    );
   }
 }

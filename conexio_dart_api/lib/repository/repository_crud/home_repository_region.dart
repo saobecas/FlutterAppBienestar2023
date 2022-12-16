@@ -44,30 +44,30 @@ class HomeRepositoryRegion {
     try {
       dynamic response = await _apiServices.getPutApiResponse(
           AppUrl.regionUpdateEndPoint, id, data, token);
-      print("putRegionApi: ${id}");
-      print(response);
       return response;
     } catch (e) {
-      kDebugMode() {
-        print("Respuesyta: ....$e");
-      }
-
       throw e;
     }
   }
 
   Future<dynamic> deleteRegionApi(String id, String token) async {
-    print("repository datos: $id");
     try {
       dynamic response = await _apiServices.getDeleteApiResponse(
           AppUrl.regionDeleteEndPoint, id, token);
-      print("repository datos: $response");
+
       return response;
     } catch (e) {
-      kDebugMode() {
-        print("Respuesyta: ....$e");
-      }
+      rethrow;
+    }
+  }
 
+  Future<RegionModelGet> fechtRegionAndMuniList(String token) async {
+    try {
+      dynamic response = await _apiServices.getGetApiResponse(
+          AppUrl.muniRegionListGellAllEndPoint, token);
+
+      return response = RegionModelGet.fromJson(response);
+    } catch (e) {
       throw e;
     }
   }

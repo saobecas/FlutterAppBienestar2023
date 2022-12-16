@@ -1,5 +1,3 @@
-import 'package:conexio_dart_api/model/user_model.dart';
-import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
@@ -19,8 +17,10 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
   //  Future<RegionModel>? futureRegion;
 
   final TextEditingController _nameRegion = TextEditingController();
+  final TextEditingController _nameJefe = TextEditingController();
 
   FocusNode nameRegionFocusNode = FocusNode();
+  FocusNode nameJefeFocusNode = FocusNode();
 
   UserViewModel getSharedPreferences = UserViewModel();
   String? token;
@@ -39,8 +39,9 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
     super.dispose();
 
     _nameRegion.dispose();
-
+    _nameJefe.dispose();
     nameRegionFocusNode.dispose();
+    nameJefeFocusNode.dispose();
   }
 
   @override
@@ -71,6 +72,29 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
                     Icons.add_home_sharp,
                   ),
                 ),
+                onEditingComplete: () =>
+                    Utils.fielFocusGeneral(context, nameJefeFocusNode),
+                textInputAction: TextInputAction.next,
+              ),
+            ),
+            Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+              height: 80,
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              child: TextFormField(
+                controller: _nameJefe,
+                keyboardType: TextInputType.text,
+                focusNode: nameJefeFocusNode,
+                autofocus: true,
+                decoration: const InputDecoration(
+                  hintText: 'Ingrese El Nombre Del Jefe de La Region',
+                  labelText: 'Jefe De La Region',
+                  prefixIcon: Icon(
+                    Icons.person,
+                  ),
+                ),
+                textInputAction: TextInputAction.next,
               ),
             ),
             SizedBox(
@@ -84,7 +108,10 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
                     Utils.flushBarErrorMessage(
                         "Por Favor Ingresa El Nombre De La Región", context);
                   } else {
-                    Map data = {'nameRegion': _nameRegion.text.toString()};
+                    Map data = {
+                      'nameRegion': _nameRegion.text.toString(),
+                      'nameJefeSare': _nameJefe.text.toString()
+                    };
                     //print("token:$token");
                     regionViewModel.addRegionApi(
                         data, token.toString(), context);

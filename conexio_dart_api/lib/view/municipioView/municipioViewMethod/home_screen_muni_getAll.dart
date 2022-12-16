@@ -104,42 +104,98 @@ class _HomeScreenMuniGetAllState extends State<HomeScreenMuniGetAll> {
                                   icon: Icon(Icons.edit),
                                 )),*/
                                 Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {
-                                    final municipioId = value.municipioList
-                                        .data!.municipios![index].id
-                                        .toString();
-                                    final nameMunic = value.municipioList.data!
-                                        .municipios![index].name
-                                        .toString();
-                                    final regionId = value.municipioList.data!
-                                        .municipios![index].region!.id
-                                        .toString();
+                                  child: IconButton(
+                                    color: AppColors.buttonColor,
+                                    onPressed: () {
+                                      final municipioId = value.municipioList
+                                          .data!.municipios![index].id
+                                          .toString();
+                                      final nameMunic = value.municipioList
+                                          .data!.municipios![index].name
+                                          .toString();
+                                      final regionId = value.municipioList.data!
+                                          .municipios![index].region!.id
+                                          .toString();
 
-                                    final nameRegion = value.municipioList.data!
-                                        .municipios![index].region!.nameRegion
-                                        .toString();
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            HomeScreenMuniUpdate(
-                                                // idRegion: regionId as int,
-                                                idmunicipio: municipioId,
-                                                nameMunicipio: nameMunic,
-                                                nameRegion: nameRegion,
-                                                regionId: regionId),
-                                      ),
-                                    );
-                                  },
-                                  icon: Icon(Icons.edit),
-                                ))
-                                /*  Expanded(
-                                    child: IconButton(
-                                  color: AppColors.buttonColor,
-                                  onPressed: () {},
-                                  icon: Icon(Icons.delete),
-                               ))*/
+                                      final nameRegion = value
+                                          .municipioList
+                                          .data!
+                                          .municipios![index]
+                                          .region!
+                                          .nameRegion
+                                          .toString();
+                                      Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              HomeScreenMuniUpdate(
+                                                  // idRegion: regionId as int,
+                                                  idmunicipio: municipioId,
+                                                  nameMunicipio: nameMunic,
+                                                  nameRegion: nameRegion,
+                                                  regionId: regionId),
+                                        ),
+                                      );
+                                    },
+                                    icon: Icon(Icons.edit),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: IconButton(
+                                    color: AppColors.buttonColor,
+                                    onPressed: () {
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                "¿ Deseas Eliminar El Municipio ${value.municipioList.data!.municipios![index].name.toString()}?"),
+                                            actions: [
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary:
+                                                        Colors.green.shade900),
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Cancelar'),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                              TextButton(
+                                                style: TextButton.styleFrom(
+                                                    primary: Colors.red),
+                                                child: const Text('Eliminar'),
+                                                onPressed: () {
+                                                  //
+                                                  final regionId = value
+                                                      .municipioList
+                                                      .data!
+                                                      .municipios![index]
+                                                      .id
+                                                      .toString();
+                                                  print(
+                                                      "DATo desde vista: $regionId");
+
+                                                  setState(
+                                                    () {
+                                                      homeViewModelMuni
+                                                          .deleteMunicipioApi(
+                                                        regionId,
+                                                        token.toString(),
+                                                        context,
+                                                      );
+                                                    },
+                                                  );
+                                                  //Future.delayed(Duration(seconds: 2));
+                                                  print(
+                                                      "Valor final del id region $regionId");
+                                                },
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      );
+                                    },
+                                    icon: Icon(Icons.delete),
+                                  ),
+                                )
                               ],
                             ),
                           ),
