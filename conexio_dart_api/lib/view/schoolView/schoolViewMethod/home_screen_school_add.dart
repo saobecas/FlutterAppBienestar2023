@@ -173,12 +173,20 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                   labelText: 'Nivel Educativo',
                   prefixIcon: Icon(Icons.perm_data_setting_outlined),
                 ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Ingresa el nivel educativo de la institucions';
+                  }
+                  return null;
+                },
                 onEditingComplete: () =>
                     Utils.fielFocusGeneral(context, calleFocus),
                 textInputAction: TextInputAction.next,
               ),
             ),
             Container(
+              height: 100.0,
+              width: 350.0,
               child: ChangeNotifierProvider<HomeViewModelLocalidad>(
                 create: (BuildContext context) => homeViewModelLocalidad,
                 child: Consumer<HomeViewModelLocalidad>(
@@ -193,23 +201,32 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                       //var index;
                       return Center(
                         child: DropdownButtonHideUnderline(
-                          child: DropdownButton2(
+                          child: DropdownButtonFormField2(
+                            /*decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: EdgeInsets.zero,
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
+                            ),*/
                             //barrierColor: Colors.blue,
                             buttonDecoration: BoxDecoration(
                               color: Color.fromARGB(255, 235, 235, 235),
-                              borderRadius: BorderRadius.circular(30.0),
+                              borderRadius: BorderRadius.circular(20.0),
                               border: Border.all(
                                   color: Color.fromARGB(255, 0, 0, 0),
                                   style: BorderStyle.solid,
-                                  width: 0.80),
+                                  width: 1.00),
                             ),
                             isExpanded: true,
                             hint: Row(
                               children: [
+                                Padding(
+                                    padding: EdgeInsets.fromLTRB(18, 0, 18, 0)),
                                 Icon(
                                   Icons.list,
                                   size: 15,
-                                  color: Colors.black,
+                                  color: Color.fromARGB(255, 0, 0, 0),
                                 ),
                                 SizedBox(
                                   width: 5,
@@ -239,17 +256,19 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                                       value: nombre_localidad,
 
                                       child: Text(
-                                        nombre_localidad.nameLoc.toString(),
+                                        nombre_localidad.nameLoc
+                                            .toString()
+                                            .toUpperCase(),
                                         //nombre_region.toString(),
 
                                         style: const TextStyle(
-                                          fontSize: 14,
-                                        ),
+                                            fontSize: 14,
+                                            color:
+                                                Color.fromARGB(255, 0, 0, 0)),
+                                        textAlign: TextAlign.justify,
                                       ),
                                     ))
                                 .toList(),
-
-                            value: selectedValue,
 
                             onChanged: (value) {
                               setState(() {
@@ -258,12 +277,21 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                                 print(selectedValue.id);
                               });
                             },
-
+                            value: selectedValue,
+                            validator: (value) {
+                              if (value == null) {
+                                print("valor nulo");
+                                return 'Relationship is required';
+                              }
+                              return null;
+                            },
                             buttonHeight: 50,
                             buttonWidth: 350,
                             itemHeight: 50,
                             dropdownMaxHeight: 400,
-                            dropdownPadding: null,
+                            buttonPadding:
+                                const EdgeInsets.only(left: 25, right: 25),
+
                             dropdownDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(14),
                               color: Color.fromARGB(255, 235, 235, 235),
@@ -272,7 +300,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                             searchInnerWidget: Padding(
                               padding: const EdgeInsets.only(
                                 top: 8,
-                                bottom: 4,
+                                bottom: 5,
                                 right: 8,
                                 left: 8,
                               ),
@@ -290,7 +318,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                                     fontSize: 12,
                                   ),
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(8),
+                                    borderRadius: BorderRadius.circular(7),
                                   ),
                                 ),
                                 //validator: (selectedValue),
@@ -300,7 +328,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                               //print("Holamundo");
                               var name = nombre_localidad.value!.nameLoc!
                                   .toString()
-                                  .toUpperCase()
+
                                   //.toLowerCase()
                                   .contains(searchValue);
                               if (kDebugMode) {
@@ -335,6 +363,12 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                   labelText: 'Nombre De La Calle',
                   prefixIcon: Icon(Icons.stairs_rounded),
                 ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Ingresa el nombre de la calle';
+                  }
+                  return null;
+                },
                 onEditingComplete: () =>
                     Utils.fielFocusGeneral(context, numeroExteriorFocusNode),
                 textInputAction: TextInputAction.next,
@@ -354,6 +388,12 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                   labelText: 'Numero Exterior',
                   prefixIcon: Icon(Icons.numbers),
                 ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Ingresa el numero de exterior';
+                  }
+                  return null;
+                },
                 onEditingComplete: () =>
                     Utils.fielFocusGeneral(context, numeroInteriorFocusNode),
                 textInputAction: TextInputAction.next,
@@ -373,6 +413,12 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                   labelText: 'Numero Interior',
                   prefixIcon: Icon(Icons.numbers),
                 ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Ingresa el numero interior';
+                  }
+                  return null;
+                },
                 onEditingComplete: () =>
                     Utils.fielFocusGeneral(context, asentamientoFocusNode),
                 textInputAction: TextInputAction.next,
@@ -391,6 +437,12 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                   labelText: 'Asentamiento',
                   prefixIcon: Icon(Icons.holiday_village_sharp),
                 ),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Ingresa el nombre del asentamiento o colonia';
+                  }
+                  return null;
+                },
                 onEditingComplete: () =>
                     Utils.fielFocusGeneral(context, emailSchoolFocusNode),
                 textInputAction: TextInputAction.next,
@@ -454,9 +506,8 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
               title: "Siguiente",
               // loading: addSchoolViewModel.addLoading,
               onPress: () {
-                setIdLocalidad();
-
                 if (_keyForm.currentState!.validate()) {
+                  setIdLocalidad();
                   print("validadcion correcta");
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => GetLocations(
@@ -476,8 +527,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                             localidadId: _localidadIdController.text.toString(),
                           )));
                 } else {
-                  Utils.flushBarErrorMessage(
-                      "Rellenar los campos en rojo", context);
+                  Utils.toastMessage("Rellenar los campos en rojo");
                   print("validacion incorrecta");
                 }
 

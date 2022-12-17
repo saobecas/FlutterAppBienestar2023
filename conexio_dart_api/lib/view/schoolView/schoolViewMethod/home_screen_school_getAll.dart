@@ -1,4 +1,5 @@
 import 'package:conexio_dart_api/res/components/round_button.dart';
+import 'package:conexio_dart_api/view/schoolView/delegate.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_getId_Detail.dart';
 import 'package:conexio_dart_api/view_model/school/home_view_model_school.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
 
   UserViewModel getSharedPreferences = UserViewModel();
   String? token;
+  dynamic? listaSchools;
 
   @override
   void initState() {
@@ -45,6 +47,22 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
         title: Text("Lista De Escuelas"),
         centerTitle: true,
         backgroundColor: AppColors.grenSnackBar,
+        actions: [
+          IconButton(
+            onPressed: () {
+              listaSchools == null
+                  ? showSearch(
+                      context: context,
+                      delegate: CustomSearchDelegate(
+                          [], ["escuelas", "name_school", "cct"]))
+                  : showSearch(
+                      context: context,
+                      delegate: CustomSearchDelegate(
+                          listaSchools, ["escuelas", "name_school", "cct"]));
+            },
+            icon: const Icon(Icons.search),
+          )
+        ],
       ),
       body: ChangeNotifierProvider<HomeViewModelScholl>(
         create: (BuildContext context) => homeViewModelScholl,
@@ -55,6 +73,7 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
             case Status.ERROR:
               return Center(child: Text(value.schoolList.message.toString()));
             case Status.COMPLETED:
+              listaSchools = value.schoolList.data!.schols;
               return ListView.builder(
                 itemCount: value.schoolList.data!.schols!.length,
                 itemBuilder: (context, index) {

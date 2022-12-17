@@ -196,7 +196,8 @@ class _HomeScreenMuniUpdateState extends State<HomeScreenMuniUpdate> {
                             buttonWidth: 350,
                             itemHeight: 50,
                             dropdownMaxHeight: 400,
-                            dropdownPadding: null,
+                            buttonPadding:
+                                const EdgeInsets.only(left: 25, right: 25),
                             dropdownDecoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(14),
                               color: Color.fromARGB(255, 235, 235, 235),
