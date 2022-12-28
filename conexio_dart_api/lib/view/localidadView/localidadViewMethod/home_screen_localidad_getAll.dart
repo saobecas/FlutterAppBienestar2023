@@ -93,7 +93,7 @@ class _HomeScreenLocalidadGetAllState extends State<HomeScreenLocalidadGetAll> {
                                       final claveLocOfi = value.localidadList
                                           .data!.localidades![index].claveLocOfi
                                           .toString();
-
+                                      Navigator.pop(context);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) =>

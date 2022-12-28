@@ -11,11 +11,14 @@ class RoutesName {
 
   static const String school = 'home_screen_school';
 
-  /*/ static const String schoolDetail = 'home_screen_school_getId_Detail';*/
+  static const String emails = 'list_email';
+  /*static const String schoolDetail = 'home_screen_school_getId_Detail';*/
 
   static const String locate = 'get_localitation_view';
 
   static const String region = 'home_screen_region';
+
+  static const String sare = 'home_screen_sare';
 
   static const String regionPut = 'home_screen_region_update';
 
@@ -36,4 +39,6 @@ class RoutesName {
   static const String datDirectorview = 'home_screen_school_add_direc';
 
   static const String datSupervisorview = 'home_screen_school_add_super';
+
+  static const String lisUser = 'list_users_view';
 }

@@ -69,7 +69,8 @@ class HomeViewModelRegion with ChangeNotifier {
 
       //  Utils.flushBarErrorMessage('Region Creada', context);
       Utils.toastMessage('Region Agregada');
-      Navigator.pushNamed(context, RoutesName.region);
+      //Navigator.pushNamed(context, RoutesName.region);
+      Navigator.popAndPushNamed(context, RoutesName.region);
 
       if (kDebugMode) {
         print(value.toString());
@@ -97,12 +98,13 @@ class HomeViewModelRegion with ChangeNotifier {
 
     _myRepo.putRegionApi(id, data, token).then((value) {
       setPutLoading(false);
-//*****TODO: Cambiar a toastMessage en todos los metodos
-      //Utils.flushBarErrorMessage('Region Actuzalizada', context);
-      Utils.toastMessage("Region Actuzalizada");
 
-      //Navigator.pushNamed(context, RoutesName.regionPut);
-      Navigator.pushNamed(context, RoutesName.region);
+      Utils.toastMessage("Region Actualizada");
+
+      Navigator.of(context).popAndPushNamed(RoutesName.region);
+      /* Navigator.pushNamedAndRemoveUntil(
+          context, RoutesName.region, (Route<dynamic> route) => false);*/
+
       if (kDebugMode) {
         print(value.toString());
       }
@@ -131,8 +133,10 @@ class HomeViewModelRegion with ChangeNotifier {
       setDeleteLoading(false);
       Utils.toastMessage("Region Eliminada");
 
-      //Navigator.pushNamed(context, RoutesName.regionPut);
-      Navigator.pushNamed(context, RoutesName.region);
+      //Navigator.of(context).popAndPushNamed(RoutesName.region);
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed(RoutesName.region);
       if (kDebugMode) {
         print(value.toString());
       }

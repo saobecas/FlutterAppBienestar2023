@@ -244,7 +244,7 @@ class _HomeScreenDirectorUpdateState extends State<HomeScreenDirectorUpdate> {
                     child: Icon(
                       Icons.library_add_check_rounded,
                       color: activar
-                          ? Color.fromARGB(255, 86, 253, 53)
+                          ? Color.fromARGB(255, 42, 128, 25)
                           : Color.fromARGB(255, 176, 176, 176),
                       size: 60,
                     ),

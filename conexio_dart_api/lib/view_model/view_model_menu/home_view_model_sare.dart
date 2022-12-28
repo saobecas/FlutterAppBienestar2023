@@ -1,14 +1,10 @@
 import 'package:conexio_dart_api/data/response/api_response.dart';
-import 'package:conexio_dart_api/utils/routes/routes_name.dart';
-import 'package:conexio_dart_api/utils/utils.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:conexio_dart_api/model/sare/sares_model.dart';
+import 'package:conexio_dart_api/repository/repository_crud/home_repository_sare.dart';
+import 'package:flutter/cupertino.dart';
 
-import '../../model/school/school_list_model.dart';
-import '../../repository/school/home_repository_school.dart';
-
-class HomeViewModelScholl with ChangeNotifier {
-  final _myRepo = HomeRepositorySchool();
+class HomeViewModelSare with ChangeNotifier {
+  final _myRepo = HomeRepositorySare();
 
   bool _addLoading = false;
   bool get addLoading => _addLoading;
@@ -20,23 +16,23 @@ class HomeViewModelScholl with ChangeNotifier {
   }
 
 //TODO: para lo metodos get
-  ApiResponse<SchoolModelGet> schoolList = ApiResponse.loading();
+  ApiResponse<SaresModel> sareList = ApiResponse.loading();
 
-  setSchoolList(ApiResponse<SchoolModelGet> response) {
-    schoolList = response;
+  setSareList(ApiResponse<SaresModel> response) {
+    sareList = response;
     notifyListeners();
   }
 
-  Future<void> fechtSchoolListApi(String token) async {
-    setSchoolList(ApiResponse.loading());
+  Future<void> fechtSaresListApi(String token) async {
+    setSareList(ApiResponse.loading());
 
-    _myRepo.fechtSchoolList(token).then((value) {
-      setSchoolList(ApiResponse.completed(value));
+    _myRepo.fechtSareList(token).then((value) {
+      setSareList(ApiResponse.completed(value));
     }).onError((error, stackTrace) {
-      setSchoolList(ApiResponse.error(error.toString()));
+      setSareList(ApiResponse.error(error.toString()));
     });
   }
-
+/*
   Future<void> addSchoolApi(
       dynamic data, String token, BuildContext context) async {
     setAddLoading(true);
@@ -46,9 +42,6 @@ class HomeViewModelScholl with ChangeNotifier {
 
       Utils.toastMessage('Escuela Creada');
 
-      /* Navigator.of(context).pushNamedAndRemoveUntil(
-          RoutesName.home, ModalRoute.withName(RoutesName.datSupervisorview));*/
-      //Navigator.of(context).pop();
       Navigator.of(context).pushNamed(RoutesName.school);
 
       if (kDebugMode) {
@@ -71,53 +64,6 @@ class HomeViewModelScholl with ChangeNotifier {
     notifyListeners();
   }
 
-  //Director put
-  Future<void> putDataDirectorApi(
-      String id, dynamic data, String token, BuildContext context) async {
-    setPutLoading(true);
-
-    _myRepo.putDataDirectorApi(id, data, token).then((value) {
-      setPutLoading(false);
-
-      Utils.toastMessage("Los Datos del Director han sido Actuzalizados");
-      Navigator.of(context).pop();
-      Navigator.of(context).popAndPushNamed(RoutesName.school);
-      //  Navigator.pushNamed(context, RoutesName.school);
-      if (kDebugMode) {
-        print(value.toString());
-      }
-    }).onError((error, stackTrace) {
-      setAddLoading(false);
-      Utils.flushBarErrorMessage(error.toString(), context);
-      if (kDebugMode) {
-        print(error.toString());
-      }
-    });
-  }
-
-  //Supervisor
-  Future<void> putDataSupervisorApi(
-      String id, dynamic data, String token, BuildContext context) async {
-    setPutLoading(true);
-
-    _myRepo.putDataSupervisorApi(id, data, token).then((value) {
-      setPutLoading(false);
-
-      Utils.toastMessage("Los Datos del supervisor han sido Actuzalizados");
-      Navigator.of(context).pop();
-      Navigator.of(context).popAndPushNamed(RoutesName.school);
-      //Navigator.pushNamed(context, RoutesName.school);
-      if (kDebugMode) {
-        print(value.toString());
-      }
-    }).onError((error, stackTrace) {
-      setAddLoading(false);
-      Utils.flushBarErrorMessage(error.toString(), context);
-      if (kDebugMode) {
-        print(error.toString());
-      }
-    });
-  }
 
   Future<void> putDataSchoolApi(
       String id, dynamic data, String token, BuildContext context) async {
@@ -166,12 +112,12 @@ class HomeViewModelScholl with ChangeNotifier {
       }
     }).onError(
       (error, stackTrace) {
-        // setDeleteLoading(false);
+        
         Utils.flushBarErrorMessage(error.toString(), context);
         if (kDebugMode) {
           print(error.toString());
         }
       },
     );
-  }
+  }*/
 }

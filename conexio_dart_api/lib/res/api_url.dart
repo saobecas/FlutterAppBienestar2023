@@ -8,10 +8,13 @@ class AppUrl {
 
   static var userListGellAllEndPoint = "$baseUrl/api/users";
 
+  static var userUpdateRole = '$baseUrl/api/user-role/update/';
+  static var userDeleteUser = '$baseUrl/api/users/delete/';
   static var userUpdatePassword = '$baseUrl/api/users/update/';
   static var employeeDataUpdate = '$baseUrl/api/employee-data/';
   static var userIdDataEndPoint = "$baseUrl/api/user-data/";
 
+  static var sareListGellAllEndPoint = "$baseUrl/api/v1/sares";
   //rutas para region
   static var addRegionEndPoint = "$baseUrl/api/v1/region";
   static var regionListGellAllEndPoint = "$baseUrl/api/v1/regiones";

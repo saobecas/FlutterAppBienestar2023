@@ -93,6 +93,64 @@ class HomeViewModel with ChangeNotifier {
     });
   }
 
+  Future<void> putUserRole(
+      String id, dynamic data, String token, BuildContext context) async {
+    setPutLoading(true);
+
+    _myRepo.putRolUserApi(id, data, token).then((value) {
+      setPutLoading(false);
+
+      Utils.toastMessage("Rol Actualizado");
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Navigator.pushNamed(context, RoutesName.lisUser);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError((error, stackTrace) {
+      setPutLoading(false);
+      Utils.flushBarErrorMessage(error.toString(), context);
+      if (kDebugMode) {
+        print(error.toString());
+      }
+    });
+  }
+
+  bool _deleteLoading = false;
+  bool get deleteLoading => _deleteLoading;
+
+  setDeleteLoading(bool value) {
+    _deleteLoading = value;
+    notifyListeners();
+  }
+
+  Future<void> deleteUserApi(
+      String id, String token, BuildContext context) async {
+    setDeleteLoading(true);
+
+    _myRepo.deleteUserApi(id, token).then((value) {
+      setDeleteLoading(false);
+      Utils.toastMessage("Usuario Eliminado");
+
+      //Navigator.of(context).popAndPushNamed(RoutesName.region);
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed(RoutesName.lisUser);
+      if (kDebugMode) {
+        print(value.toString());
+      }
+    }).onError(
+      (error, stackTrace) {
+        // setDeleteLoading(false);
+        Utils.flushBarErrorMessage(error.toString(), context);
+        if (kDebugMode) {
+          print(error.toString());
+        }
+      },
+    );
+  }
+
   Future<void> putEmployeeData(
       String id, dynamic data, String token, BuildContext context) async {
     setPutLoading(true);
@@ -101,7 +159,7 @@ class HomeViewModel with ChangeNotifier {
       setPutLoading(false);
 
       Utils.toastMessage("Datos Actualizados");
-
+      //Navigator.of(context).popAndPushNamed(RoutesName.home);
       Navigator.pushNamed(context, RoutesName.login);
       if (kDebugMode) {
         print(value.toString());

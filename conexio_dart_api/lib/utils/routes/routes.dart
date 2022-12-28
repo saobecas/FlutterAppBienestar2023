@@ -1,11 +1,14 @@
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
+import 'package:conexio_dart_api/view/list_users_view.dart';
 import 'package:conexio_dart_api/view/localidadView/home_screen_localidad.dart';
 import 'package:conexio_dart_api/view/localitation/get_localitation_view.dart';
 import 'package:conexio_dart_api/view/municipioView/home_screen_municipio.dart';
 import 'package:conexio_dart_api/view/municipioView/municipioViewMethod/home_screen_muni_update.dart';
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
+import 'package:conexio_dart_api/view/sareView/home_screen_sare.dart';
 import 'package:conexio_dart_api/view/schoolView/home_screen_school.dart';
 import 'package:conexio_dart_api/view/login_view.dart';
+import 'package:conexio_dart_api/view/schoolView/list_email.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_add_super.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_directorUpdate.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_superUpdate.dart';
@@ -63,6 +66,9 @@ class Routes {
                   idRegion: null,
                   nameRegion: null,
                 ));
+      case RoutesName.sare:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreenSare());
       case RoutesName.municipioPut:
         return MaterialPageRoute(
             builder: (BuildContext context) => const HomeScreenMuniUpdate(
@@ -113,6 +119,12 @@ class Routes {
         return MaterialPageRoute(
             builder: (BuildContext context) =>
                 const HomeScreenSchoolSupervisor());
+      case RoutesName.lisUser:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const ListUserView());
+      case RoutesName.emails:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const HomeScreenListEmails());
       default:
         return MaterialPageRoute(builder: (_) {
           return const Scaffold(

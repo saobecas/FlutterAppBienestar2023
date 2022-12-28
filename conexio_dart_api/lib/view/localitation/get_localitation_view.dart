@@ -271,6 +271,8 @@ class _GetLocationsState extends State<GetLocations> {
                                 "Antes de continuar asegurese de obtener las coordenadas",
                                 context);
                           } else {
+                            // Navigator.pop(context);
+
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => HomeScreenDataDirector(
@@ -290,6 +292,7 @@ class _GetLocationsState extends State<GetLocations> {
                                 ),
                               ),
                             );
+
                             /*Map data = {
                               'latitud': _lat.text.toString(),
                               'longitud': _long.text.toString(),

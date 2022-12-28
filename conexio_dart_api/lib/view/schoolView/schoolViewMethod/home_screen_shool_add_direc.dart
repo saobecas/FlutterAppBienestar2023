@@ -256,6 +256,8 @@ class _HomeScreenDataDirectorState extends State<HomeScreenDataDirector> {
               onPress: () {
                 if (_keyForm.currentState!.validate()) {
                   print("validadcion correcta");
+                  //Navigator.pop(context);
+
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => HomeScreenSchoolSupervisor(

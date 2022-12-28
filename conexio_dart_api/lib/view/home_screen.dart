@@ -185,13 +185,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   Navigator.pushNamed(context, RoutesName.school);
                 },
               ),
-              /*Divider(
+              Divider(
                 height: 15,
                 color: Colors.black,
               ),
               ListTile(
                 title: Text(
-                  "Configuración",
+                  "Usuarios",
                   style: TextStyle(
                     color: Colors.black,
                   ),
@@ -202,8 +202,40 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 onTap: () {
                   Navigator.of(context).pop();
+                  Navigator.pushNamed(context, RoutesName.lisUser);
                 },
-              ),*/
+              ),
+              ListTile(
+                title: Text(
+                  "SARE",
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
+                leading: Icon(
+                  Icons.line_style_outlined,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, RoutesName.sare);
+                },
+              ),
+              ListTile(
+                  title: Text(
+                    "Enviar Correo",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.mark_as_unread_rounded,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, RoutesName.emails);
+                  })
             ],
           ),
         ),
@@ -224,6 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       letterSpacing: 2.0),
                 ),
                 Text(
+                  textAlign: TextAlign.center,
                   "${employeeData.fullName.toString().toUpperCase()}",
                   style: TextStyle(
                       fontSize: 20.0,
@@ -332,6 +365,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       )),
                 ),
+                Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  elevation: 8,
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.admin_panel_settings,
+                          color: Colors.teal,
+                        ),
+                        title: Text(
+                          "Privilegios: ${roleData.nameRole}",
+                          style: TextStyle(
+                            color: Colors.teal.shade900,
+                            fontFamily: "SourceSansPro",
+                            fontSize: 20,
+                          ),
+                        ),
+                      )),
+                ),
 
                 /* InkWell(
                     onTap: () {
@@ -394,64 +449,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-
-/*
- body: Container(
-        child: FutureBuilder<dynamic>(
-          future: homeViewModel.fetchUserDataApi(textData, context),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return Text('Resultado del Home body: ${snapshot.data}');
-            } else if (snapshot.hasError) {
-              return Text("${snapshot.error}");
-            }
-
-            // By default, show a loading spinner.
-            return CircularProgressIndicator();
-          },
-        ),
-      ),
-      */
-//TODO: metodo para listar usuarios
-      /*   
-       /*ChangeNotifierProvider<HomeViewModel>(
-        create: (BuildContext contex) => homeViewModel,
-        child: Consumer<HomeViewModel>(
-          builder: (context, value, _) {
-            switch (value.userList.status!) {
-              case Status.LOADING:
-                return Center(child: CircularProgressIndicator());
-              case Status.ERROR:
-                return Center(child: Text(value.userList.message.toString()));
-              case Status.COMPLETED:
-                return ListView.builder(
-                  itemCount: value.userList.data!.users!.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      margin: EdgeInsets.all(11),
-                      elevation: 8,
-                      child: Column(
-                        children: <Widget>[
-                          ListTile(
-                            contentPadding: EdgeInsets.fromLTRB(15, 10, 25, 0),
-                            title: Text(
-                              "Rol De Usuario: " +
-                                  value.userList.data!.users![index].roleId
-                                      .toString(),
-                            ),
-                            subtitle: Text("Correo Electronico: " +
-                                value.userList.data!.users![index].email
-                                    .toString()),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                );
-            }
-          },
-        ),
-      ),*/
-      */

@@ -69,6 +69,7 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                 if (kDebugMode) {
                   print(widget.schols!.id.toString());
                 }
+                Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => HomeScreenSchoolUpdate(
                           id: this.widget.schols!.id.toString(),
@@ -117,6 +118,7 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                 if (kDebugMode) {
                   print(widget.schols!.id.toString());
                 }
+                Navigator.pop(context);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => HomeScreenDirectorUpdate(
                           id: this.widget.schols!.director!.id.toString(),
@@ -169,6 +171,7 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                   ),
                   "Supervisor: ${widget.schols!.director!.supervisor!.name.toString().toUpperCase()}\n\nTelefono: ${widget.schols!.director!.supervisor!.telephone.toString().toUpperCase()}\n\nCorreo Electronico: ${widget.schols!.director!.supervisor!.email.toString()}\n\nRecuperado: ${widget.schols!.director!.supervisor!.recuperado.toString().toUpperCase()}\n\nFecha Del Directorio Recuperado: ${widget.schols!.director!.supervisor!.directorioRecuperado.toString().toUpperCase()} \n\nFecha de la Creacion de la Escuela: ${widget.schols!.director!.supervisor!.createdAt.toString().toUpperCase()}"),
               onTap: () {
+                Navigator.pop(context);
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) => HomeScreenSupervisorUpdate(

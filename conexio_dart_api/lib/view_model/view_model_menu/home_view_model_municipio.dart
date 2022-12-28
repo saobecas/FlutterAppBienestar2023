@@ -41,7 +41,8 @@ class HomeViewModelMunicipio with ChangeNotifier {
     _muyRepo.addMunicipioApi(data, token).then((value) {
       setAddLoading(false);
       Utils.toastMessage('Municipio agregado');
-      Navigator.pushNamed(context, RoutesName.municipio);
+      Navigator.popAndPushNamed(context, RoutesName.municipio);
+      // Navigator.pushNamed(context, RoutesName.municipio);
 
       if (kDebugMode) {
         print(value.toString());
@@ -70,9 +71,9 @@ class HomeViewModelMunicipio with ChangeNotifier {
     _muyRepo.putMunicipioApi(id, data, token).then((value) {
       setPutLoading(false);
       Utils.toastMessage("Municipio Actuzalizado");
-
+      Navigator.of(context).popAndPushNamed(RoutesName.municipio);
       //Navigator.pushNamed(context, RoutesName.regionPut);
-      Navigator.pushNamed(context, RoutesName.municipio);
+      // Navigator.pushNamed(context, RoutesName.municipio);
       if (kDebugMode) {
         print(value.toString());
       }
@@ -100,9 +101,11 @@ class HomeViewModelMunicipio with ChangeNotifier {
     _muyRepo.deleteMunicipioApi(id, token).then((value) {
       setDeleteLoading(false);
       Utils.toastMessage("Municipio Eliminado");
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed(RoutesName.municipio);
+      // Navigator.of(context).popAndPushNamed(RoutesName.municipio);
 
-      //Navigator.pushNamed(context, RoutesName.regionPut);
-      Navigator.pushNamed(context, RoutesName.municipio);
       if (kDebugMode) {
         print(value.toString());
       }

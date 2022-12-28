@@ -11,12 +11,12 @@ class AppException implements Exception {
 
 class FechtDataException extends AppException {
   FechtDataException([String? message])
-      : super(message, 'Error durante la comunicacion con el servidor :');
+      : super(message, 'Error durante la comunicación con el servidor :');
 }
 
 class BadRequestException extends AppException {
   BadRequestException([String? message])
-      : super(message, 'Solicitud no Invalidad : ');
+      : super(message, 'Solicitud no Invalida: ');
 }
 
 class UnauthorisedException extends AppException {

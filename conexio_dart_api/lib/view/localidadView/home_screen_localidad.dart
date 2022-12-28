@@ -1,10 +1,8 @@
 import 'package:conexio_dart_api/view/localidadView/bottom_navigator_bar_localidad.dart';
 import 'package:conexio_dart_api/view/localidadView/localidadViewMethod/home_screen_localidad_add.dart';
 import 'package:conexio_dart_api/view/localidadView/localidadViewMethod/home_screen_localidad_getAll.dart';
-import 'package:conexio_dart_api/view/localidadView/localidadViewMethod/home_screen_localidad_update.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class HomeScreenLocalidad extends StatefulWidget {
   const HomeScreenLocalidad({super.key});

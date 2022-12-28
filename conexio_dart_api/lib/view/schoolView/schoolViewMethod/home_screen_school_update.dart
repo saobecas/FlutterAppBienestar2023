@@ -474,9 +474,9 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
                   }
                   return null;
                 },
-                onEditingComplete: () =>
+                /* onEditingComplete: () =>
                     Utils.fielFocusGeneral(context, telefonoSchoolFocusNode),
-                textInputAction: TextInputAction.next,
+                textInputAction: TextInputAction.next,*/
               ),
             ),
             SizedBox(

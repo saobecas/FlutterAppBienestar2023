@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:conexio_dart_api/model/school/school_list_model.dart';
+import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_getId_Detail.dart';
 import 'package:flutter/material.dart';
 
@@ -55,31 +58,40 @@ class CustomSearchDelegate extends SearchDelegate {
               .toString()
               .toLowerCase()
               .contains(query.toLowerCase())) {
-            matchQuery.clear();
+            //matchQuery.clear();
             matchQuery.add(name['${value[1]}']);
-            print("Fuera del if del for 2 lista listaIds: " + name.toString());
+            listaIds.add(name);
             break;
           }
         }
       }
-      if (matchQuery.length == 0) {
+      if (matchQuery.length == 0 || listaIds.length == 0) {
         matchQuery.clear();
+
         matchQuery.add("Dato no encontrado_______");
+
+        //listaIds.clear();
+
+        return ListTile(
+          title: Text("Datos no encontrados..."),
+          onTap: () {
+            Utils.toastMessage("No hay nada que mostrar...");
+          },
+        );
       }
     }
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
-        //var ident = listaIds[index];
-
-        //for (var fruit in listas) {}
-
+        String? ree = jsonEncode(listaIds[index]);
+        Map<String, dynamic>? schoolMap = jsonDecode(ree);
+        var schoolInstance = Schols.fromJson(schoolMap!);
         return ListTile(
           title: Text(result),
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SchoolGetIdDetail(listas[index])));
+                builder: (context) => SchoolGetIdDetail(schoolInstance)));
             print("Imprimiendo ldesde build resulta accion ontap: " +
                 result.toString());
           },
@@ -93,7 +105,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
-
+    List listaIds = [];
     if (listas.length == 0) {
       matchQuery.clear();
       matchQuery.add("Problema al cargar la lista");
@@ -115,37 +127,38 @@ class CustomSearchDelegate extends SearchDelegate {
             //matchQuery.clear();
 
             matchQuery.add(name['${value[1]}'].toString());
+            listaIds.add(name);
             break;
           }
         }
-        /*if (name['${value[1]}']
-            .toString()
-            .toLowerCase()
-            .contains(query.toLowerCase())) {
-          matchQuery.add(name['${value[1]}'].toString());
-        }*/
       }
-      if (matchQuery.length == 0) {
+      if (matchQuery.length == 0 || listaIds.length == 0) {
         matchQuery.clear();
-        matchQuery.add("Sugerencias no encontradas...");
+
+        matchQuery.add("Dato no encontrado_______");
+
+        //listaIds.clear();
+
+        return ListTile(
+          title: Text("Datos no encontrados..."),
+          onTap: () {
+            Utils.toastMessage("No hay nada que mostrar...");
+          },
+        );
       }
-      print(
-          "Final for buldSuggestions <=====================================>");
     }
     return ListView.builder(
       itemCount: matchQuery.length,
       itemBuilder: (context, index) {
         var result = matchQuery[index];
-
-        //var resu = name.toString();
+        String? ree = jsonEncode(listaIds[index]);
+        Map<String, dynamic>? schoolMap = jsonDecode(ree);
+        var schoolInstance = Schols.fromJson(schoolMap!);
         return ListTile(
           title: Text(result),
           onTap: () {
-            /*Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SchoolGetIdDetail(listas[index])));
-            print("Imprimiendo ldesde build resulta accion ontap: " +
-                result.toString());*/
-            print("hola: " + result.toString());
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => SchoolGetIdDetail(schoolInstance)));
           },
         );
       },

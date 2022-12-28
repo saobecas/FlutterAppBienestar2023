@@ -101,27 +101,6 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
                   textInputAction: TextInputAction.next,
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameJefe,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameJefeFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese El Nombre Del Jefe de La Region',
-                    labelText: 'Jefe De La Region',
-                    prefixIcon: Icon(
-                      Icons.person,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
               SizedBox(
                 height: height * .030,
               ),
@@ -141,8 +120,8 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
                         widget.idRegion, data, token.toString(), context);
 
                     //Future.delayed(Duration(seconds: 2));
-                    Navigator.pushNamed(context, RoutesName.region);
-                    Navigator.pop(context);
+                    //Navigator.pushNamed(context, RoutesName.region);
+                    // Navigator.popAndPushNamed(context, RoutesName.region);
                   }
                 },
               )

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 typedef VoidCallbacParam(int index);
 
-class BottomNavigatorBarLocalidad extends StatelessWidget {
+class BottomNavigatorBarSare extends StatelessWidget {
   VoidCallbacParam voidCallbackParam;
   int currentIndex;
 
-  BottomNavigatorBarLocalidad(
+  BottomNavigatorBarSare(
     this.voidCallbackParam,
     this.currentIndex,
   );
@@ -19,16 +19,16 @@ class BottomNavigatorBarLocalidad extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.list_alt),
-          label: "Listar Localidades",
+          label: "Listar Sares",
           // backgroundColor: Colrs.green.shade900,
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.add),
-          label: "Agregar Localidad",
+          label: "Agregar Sare",
         ),
-        /*  BottomNavigationBarItem(
+        /* BottomNavigationBarItem(
           icon: Icon(Icons.update),
-          label: "Actualizar Localidad",
+          label: "Actualizar Region",
         ),*/
       ],
     );

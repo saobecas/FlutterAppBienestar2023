@@ -38,7 +38,6 @@ class _SplashViewState extends State<SplashView> {
             fontSize: 30,
           ),*/
         //style: Theme.of(context).textTheme.headline4,
-
         );
   }
 }

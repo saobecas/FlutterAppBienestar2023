@@ -509,6 +509,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                 if (_keyForm.currentState!.validate()) {
                   setIdLocalidad();
                   print("validadcion correcta");
+
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => GetLocations(
                             name_school: _nameSchoolController.text.toString(),
@@ -517,7 +518,7 @@ class _HomeScreenSchoolAddState extends State<HomeScreenSchoolAdd> {
                             calle: _calleController.text.toString(),
                             noExterior:
                                 _numeroExteriorController.text.toString(),
-                            numeroInteriofinal:
+                           numeroInteriofinal:
                                 _numeroInteriorController.text.toString(),
                             asentamiento:
                                 _asentamientoController.text.toString(),

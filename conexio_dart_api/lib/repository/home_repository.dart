@@ -35,6 +35,22 @@ class HomeRepository {
     }
   }
 
+  Future<dynamic> putRolUserApi(String id, dynamic data, String token) async {
+    try {
+      dynamic response = await _apiServices.getPutApiResponse(
+          AppUrl.userUpdateRole, id, data, token);
+      print("putRegionApi: ${id}");
+      print(response);
+      return response;
+    } catch (e) {
+      kDebugMode() {
+        print("Respuesta: ....$e");
+      }
+
+      rethrow;
+    }
+  }
+
   Future<dynamic> fechUserDataId(String id, String token) async {
     try {
       dynamic response = await _apiServices.getGetIdApiResponse(
@@ -47,6 +63,17 @@ class HomeRepository {
         print("Respuesyta: ....$e");
       }
 
+      rethrow;
+    }
+  }
+
+  Future<dynamic> deleteUserApi(String id, String token) async {
+    try {
+      dynamic response = await _apiServices.getDeleteApiResponse(
+          AppUrl.userDeleteUser, id, token);
+
+      return response;
+    } catch (e) {
       rethrow;
     }
   }

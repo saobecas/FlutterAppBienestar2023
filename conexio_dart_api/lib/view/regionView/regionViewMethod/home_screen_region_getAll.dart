@@ -1,11 +1,11 @@
 import 'package:conexio_dart_api/res/color.dart';
+import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../data/response/status.dart';
 import '../../../view_model/user_view_model.dart';
-//import 'package:intl/intl.dart';
 
 class HomeScreenRegionGetAll extends StatefulWidget {
   const HomeScreenRegionGetAll({super.key});
@@ -22,7 +22,6 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
 
   @override
   void initState() {
-    // super.initState();
     getSharedPreferences;
     super.initState();
     getSharedPreferences.getUser().then((value) => {
@@ -36,7 +35,6 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
   @override
   Widget build(BuildContext context) {
     final userPreferences = Provider.of<UserViewModel>(context);
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Lista De Regiones"),
@@ -75,12 +73,6 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                     .nameRegion
                                     .toString() +
                                 "\n",
-                          ),
-                          subtitle: Text(
-                            "Jefe De La SARE: " +
-                                value.regionList.data!.regiones![index]
-                                    .nameJefeSare!
-                                    .toString(),
                           ),
                           trailing: Container(
                             width: 70,
@@ -146,7 +138,7 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                                     primary: Colors.red),
                                                 child: const Text('Eliminar'),
                                                 onPressed: () {
-                                                  //
+                                                  
                                                   final regionId = value
                                                       .regionList
                                                       .data!
@@ -164,10 +156,14 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                                         token.toString(),
                                                         context,
                                                       );
-                                                      //Navigator.of(context).pop();
                                                     },
                                                   );
-                                                  //Future.delayed(Duration(seconds: 2));
+                                                  /*Navigator.popUntil(
+                                                      context,
+                                                      (Route<dynamic> route) =>
+                                                          false);*/
+                                                  // Navigator.pop(context);
+
                                                   print(
                                                       "Valor final del id region $regionId");
                                                 },

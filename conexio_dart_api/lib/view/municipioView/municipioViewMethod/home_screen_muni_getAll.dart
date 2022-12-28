@@ -124,6 +124,7 @@ class _HomeScreenMuniGetAllState extends State<HomeScreenMuniGetAll> {
                                           .region!
                                           .nameRegion
                                           .toString();
+                                      Navigator.pop(context);
                                       Navigator.of(context).push(
                                         MaterialPageRoute(
                                           builder: (context) =>

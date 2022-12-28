@@ -40,7 +40,8 @@ class HomeViewModelLocalidad with ChangeNotifier {
     _myRepo.addLocalidadApi(data, token).then((value) {
       setAddLoading(false);
       Utils.toastMessage('Localidad Agregada');
-      Navigator.pushNamed(context, RoutesName.localidad);
+      Navigator.popAndPushNamed(context, RoutesName.localidad);
+      // Navigator.pushNamed(context, RoutesName.localidad);
 
       if (kDebugMode) {
         print(value.toString());
@@ -69,8 +70,8 @@ class HomeViewModelLocalidad with ChangeNotifier {
     _myRepo.putLocalidadApi(id, data, token).then((value) {
       setPutLoading(false);
       Utils.toastMessage("Municipio Actuzalizado");
-
-      Navigator.pushNamed(context, RoutesName.localidad);
+      Navigator.of(context).popAndPushNamed(RoutesName.localidad);
+      //Navigator.pushNamed(context, RoutesName.localidad);
       if (kDebugMode) {
         print(value.toString());
       }
@@ -99,8 +100,10 @@ class HomeViewModelLocalidad with ChangeNotifier {
       setDeleteLoading(false);
       Utils.toastMessage("Localidad Eliminada");
 
-      //Navigator.pushNamed(context, RoutesName.regionPut);
-      Navigator.pushNamed(context, RoutesName.localidad);
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      Navigator.of(context).pushNamed(RoutesName.localidad);
+      //  Navigator.of(context).popAndPushNamed(RoutesName.localidad);
       if (kDebugMode) {
         print(value.toString());
       }

@@ -79,7 +79,7 @@ class NetworkApiService extends BaseApiService {
   @override
   Future getPutApiResponse(String url, String id, data, String token) async {
     dynamic responseJson;
-    print("Data Network $url");
+    print("Data Network $url$id");
     print("Data Network $id ");
     print("Data Network $data");
 
