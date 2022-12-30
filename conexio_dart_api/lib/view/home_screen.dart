@@ -99,28 +99,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              /* ListTile(
-                title: Text(
-                  "Inicio",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                leading: Icon(
-                  Icons.home,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  //  Navigator.popAndPushNamed(context, 'dialogos');
-                  Navigator.pushNamed(context, RoutesName.home);
-                  //Navigator.popAndPushNamed(context, RoutesName.home);
-               },
-              ),
-              Divider(
-                height: 10,
-                color: Colors.black,
-              ),*/
               ListTile(
                 title: Text(
                   "Region",

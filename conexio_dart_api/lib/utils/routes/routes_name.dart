@@ -16,6 +16,8 @@ class RoutesName {
 
   static const String locate = 'get_localitation_view';
 
+  static const String mapa = 'mapas.dart';
+
   static const String region = 'home_screen_region';
 
   static const String sare = 'home_screen_sare';

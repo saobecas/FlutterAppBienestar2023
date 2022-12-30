@@ -2,6 +2,7 @@ import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/view/list_users_view.dart';
 import 'package:conexio_dart_api/view/localidadView/home_screen_localidad.dart';
 import 'package:conexio_dart_api/view/localitation/get_localitation_view.dart';
+import 'package:conexio_dart_api/view/localitation/mapas.dart';
 import 'package:conexio_dart_api/view/municipioView/home_screen_municipio.dart';
 import 'package:conexio_dart_api/view/municipioView/municipioViewMethod/home_screen_muni_update.dart';
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
@@ -48,6 +49,9 @@ class Routes {
       case RoutesName.locate:
         return MaterialPageRoute(
             builder: (BuildContext context) => const GetLocations());
+      case RoutesName.mapa:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const MapViews());
       case RoutesName.signUp:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SignUpView());
