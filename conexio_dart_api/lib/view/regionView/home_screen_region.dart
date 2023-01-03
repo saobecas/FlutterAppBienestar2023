@@ -1,9 +1,6 @@
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_Addhome.dart';
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_getAll.dart';
-import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 import 'package:conexio_dart_api/view/regionView/bottom_navigator_bar_region.dart';
 

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
-  //TODO: otras opciones de mostrar los errores
   static void fielFocusChange(
       BuildContext context, FocusNode current, FocusNode nextFocus) {
     current.unfocus();

@@ -1,11 +1,8 @@
-import 'package:conexio_dart_api/model/data_user_id_model.dart';
-import 'package:conexio_dart_api/model/user_model.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
-import 'package:conexio_dart_api/view_model/user_view_model.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../data/response/api_response.dart';
 import '../model/user_list_model.dart';

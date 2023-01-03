@@ -46,7 +46,6 @@ class CustomSearchDelegate extends SearchDelegate {
       matchQuery.clear();
       for (var fruit in listas) {
         name = getjson(fruit);
-        //print("Imprimiendo metodod //////////// ${name.toString()}");
         if (name == null) {
           matchQuery.clear();
           matchQuery.add("Error el atributo no existe dentro de la instancia");

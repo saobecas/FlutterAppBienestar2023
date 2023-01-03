@@ -1,15 +1,13 @@
-import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/view/schoolView/delegate.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_getId_Detail.dart';
 import 'package:conexio_dart_api/view_model/school/home_view_model_school.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../data/response/status.dart';
 import '../../../res/color.dart';
-import '../../../utils/routes/routes_name.dart';
+
 import '../../../view_model/user_view_model.dart';
 
 class HomeScreenSchoolGetAll extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:conexio_dart_api/res/components/round_button.dart';
-import 'package:conexio_dart_api/utils/routes/routes_name.dart';
+
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_add_super.dart';

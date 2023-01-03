@@ -15,6 +15,9 @@ class AppUrl {
   static var userIdDataEndPoint = "$baseUrl/api/user-data/";
 
   static var sareListGellAllEndPoint = "$baseUrl/api/v1/sares";
+  static var addSaresEndPoint = "$baseUrl/api/v1/sare";
+  static var deleteSaresEndPoint = "$baseUrl/api/v1/sare/";
+
   //rutas para region
   static var addRegionEndPoint = "$baseUrl/api/v1/region";
   static var regionListGellAllEndPoint = "$baseUrl/api/v1/regiones";

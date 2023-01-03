@@ -1,5 +1,5 @@
 import 'package:conexio_dart_api/res/color.dart';
-import 'package:conexio_dart_api/utils/routes/routes_name.dart';
+
 import 'package:conexio_dart_api/view/regionView/regionViewMethod/home_screen_region_update.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_region.dart';
 import 'package:flutter/material.dart';
@@ -138,7 +138,6 @@ class _HomeScreenRegionGetAllState extends State<HomeScreenRegionGetAll> {
                                                     primary: Colors.red),
                                                 child: const Text('Eliminar'),
                                                 onPressed: () {
-                                                  
                                                   final regionId = value
                                                       .regionList
                                                       .data!

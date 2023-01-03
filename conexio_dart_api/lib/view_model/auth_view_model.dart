@@ -29,8 +29,8 @@ class AuthViewModel with ChangeNotifier {
       var userInstance = User.fromJson(value['user']);
       userPreferences.saveUser(
           UserModel(user: userInstance, token: value['token'].toString()));
-
-      Utils.flushBarErrorMessage('Inicio De Sesion Correcta', context);
+      Utils.toastMessage('Inicio De Sesion Correcta');
+      //Utils.flushBarErrorMessage('Inicio De Sesion Correcta', context);
       Navigator.pushNamed(context, RoutesName.home);
       if (kDebugMode) {
         print(value.toString());

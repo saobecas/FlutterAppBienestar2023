@@ -1,13 +1,9 @@
 import 'dart:async';
 import 'package:conexio_dart_api/res/color.dart';
-import 'package:conexio_dart_api/res/components/round_button.dart';
-import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_shool_add_direc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 

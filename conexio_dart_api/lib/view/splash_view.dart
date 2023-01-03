@@ -1,4 +1,3 @@
-import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/view_model/services/splash_service.dart';
 import 'package:flutter/material.dart';
 

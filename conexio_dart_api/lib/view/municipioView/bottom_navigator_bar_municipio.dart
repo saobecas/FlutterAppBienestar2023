@@ -1,7 +1,4 @@
-import 'package:conexio_dart_api/view/bottom_navigator_bar_school.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 typedef VoidCallbacParam(int index);
 

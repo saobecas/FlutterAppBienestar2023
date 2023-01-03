@@ -9,6 +9,7 @@ class MapViews extends StatefulWidget {
   final latitud;
   final longitud;
   final name;
+
   const MapViews({super.key, this.latitud, this.longitud, this.name});
 
   @override

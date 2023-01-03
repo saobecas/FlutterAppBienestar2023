@@ -80,9 +80,8 @@ class _HomeScreenSareGetAllState extends State<HomeScreenSareGetAll> {
                           trailing: Container(
                             width: 70,
                             child: Row(
-                              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Expanded(
+                                /* Expanded(
                                   child: IconButton(
                                     color: AppColors.buttonColor,
                                     onPressed: () {
@@ -116,7 +115,7 @@ class _HomeScreenSareGetAllState extends State<HomeScreenSareGetAll> {
                                     },
                                     icon: Icon(Icons.edit),
                                   ),
-                                ),
+                                ),*/
                                 Expanded(
                                   child: IconButton(
                                     color: AppColors.buttonColor,
@@ -126,7 +125,7 @@ class _HomeScreenSareGetAllState extends State<HomeScreenSareGetAll> {
                                         builder: (BuildContext context) {
                                           return AlertDialog(
                                             title: Text(
-                                                "¿ Deseas Eliminar La Region ${value.sareList.data!.sares![index].nameSare.toString()}?"),
+                                                "¿ Deseas Eliminar La Sare:  ${value.sareList.data!.sares![index].nameSare.toString()}?"),
                                             actions: [
                                               TextButton(
                                                 style: TextButton.styleFrom(
@@ -147,16 +146,16 @@ class _HomeScreenSareGetAllState extends State<HomeScreenSareGetAll> {
                                                   print(
                                                       "DATo desde vista: $sareId");
 
-                                                  /*setState(
+                                                  setState(
                                                     () {
-                                                      homeViewModelRegion
-                                                          .deleteRegionApi(
-                                                        regionId,
+                                                      homeViewModelSare
+                                                          .deleteSareApi(
+                                                        sareId,
                                                         token.toString(),
                                                         context,
                                                       );
                                                     },
-                                                  );*/
+                                                  );
                                                 },
                                               ),
                                             ],

@@ -32,31 +32,6 @@ class _SchoolGetIdDetailState extends State<SareGetIdDetail> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 ListTile(
-                  /* onTap: () {
-                if (kDebugMode) {
-                  print(widget.schols!.id.toString());
-                }
-                Navigator.pop(context);
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => HomeScreenSchoolUpdate(
-                          id: this.widget.schols!.id.toString(),
-                          name: this.widget.schols!.nameSchool.toString(),
-                          clave: this.widget.schols!.cct.toString(),
-                          nivel: this.widget.schols!.nivel.toString(),
-                          calle: this.widget.schols!.calle.toString(),
-                          noExterior: this.widget.schols!.noExterior.toString(),
-                          noInteriror:
-                              this.widget.schols!.numeroInterior.toString(),
-                          asentamiento:
-                              this.widget.schols!.asentamiento.toString(),
-                          email: this.widget.schols!.email.toString(),
-                          telefono: this.widget.schols!.telefono.toString(),
-                          localidadId:
-                              this.widget.schols!.localidadId.toString(),
-                          nameLoc:
-                              this.widget.schols!.localidad!.nameLoc.toString(),
-                        )));
-              },*/
                   title: Text(
                       style: const TextStyle(
                         color: Colors.black87,

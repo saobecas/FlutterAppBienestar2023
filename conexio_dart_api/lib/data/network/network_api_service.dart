@@ -4,7 +4,6 @@ import 'package:conexio_dart_api/data/app_exceptions.dart';
 import 'package:conexio_dart_api/data/network/base_api_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-//import 'package:http/http.dart';
 
 class NetworkApiService extends BaseApiService {
   @override

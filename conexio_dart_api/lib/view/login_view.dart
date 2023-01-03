@@ -1,4 +1,3 @@
-import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/utils/routes/routes_name.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';

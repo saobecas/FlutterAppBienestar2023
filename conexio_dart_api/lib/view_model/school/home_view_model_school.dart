@@ -13,13 +13,11 @@ class HomeViewModelScholl with ChangeNotifier {
   bool _addLoading = false;
   bool get addLoading => _addLoading;
 
-//TODO: para lo metodos post and put
   setAddLoading(bool value) {
     _addLoading = value;
     notifyListeners();
   }
 
-//TODO: para lo metodos get
   ApiResponse<SchoolModelGet> schoolList = ApiResponse.loading();
 
   setSchoolList(ApiResponse<SchoolModelGet> response) {
@@ -40,15 +38,9 @@ class HomeViewModelScholl with ChangeNotifier {
   Future<void> addSchoolApi(
       dynamic data, String token, BuildContext context) async {
     setAddLoading(true);
-
     _myRepo.addSchoolApi(data, token).then((value) {
       setAddLoading(false);
-
       Utils.toastMessage('Escuela Creada');
-
-      /* Navigator.of(context).pushNamedAndRemoveUntil(
-          RoutesName.home, ModalRoute.withName(RoutesName.datSupervisorview));*/
-      //Navigator.of(context).pop();
       Navigator.of(context).pushNamed(RoutesName.school);
 
       if (kDebugMode) {

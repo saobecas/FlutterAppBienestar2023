@@ -1,5 +1,3 @@
-import 'package:conexio_dart_api/model/data_user_id_model.dart';
-
 import '../data/network/base_api_service.dart';
 import '../data/network/network_api_service.dart';
 import '../model/user_list_model.dart';

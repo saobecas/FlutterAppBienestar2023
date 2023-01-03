@@ -1,7 +1,10 @@
 import 'package:conexio_dart_api/data/response/api_response.dart';
 import 'package:conexio_dart_api/model/sare/sares_model.dart';
 import 'package:conexio_dart_api/repository/repository_crud/home_repository_sare.dart';
+import 'package:conexio_dart_api/utils/routes/routes_name.dart';
+import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 
 class HomeViewModelSare with ChangeNotifier {
   final _myRepo = HomeRepositorySare();
@@ -32,50 +35,17 @@ class HomeViewModelSare with ChangeNotifier {
       setSareList(ApiResponse.error(error.toString()));
     });
   }
-/*
-  Future<void> addSchoolApi(
+
+  Future<void> addSareApi(
       dynamic data, String token, BuildContext context) async {
     setAddLoading(true);
 
-    _myRepo.addSchoolApi(data, token).then((value) {
+    _myRepo.addSareApi(data, token).then((value) {
       setAddLoading(false);
 
-      Utils.toastMessage('Escuela Creada');
+      Utils.toastMessage('Sarea añadida');
 
-      Navigator.of(context).pushNamed(RoutesName.school);
-
-      if (kDebugMode) {
-        print(value.toString());
-      }
-    }).onError((error, stackTrace) {
-      setAddLoading(false);
-      Utils.flushBarErrorMessage(error.toString(), context);
-      if (kDebugMode) {
-        print(error.toString());
-      }
-    });
-  }
-
-  bool _putLoading = false;
-  bool get putLoading => _putLoading;
-
-  setPutLoading(bool value) {
-    _putLoading = value;
-    notifyListeners();
-  }
-
-
-  Future<void> putDataSchoolApi(
-      String id, dynamic data, String token, BuildContext context) async {
-    setAddLoading(true);
-
-    _myRepo.putSchoolApi(id, data, token).then((value) {
-      setPutLoading(false);
-
-      Utils.toastMessage("Datos de la escuela Actuzalizados");
-      Navigator.of(context).pop();
-      Navigator.of(context).popAndPushNamed(RoutesName.school);
-      // Navigator.pushNamed(context, RoutesName.school);
+      Navigator.popAndPushNamed(context, RoutesName.sare);
       if (kDebugMode) {
         print(value.toString());
       }
@@ -96,28 +66,29 @@ class HomeViewModelSare with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> deleteSchollApi(
+  Future<void> deleteSareApi(
       String id, String token, BuildContext context) async {
     setDeleteLoading(true);
 
-    _myRepo.deleteSchoolApi(id, token).then((value) {
+    _myRepo.deleteSareApi(id, token).then((value) {
       setDeleteLoading(false);
-      Utils.toastMessage("Escuela Eliminada");
+      Utils.toastMessage("Region Eliminada");
 
+      //Navigator.of(context).popAndPushNamed(RoutesName.region);
       Navigator.of(context).pop();
       Navigator.of(context).pop();
-      Navigator.pushNamed(context, RoutesName.school);
+      Navigator.of(context).pushNamed(RoutesName.sare);
       if (kDebugMode) {
         print(value.toString());
       }
     }).onError(
       (error, stackTrace) {
-        
+        // setDeleteLoading(false);
         Utils.flushBarErrorMessage(error.toString(), context);
         if (kDebugMode) {
           print(error.toString());
         }
       },
     );
-  }*/
+  }
 }

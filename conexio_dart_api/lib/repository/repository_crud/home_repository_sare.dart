@@ -17,11 +17,10 @@ class HomeRepositorySare {
     }
   }
 
-/*
   Future<dynamic> addSareApi(dynamic data, String token) async {
     try {
       dynamic response = await _apiServices.getPostApiResponse(
-          AppUrl.addRegionEndPoint, data, token);
+          AppUrl.addSaresEndPoint, data, token);
 
       return response;
     } catch (e) {
@@ -29,26 +28,14 @@ class HomeRepositorySare {
     }
   }
 
-  Future<dynamic> putRegionApi(String id, dynamic data, String token) async {
-    try {
-      dynamic response = await _apiServices.getPutApiResponse(
-          AppUrl.regionUpdateEndPoint, id, data, token);
-      return response;
-    } catch (e) {
-      throw e;
-    }
-  }
-
-  Future<dynamic> deleteRegionApi(String id, String token) async {
+  Future<dynamic> deleteSareApi(String id, String token) async {
     try {
       dynamic response = await _apiServices.getDeleteApiResponse(
-          AppUrl.regionDeleteEndPoint, id, token);
+          AppUrl.deleteSaresEndPoint, id, token);
 
       return response;
     } catch (e) {
       rethrow;
     }
   }
-
- */
 }

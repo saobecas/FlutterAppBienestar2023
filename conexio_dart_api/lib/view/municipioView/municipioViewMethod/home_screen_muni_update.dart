@@ -7,8 +7,7 @@ import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_regi
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../res/components/round_button.dart';

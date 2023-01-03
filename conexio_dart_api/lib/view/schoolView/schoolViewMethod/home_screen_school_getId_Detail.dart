@@ -6,11 +6,8 @@ import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_sc
 import 'package:conexio_dart_api/view/schoolView/schoolViewMethod/home_screen_school_update.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../../../data/response/status.dart';
 import '../../../res/color.dart';
-import '../../../view_model/school/home_view_model_school.dart';
 
 class SchoolGetIdDetail extends StatefulWidget {
   final Schols? schols;
@@ -258,9 +255,13 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                   final lati = this.widget.schols!.ubicacion!.latidud;
                   final long = this.widget.schols!.ubicacion!.longitud;
                   final name = "Escuela: ${this.widget.schols!.nameSchool}";
+
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          MapViews(latitud: lati, longitud: long, name: name)));
+                      builder: (context) => MapViews(
+                            latitud: lati,
+                            longitud: long,
+                            name: name,
+                          )));
                   //Navigator.of(context).pushNamed(RoutesName.mapa);
                 },
               ),

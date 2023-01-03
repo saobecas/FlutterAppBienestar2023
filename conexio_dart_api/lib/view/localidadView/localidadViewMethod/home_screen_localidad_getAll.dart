@@ -2,13 +2,11 @@ import 'package:conexio_dart_api/view/localidadView/localidadViewMethod/home_scr
 import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:conexio_dart_api/view_model/view_model_menu/home_view_model_localidad.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:provider/provider.dart';
 
 import '../../../data/response/status.dart';
 import '../../../res/color.dart';
-import '../../../view_model/view_model_menu/home_view_model_municipio.dart';
 
 class HomeScreenLocalidadGetAll extends StatefulWidget {
   const HomeScreenLocalidadGetAll({super.key});
