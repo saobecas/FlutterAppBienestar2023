@@ -9,8 +9,10 @@ class MapViews extends StatefulWidget {
   final latitud;
   final longitud;
   final name;
+  final clave;
 
-  const MapViews({super.key, this.latitud, this.longitud, this.name});
+  const MapViews(
+      {super.key, this.latitud, this.longitud, this.name, this.clave});
 
   @override
   State<MapViews> createState() => _MapViewsState();
@@ -59,19 +61,76 @@ class _MapViewsState extends State<MapViews> {
     _lat.text = this.widget.latitud.toString();
     _long.text = this.widget.longitud.toString();
     print("Estableciendo coordenadas: ");
-    print("Estableciendo latitud: " + _lat.text.toString());
+    print("Estableciendo latitud: \n" + _lat.text.toString());
 
     print("Estableciendo longitud: " + _long.text.toString());
   }
 
+  static Future<bool> info(BuildContext context, String infoma) async {
+    bool? exitApp = await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            title: const Text(
+                textAlign: TextAlign.center,
+                'Información',
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20,
+                  fontFamily: 'Roboto',
+                  fontWeight: FontWeight.w600,
+                )),
+            content: Text(textAlign: TextAlign.center, '${infoma.toString()}'),
+            actions: <Widget>[
+              /* TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(false);
+                  },
+                  child: const Text('Cerrar',
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 20,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                      ))),*/
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(true);
+                    //exit(0);
+                  },
+                  child: const Text('Ok',
+                      style: TextStyle(
+                        color: Colors.blue,
+                        fontSize: 20,
+                        fontFamily: 'Roboto',
+                        fontWeight: FontWeight.w600,
+                      )))
+            ],
+          );
+        });
+    return exitApp ?? false;
+  }
+
   void setMakert() async {
+    final infoma = "${this.widget.name.toString()}\n${this.widget.clave}";
+    print("Informacion de: " + infoma);
     _markers.add(Marker(
       markerId: MarkerId("2"),
       //position: LatLng(value.latitude, value.longitude),
       position: LatLng(this.widget.latitud, this.widget.longitud),
+      onTap: () {
+        info(context, infoma);
+      },
       infoWindow: InfoWindow(
-        title: this.widget.name.toString(),
-      ),
+          onTap: () {
+            info(context, infoma);
+          },
+          //"${this.widget.name.toString()} ${this.widget.clave}"
+          title: this.widget.name,
+          snippet: ''),
     ));
 
     _mylocalitation = true;
@@ -102,21 +161,23 @@ class _MapViewsState extends State<MapViews> {
           title: Text("Ubicacion"),
           centerTitle: true,
           backgroundColor: AppColors.grenSnackBar),
-      body: GoogleMap(
-        initialCameraPosition: _kGoogle,
-        markers: Set<Marker>.of(_markers),
-        mapType: MapType.normal,
-        zoomControlsEnabled: true,
-        buildingsEnabled: true,
-        compassEnabled: true,
-        rotateGesturesEnabled: true,
-        scrollGesturesEnabled: true,
-        onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
-        },
-        myLocationButtonEnabled: _botonLocatitation,
-        myLocationEnabled: _mylocalitation,
-      ),
+      body: Stack(children: <Widget>[
+        GoogleMap(
+          initialCameraPosition: _kGoogle,
+          markers: Set<Marker>.of(_markers),
+          mapType: MapType.normal,
+          zoomControlsEnabled: true,
+          buildingsEnabled: true,
+          compassEnabled: true,
+          rotateGesturesEnabled: true,
+          scrollGesturesEnabled: true,
+          onMapCreated: (GoogleMapController controller) {
+            _controller.complete(controller);
+          },
+          myLocationButtonEnabled: _botonLocatitation,
+          myLocationEnabled: _mylocalitation,
+        ),
+      ]),
     );
   }
 }

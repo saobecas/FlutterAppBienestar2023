@@ -34,7 +34,7 @@ class Schol {
   Director? director;
   int? ubicacionId;
   int? directorId;
-  Null? userId;
+  int? userId;
 
   Schol(
       {this.id,

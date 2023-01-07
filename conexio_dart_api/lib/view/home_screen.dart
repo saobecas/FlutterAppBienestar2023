@@ -19,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  bool _visibleOption = false;
   HomeViewModel homeViewModel = HomeViewModel();
 
   User userData = User();
@@ -35,8 +36,31 @@ class _HomeScreenState extends State<HomeScreen> {
           userData = value.user!,
           employeeData = value.user!.employee!,
           roleData = value.user!.role!,
-          setState(() {})
+          print("Imprimiendo role de usuario: " + roleData.nameRole.toString()),
+          setState(() {
+            if (roleData.nameRole == "administrador") {
+              _visibleOption = true;
+            } else {
+              _visibleOption = false;
+            }
+          })
         });
+    //activar_desactivar();
+  }
+
+  void activar_desactivar() {
+    print("Imprimiendo role de usuario: " + roleData.nameRole.toString());
+
+    /*if (roleData.nameRole == "administrador") {
+      print("Imprimiendo role de usuario: " + roleData.toString());
+      setState(() {
+        _visibleOption = true;
+      });
+    } else {
+      setState(() {
+        _visibleOption = false;
+      });
+    }*/
   }
 
   @override
@@ -99,22 +123,25 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              ListTile(
-                title: Text(
-                  "Region",
-                  style: TextStyle(
+              Visibility(
+                visible: true,
+                child: ListTile(
+                  title: Text(
+                    "Region",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.holiday_village_rounded,
                     color: Colors.black,
                   ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, RoutesName.region);
+                    //  Navigator.popAndPushNamed(context, RoutesName.region);
+                  },
                 ),
-                leading: Icon(
-                  Icons.holiday_village_rounded,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.pushNamed(context, RoutesName.region);
-                  //  Navigator.popAndPushNamed(context, RoutesName.region);
-                },
               ),
               ListTile(
                 title: Text(
@@ -167,41 +194,65 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 15,
                 color: Colors.black,
               ),
-              ListTile(
-                title: Text(
-                  "Usuarios",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                leading: Icon(
-                  Icons.manage_accounts,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.pushNamed(context, RoutesName.lisUser);
-                },
-              ),
-              ListTile(
-                title: Text(
-                  "SARE",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-                leading: Icon(
-                  Icons.line_style_outlined,
-                  color: Colors.black,
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.pushNamed(context, RoutesName.sare);
-                },
-              ),
-              ListTile(
+              Visibility(
+                visible: _visibleOption,
+                child: ListTile(
                   title: Text(
-                    "Enviar Correo",
+                    "Usuarios",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.manage_accounts,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, RoutesName.lisUser);
+                  },
+                ),
+              ),
+              Visibility(
+                visible: _visibleOption,
+                child: ListTile(
+                  title: Text(
+                    "SARE",
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.line_style_outlined,
+                    color: Colors.black,
+                  ),
+                  onTap: () {
+                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, RoutesName.sare);
+                  },
+                ),
+              ),
+              Visibility(
+                visible: _visibleOption,
+                child: ListTile(
+                    title: Text(
+                      "Enviar Correo",
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.mark_as_unread_rounded,
+                      color: Colors.black,
+                    ),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      Navigator.pushNamed(context, RoutesName.emails);
+                    }),
+              ),
+              /*ListTile(
+                  title: Text(
+                    "Dowlands",
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -212,8 +263,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, RoutesName.emails);
-                  })
+                    Navigator.pushNamed(context, RoutesName.dowland);
+                  }),*/
             ],
           ),
         ),

@@ -1,6 +1,6 @@
 class AppUrl {
-  //static var baseUrl = "https://directoriosapi-production.up.railway.app";
-  static var baseUrl = "https://becas-api.onrender.com";
+  static var baseUrl = "https://api-render-production.up.railway.app";
+  //static var baseUrl = "https://becas-api.onrender.com";
   // static var baseUrl = "http://localhost:5000";
 
   static var loginEndPoint = "$baseUrl/api/users/signin";

@@ -186,7 +186,7 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                         color: Colors.black87,
                         fontSize: 18,
                       ),
-                      "Supervisor: ${widget.schols!.director!.supervisor!.name.toString().toUpperCase()}\n\nTelefono: ${widget.schols!.director!.supervisor!.telephone.toString().toUpperCase()}\n\nCorreo Electronico: ${widget.schols!.director!.supervisor!.email.toString()}\n\nRecuperado: ${widget.schols!.director!.supervisor!.recuperado.toString().toUpperCase()}\n\nFecha Del Directorio Recuperado: ${widget.schols!.director!.supervisor!.directorioRecuperado.toString().toUpperCase()} \n\nFecha de la Creacion de la Escuela: ${widget.schols!.director!.supervisor!.createdAt.toString().toUpperCase()}"),
+                      "Supervisor: ${widget.schols!.director!.supervisor!.name.toString().toUpperCase()}\n\nTelefono: ${widget.schols!.director!.supervisor!.telephone.toString().toUpperCase()}\n\nCorreo Electronico: ${widget.schols!.director!.supervisor!.email.toString()}\n\nRecuperado: ${widget.schols!.director!.supervisor!.recuperado.toString().toUpperCase()}\n\nFecha Del Directorio Recuperado: ${widget.schols!.director!.supervisor!.directorioRecuperado.toString().toUpperCase()} "),
                   onTap: () {
                     Navigator.pop(context);
                     Navigator.of(context).push(
@@ -237,6 +237,30 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                     );
                   },
                 ),
+                ListTile(
+                  tileColor: AppColors.grenSnackBar,
+                  shape: RoundedRectangleBorder(
+                      side: const BorderSide(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(20)),
+                  title: const Text(
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        //backgroundColor: AppColors.grenSnackBar,
+                      ),
+                      textAlign: TextAlign.center,
+                      "Creada por:"),
+                ),
+                ListTile(
+                  title: Text(
+                    style: const TextStyle(
+                      color: Colors.black87,
+                      fontSize: 18,
+                    ),
+                    textAlign: TextAlign.center,
+                    "${widget.schols!.usuario!.employee!.fullName.toString().toUpperCase()}\n\n\n",
+                  ),
+                ),
               ],
             ),
           ),
@@ -255,12 +279,14 @@ class _SchoolGetIdDetailState extends State<SchoolGetIdDetail> {
                   final lati = this.widget.schols!.ubicacion!.latidud;
                   final long = this.widget.schols!.ubicacion!.longitud;
                   final name = "Escuela: ${this.widget.schols!.nameSchool}";
+                  final clave = "Clave: ${widget.schols!.cct}";
 
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => MapViews(
                             latitud: lati,
                             longitud: long,
                             name: name,
+                            clave: clave,
                           )));
                   //Navigator.of(context).pushNamed(RoutesName.mapa);
                 },
