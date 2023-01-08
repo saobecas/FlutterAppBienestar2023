@@ -65,23 +65,27 @@ class _ScreenRoleUpdateUserState extends State<ScreenRoleUpdateUser> {
             child: Column(
               children: [
                 BarGradient("Actualizar Privilegios", Icons.create_new_folder),
-                Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                  child: Padding(
-                    padding: EdgeInsets.all(5),
-                    child: ListTile(
-                      leading: Icon(
-                        Icons.list,
-                        color: Colors.teal,
-                      ),
-                      title: Text(
-                        "Roles De Usuario Donde:\n\n1 es Administrador\n\n2 es Usuario Normal",
-                        style: TextStyle(
-                          color: Colors.teal.shade900,
-                          fontFamily: "SourceSansPro",
-                          fontSize: 17,
+                Container(
+                  height: 150,
+                  width: 500,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                    child: Padding(
+                      padding: EdgeInsets.all(5),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.list,
+                          color: Colors.teal,
+                        ),
+                        title: Text(
+                          "Roles De Usuario Donde:\n\n1 es Administrador\n\n2 es Usuario Normal",
+                          style: TextStyle(
+                            color: Colors.teal.shade900,
+                            fontFamily: "SourceSansPro",
+                            fontSize: 17,
+                          ),
                         ),
                       ),
                     ),
@@ -89,7 +93,7 @@ class _ScreenRoleUpdateUserState extends State<ScreenRoleUpdateUser> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 90,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),

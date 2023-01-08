@@ -115,7 +115,7 @@ class _HomeScreenSchoolSupervisorState
                 BarGradient("Crear Escuela", Icons.create_new_folder),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -134,7 +134,7 @@ class _HomeScreenSchoolSupervisorState
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 90,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -161,7 +161,7 @@ class _HomeScreenSchoolSupervisorState
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 90,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -187,7 +187,7 @@ class _HomeScreenSchoolSupervisorState
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -206,7 +206,7 @@ class _HomeScreenSchoolSupervisorState
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),

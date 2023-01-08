@@ -237,9 +237,9 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
 
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        body: SafeArea(
-            child: SingleChildScrollView(
+      resizeToAvoidBottomInset: false,
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Form(
             key: _keyForm,
             child: Column(
@@ -247,7 +247,7 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 BarGradient("Crear Sare", Icons.create_new_folder),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -274,7 +274,7 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 90,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -458,7 +458,7 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -483,7 +483,7 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 85,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -509,7 +509,7 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 90,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -536,7 +536,7 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -556,7 +556,7 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 30.0, vertical: 10.0),
+                      horizontal: 400.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -659,504 +659,9 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
               ],
             ),
           ),
-        ))
-
-/*
-  @override
-  Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height * 1;
-
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              BarGradient("Crear Sare", Icons.add_box_rounded),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameRegion,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameRegionFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese El Nombre De La Sare',
-                    labelText: 'Nombre De La Sare',
-                    prefixIcon: Icon(
-                      Icons.add_home_sharp,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameRegion,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameRegionFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Clave de la sare',
-                    labelText: 'ingresa la clave',
-                    prefixIcon: Icon(
-                      Icons.add_home_sharp,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameRegion,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameRegionFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese El Nombre Del representante',
-                    labelText: 'Nombre Del representante de La Sare',
-                    prefixIcon: Icon(
-                      Icons.add_home_sharp,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                height: 100.0,
-                width: 350.0,
-                child: ChangeNotifierProvider<HomeViewModelLocalidad>(
-                  create: (BuildContext context) => HomeViewModelLocalidad(),
-                  child: Consumer<HomeViewModelLocalidad>(
-                      builder: (context, lista, _) {
-                    switch (lista.localidadList.status!) {
-                      case Status.LOADING:
-                        return Center(child: CircularProgressIndicator());
-                      case Status.ERROR:
-                        return Center(
-                            child:
-                                Text(lista.localidadList.message.toString()));
-                      case Status.COMPLETED:
-                        //var index;
-                        return Center(
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButtonFormField2(
-                              buttonDecoration: BoxDecoration(
-                                color: Color.fromARGB(255, 235, 235, 235),
-                                borderRadius: BorderRadius.circular(20.0),
-                                border: Border.all(
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                    style: BorderStyle.solid,
-                                    width: 1.00),
-                              ),
-                              isExpanded: true,
-                              hint: Row(
-                                children: [
-                                  Padding(
-                                      padding:
-                                          EdgeInsets.fromLTRB(18, 0, 18, 0)),
-                                  Icon(
-                                    Icons.list,
-                                    size: 15,
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                  ),
-                                  SizedBox(
-                                    width: 5,
-                                  ),
-                                  Expanded(
-                                    child: Center(
-                                      child: Text(
-                                        'Selecciona la localidad',
-
-                                        style: TextStyle(
-                                          fontSize: 15,
-                                          color: Theme.of(context).hintColor,
-                                        ),
-                                        overflow: TextOverflow.ellipsis,
-                                        //selectionColor: Colors.amberAccent,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-
-                              items: lista.localidadList.data!.localidades!
-                                  //lista.regionList.data!.regiones!
-                                  .map((nombre_localidad) =>
-                                      DropdownMenuItem<dynamic>(
-                                        //value: nombre_region.id.toString(),
-                                        value: nombre_localidad,
-
-                                        child: Text(
-                                          nombre_localidad.nameLoc
-                                              .toString()
-                                              .toUpperCase(),
-                                          //nombre_region.toString(),
-
-                                          style: const TextStyle(
-                                              fontSize: 14,
-                                              color:
-                                                  Color.fromARGB(255, 0, 0, 0)),
-                                          textAlign: TextAlign.justify,
-                                        ),
-                                      ))
-                                  .toList(),
-
-                              onChanged: (value) {
-                                setState(() {
-                                  selectedValue = value as dynamic;
-
-                                  print(selectedValue.id);
-                                });
-                              },
-                              value: selectedValue,
-                              validator: (value) {
-                                if (value == null) {
-                                  print("valor nulo");
-                                  return 'Relationship is required';
-                                }
-                                return null;
-                              },
-                              buttonHeight: 50,
-                              buttonWidth: 350,
-                              itemHeight: 50,
-                              dropdownMaxHeight: 400,
-                              buttonPadding:
-                                  const EdgeInsets.only(left: 25, right: 25),
-
-                              dropdownDecoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(14),
-                                color: Color.fromARGB(255, 235, 235, 235),
-                              ),
-                              searchController: searchController,
-                              searchInnerWidget: Padding(
-                                padding: const EdgeInsets.only(
-                                  top: 8,
-                                  bottom: 5,
-                                  right: 8,
-                                  left: 8,
-                                ),
-                                child: TextFormField(
-                                  controller: searchController,
-                                  decoration: InputDecoration(
-                                    isDense: false,
-                                    contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10,
-                                      vertical: 8,
-                                    ),
-                                    hintText: 'Buscar...',
-                                    icon: Icon(Icons.search),
-                                    hintStyle: const TextStyle(
-                                      fontSize: 12,
-                                    ),
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(7),
-                                    ),
-                                  ),
-                                  //validator: (selectedValue),
-                                ),
-                              ),
-                              searchMatchFn: (nombre_localidad, searchValue) {
-                                //print("Holamundo");
-                                var name = nombre_localidad.value!.nameLoc!
-                                    .toString()
-
-                                    //.toLowerCase()
-                                    .contains(searchValue);
-
-                                return name;
-                              },
-                              //This to clear the search value when you close the menu
-                              onMenuStateChange: (isOpen) {
-                                if (!isOpen) {
-                                  searchController.clear();
-                                }
-                              },
-                            ),
-                          ),
-                        );
-                    }
-                  }),
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameRegion,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameRegionFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Telefono',
-                    labelText: 'Nombre Del representante de La Sare',
-                    prefixIcon: Icon(
-                      Icons.add_home_sharp,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameRegion,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameRegionFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Email',
-                    labelText: 'Nombre Del representante de La Sare',
-                    prefixIcon: Icon(
-                      Icons.add_home_sharp,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameRegion,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameRegionFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Latitud',
-                    labelText: 'Nombre Del representante de La Sare',
-                    prefixIcon: Icon(
-                      Icons.add_home_sharp,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
-                height: 80,
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: TextFormField(
-                  controller: _nameRegion,
-                  keyboardType: TextInputType.text,
-                  focusNode: nameRegionFocusNode,
-                  autofocus: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Longitud',
-                    labelText: 'Nombre Del representante de La Sare',
-                    prefixIcon: Icon(
-                      Icons.add_home_sharp,
-                    ),
-                  ),
-                  textInputAction: TextInputAction.next,
-                ),
-              ),
-              Container(
-                alignment: Alignment.center,
-                padding: EdgeInsets.all(20),
-                child: Column(children: <Widget>[
-                  SizedBox(height: 40),
-                  //################################################################################################
-                  // Rounded blue MultiSelectDialogField
-                  //################################################################################################
-                  MultiSelectDialogField(
-                    cancelText: Text('Cancelar',
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 20,
-                          fontFamily: 'Roboto',
-                          fontWeight: FontWeight.w600,
-                        )),
-                    items: _items,
-                    title: Text("Regiones"),
-                    selectedColor: Colors.green,
-                    decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 210, 210, 211),
-                      borderRadius: BorderRadius.all(Radius.circular(40)),
-                      border: Border.all(
-                        color: Color.fromARGB(255, 210, 210, 211),
-                        width: 2,
-                      ),
-                    ),
-                    buttonIcon: Icon(
-                      Icons.arrow_drop_down_circle,
-                      color: Color.fromARGB(255, 28, 74, 12),
-                    ),
-                    buttonText: Text(
-                      "Selecciona la(s) region(es) a atender",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                      ),
-                    ),
-                    onConfirm: (results) {
-                      //_selectedAnimals = results;
-                    },
-                  ),
-                ]),
-              ),
-              RoundButton(
-                title: "Siguiente",
-                // loading: addSchoolViewModel.addLoading,
-                onPress: () {
-                  if (_formKey.currentState!.validate()) {
-                    setIdLocalidad();
-                    print("validadcion correcta");
-                  } else {
-                    Utils.toastMessage("Rellenar los campos en rojo");
-                    print("validacion incorrecta");
-                  }
-
-                  /*if (_nameSchoolController.text.isEmpty ||
-                    _claveSchoolController.text.isEmpty) {
-                  Utils.flushBarErrorMessage(
-                      "Rellene todos los campos", context);*/
-                  //} else {
-
-                  //}
-                },
-              ),
-            ],
-          ),
         ),
       ),
-*/
-        /*
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("ADD SARES"),
-          backgroundColor: AppColors.grenSnackBar,
-          /*actions: [
-          ElevatedButton(
-              onPressed: () => rebuildApp(),
-              child: _rebuilder.value.isOdd ? Text('Switch to Dark theme') : Text('Switch to Light theme'))
-        ],*/
-        ),
-        body:
-            Container() /*Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // use this button to open the multi-select dialog
-            ElevatedButton(
-              onPressed: _showmultiple,
-              child: const Text('Selecciona la(s) region(es)'),
-            ),
-            const Divider(
-              height: 30,
-            ),
-            // display selected items
-            Wrap(
-              children: seleccionados
-                  .map((e) => Chip(
-                        label: Text(e),
-                      ))
-                  .toList(),
-            )
-          ],
-        ),
-      ),
-*/
-*/
-        //Con la libreria flutter_multiselec
-        /*
-            Center(
-          child: Form(
-            key: _formKey,
-            autovalidateMode: AutovalidateMode.always,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: MultiSelect(
-                    autovalidateMode: AutovalidateMode.always,
-                    cancelButtonText: "Cancelar",
-
-                    titleText: 'Country of Residence',
-                    selectedOptionsInfoTextColor: Colors.black,
-                    buttonBarColor: AppColors.grenSnackBar,
-                    selectedOptionsInfoText:
-                        "Toca de nuevo el elemento para revomer de la seleccion",
-                    selectedOptionsBoxColor:
-                        Theme.of(context).primaryColorLight,
-
-                    maxLength: 5, // optional
-                    maxLengthText: '',
-                    //--------end customization selection modal------------
-                    validator: (dynamic value) {
-                      if (value == null) {
-                        return 'Please select one or more option(s)';
-                      }
-                      return null;
-                    },
-                    errorText: 'Please select one or more option(s)',
-                    dataSource: lista,
-                    textField: 'code',
-                    searchBoxIcon: Icons.search,
-                    valueField: 'code',
-                    filterable: true,
-                    required: true,
-                    onSaved: (value) {
-                      print('The saved values are $value');
-                    },
-                    change: (value) {
-                      print('The selected values are $value');
-                    },
-                    searchBoxColor: AppColors.grenSnackBar,
-                    selectIcon: Icons.arrow_drop_down_circle,
-                    saveButtonColor: Theme.of(context).primaryColor,
-                    checkBoxColor: Theme.of(context).primaryColorDark,
-                    cancelButtonColor: Colors.red,
-                    responsiveDialogSize: Size(600, 800),
-                  ),
-                ),
-                SizedBox(width: 10.0),
-                ElevatedButton(
-                    child: Text('Save'),
-                    style: ElevatedButton.styleFrom(
-                      primary: Theme.of(context).colorScheme.primary,
-                      onPrimary: Theme.of(context).colorScheme.onPrimary,
-                    ),
-                    onPressed: () {
-                      _onFormSaved();
-                    }),
-                SizedBox(
-                  width: 10.0,
-                ),
-              ],
-            ),
-          ),
-        )*/
-        );
+    );
   }
 
   ChangeNotifierProvider<HomeViewModelRegion> getListaRegiones() {
@@ -1177,6 +682,8 @@ class _HomeScreenSareAddState extends State<HomeScreenSareAdd> {
                 .toList();
             //getjsonEndo();
             return Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
               padding: EdgeInsets.all(20),
               child: Column(children: <Widget>[
                 SizedBox(height: 40),

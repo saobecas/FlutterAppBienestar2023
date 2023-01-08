@@ -24,6 +24,9 @@ class Utils {
   static toastMessage(String message) {
     Fluttertoast.showToast(
       msg: message,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.BOTTOM,
+      fontSize: 30,
       backgroundColor: Colors.black,
       textColor: Colors.white,
     );
@@ -34,16 +37,16 @@ class Utils {
       context: context,
       flushbar: Flushbar(
         forwardAnimationCurve: Curves.decelerate,
-        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.symmetric(horizontal: 400, vertical: 100),
+        padding: const EdgeInsets.all(20),
         message: message,
-        duration: const Duration(seconds: 3),
-        borderRadius: BorderRadius.circular(20),
+        duration: const Duration(seconds: 4),
+        borderRadius: BorderRadius.circular(60),
         flushbarPosition: FlushbarPosition.TOP,
         backgroundColor: Colors.red,
         reverseAnimationCurve: Curves.easeInOut,
-        positionOffset: 20,
-        icon: const Icon(Icons.error, size: 28, color: Colors.white),
+        positionOffset: 100,
+        icon: const Icon(Icons.error, size: 30, color: Colors.white),
       )..show(context),
     );
   }

@@ -19,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _visibleOption = false;
   HomeViewModel homeViewModel = HomeViewModel();
 
   User userData = User();
@@ -36,31 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
           userData = value.user!,
           employeeData = value.user!.employee!,
           roleData = value.user!.role!,
-          print("Imprimiendo role de usuario: " + roleData.nameRole.toString()),
-          setState(() {
-            if (roleData.nameRole == "administrador") {
-              _visibleOption = true;
-            } else {
-              _visibleOption = false;
-            }
-          })
+          setState(() {})
         });
-    //activar_desactivar();
-  }
-
-  void activar_desactivar() {
-    print("Imprimiendo role de usuario: " + roleData.nameRole.toString());
-
-    /*if (roleData.nameRole == "administrador") {
-      print("Imprimiendo role de usuario: " + roleData.toString());
-      setState(() {
-        _visibleOption = true;
-      });
-    } else {
-      setState(() {
-        _visibleOption = false;
-      });
-    }*/
   }
 
   @override
@@ -98,7 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         drawer: Drawer(
+          //width: MediaQuery.of(context).size.width,
           child: ListView(
+            // padding: EdgeInsets.zero,
             children: [
               UserAccountsDrawerHeader(
                 accountName: Text(
@@ -123,25 +101,22 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Visibility(
-                visible: true,
-                child: ListTile(
-                  title: Text(
-                    "Region",
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                  leading: Icon(
-                    Icons.holiday_village_rounded,
+              ListTile(
+                title: Text(
+                  "Region",
+                  style: TextStyle(
                     color: Colors.black,
                   ),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.pushNamed(context, RoutesName.region);
-                    //  Navigator.popAndPushNamed(context, RoutesName.region);
-                  },
                 ),
+                leading: Icon(
+                  Icons.holiday_village_rounded,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, RoutesName.region);
+                  //  Navigator.popAndPushNamed(context, RoutesName.region);
+                },
               ),
               ListTile(
                 title: Text(
@@ -194,65 +169,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 15,
                 color: Colors.black,
               ),
-              Visibility(
-                visible: _visibleOption,
-                child: ListTile(
-                  title: Text(
-                    "Usuarios",
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                  leading: Icon(
-                    Icons.manage_accounts,
+              ListTile(
+                title: Text(
+                  "Usuarios",
+                  style: TextStyle(
                     color: Colors.black,
                   ),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.pushNamed(context, RoutesName.lisUser);
-                  },
                 ),
+                leading: Icon(
+                  Icons.manage_accounts,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, RoutesName.lisUser);
+                },
               ),
-              Visibility(
-                visible: _visibleOption,
-                child: ListTile(
-                  title: Text(
-                    "SARE",
-                    style: TextStyle(
-                      color: Colors.black,
-                    ),
-                  ),
-                  leading: Icon(
-                    Icons.line_style_outlined,
+              ListTile(
+                title: Text(
+                  "SARE",
+                  style: TextStyle(
                     color: Colors.black,
                   ),
-                  onTap: () {
-                    Navigator.of(context).pop();
-                    Navigator.pushNamed(context, RoutesName.sare);
-                  },
                 ),
-              ),
-              Visibility(
-                visible: _visibleOption,
-                child: ListTile(
-                    title: Text(
-                      "Enviar Correo",
-                      style: TextStyle(
-                        color: Colors.black,
-                      ),
-                    ),
-                    leading: Icon(
-                      Icons.mark_as_unread_rounded,
-                      color: Colors.black,
-                    ),
-                    onTap: () {
-                      Navigator.of(context).pop();
-                      Navigator.pushNamed(context, RoutesName.emails);
-                    }),
+                leading: Icon(
+                  Icons.line_style_outlined,
+                  color: Colors.black,
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.pushNamed(context, RoutesName.sare);
+                },
               ),
               /*ListTile(
                   title: Text(
-                    "Dowlands",
+                    "Enviar Correo",
                     style: TextStyle(
                       color: Colors.black,
                     ),
@@ -263,7 +214,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   onTap: () {
                     Navigator.of(context).pop();
-                    Navigator.pushNamed(context, RoutesName.dowland);
+                    Navigator.pushNamed(context, RoutesName.emails);
                   }),*/
             ],
           ),
@@ -278,7 +229,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(
                   "Bienvenido",
                   style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 60.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontFamily: "SourceSansPro",
@@ -288,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   textAlign: TextAlign.center,
                   "${employeeData.fullName.toString().toUpperCase()}",
                   style: TextStyle(
-                      fontSize: 20.0,
+                      fontSize: 25.0,
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontFamily: "SourceSansPro",
@@ -310,7 +261,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   //elevation: 8,
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 425),
                   child: Padding(
                       padding: EdgeInsets.all(5),
                       child: ListTile(
@@ -323,38 +274,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             color: Colors.teal.shade900,
                             fontFamily: "SourceSansPro",
-                            fontSize: 20,
+                            fontSize: 25,
                           ),
                         ),
                       )),
                 ),
-
-                /* Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  elevation: 8,
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                  child: Padding(
-                      padding: EdgeInsets.all(10),
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.phone,
-                          color: Colors.teal,
-                        ),
-                        title: Text(
-                          "${roleData.nameRole}",
-                          style: TextStyle(
-                            color: Colors.teal.shade900,
-                            fontFamily: "SourceSansPro",
-                            fontSize: 20,
-                          ),
-                        ),
-                      )),
-                ),*/
                 Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 425),
                   child: Padding(
                     padding: EdgeInsets.all(5),
                     child: ListTile(
@@ -367,7 +295,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         style: TextStyle(
                           color: Colors.teal.shade900,
                           fontFamily: "SourceSansPro",
-                          fontSize: 17,
+                          fontSize: 25,
                         ),
                       ),
                     ),
@@ -376,7 +304,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 Card(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 425),
                   child: Padding(
                       padding: EdgeInsets.all(5),
                       child: ListTile(
@@ -389,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             color: Colors.teal.shade900,
                             fontFamily: "SourceSansPro",
-                            fontSize: 17,
+                            fontSize: 25,
                           ),
                         ),
                       )),
@@ -398,7 +326,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)),
                   elevation: 8,
-                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 425),
                   child: Padding(
                       padding: EdgeInsets.all(10),
                       child: ListTile(
@@ -411,29 +339,25 @@ class _HomeScreenState extends State<HomeScreen> {
                           style: TextStyle(
                             color: Colors.teal.shade900,
                             fontFamily: "SourceSansPro",
-                            fontSize: 20,
+                            fontSize: 25,
                           ),
                         ),
                       )),
                 ),
-
-                /* InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, RoutesName.login);
-                    },
-                    child: Text("Actualizar Contraseña")),*/
               ],
             ),
           ),
         ),
         floatingActionButton: Padding(
-          padding: const EdgeInsets.only(left: 50),
+          padding: const EdgeInsets.all(40.0),
+          //padding: const EdgeInsets.only(left: 150),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              FloatingActionButton(
+              FloatingActionButton.extended(
+                label: Text("Actualizar Datos Personales"),
                 heroTag: "btn1",
-                child: Icon(Icons.person_rounded),
+                // child: Icon(Icons.person_rounded),
                 backgroundColor: AppColors.buttonColor,
                 tooltip: 'Actualizar Datos Personales',
                 onPressed: () {
@@ -454,9 +378,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
               Expanded(child: Container()),
-              FloatingActionButton(
+              FloatingActionButton.extended(
+                label: Text("Actualizar Contraseña"),
                 heroTag: "btn2",
-                child: Icon(Icons.password),
+                //child: Icon(Icons.password),
                 backgroundColor: AppColors.buttonColor,
                 tooltip: 'Actualizar Contraseña',
                 onPressed: () {

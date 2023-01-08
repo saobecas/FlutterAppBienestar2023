@@ -30,27 +30,42 @@ class _DetailsUserViewState extends State<DetailsUserView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              ListTile(
-                onTap: () {
-                  if (kDebugMode) {
-                    print(widget.users!.id.toString());
-                  }
+              Container(
+                height: 300,
+                width: double.infinity,
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  margin: EdgeInsets.symmetric(horizontal: 350.0),
+                  elevation: 20,
+                  child: Column(
+                    children: [
+                      ListTile(
+                        onTap: () {
+                          if (kDebugMode) {
+                            print(widget.users!.id.toString());
+                          }
 
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ScreenRoleUpdateUser(
-                            idUser: this.widget.users!.id.toString(),
-                            idRole: this.widget.users!.roleId.toString(),
-                          )));
-                },
-                title: Text(
-                    style: const TextStyle(
-                      color: Colors.black87,
-                      fontSize: 18,
-                    ),
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => ScreenRoleUpdateUser(
+                                    idUser: this.widget.users!.id.toString(),
+                                    idRole:
+                                        this.widget.users!.roleId.toString(),
+                                  )));
+                        },
+                        title: Text(
+                            style: const TextStyle(
+                              color: Colors.black87,
+                              fontSize: 18,
+                            ),
 
-                    //textAlign: TextAlign.justify,
-                    textAlign: TextAlign.left,
-                    "Nombre: ${widget.users!.employee!.fullName.toString().toUpperCase()}\n\nCorreo Electronico: ${widget.users!.employee!.email.toString().toUpperCase()} \n\nTelefono: ${widget.users!.employee!.numberPhone.toString().toUpperCase()} \n\nOficina: ${widget.users!.employee!.oficina.toString().toUpperCase()} \n\nRol: ${widget.users!.role!.nameRole.toString().toUpperCase()} \n "),
+                            //textAlign: TextAlign.justify,
+                            textAlign: TextAlign.left,
+                            "Nombre: ${widget.users!.employee!.fullName.toString().toUpperCase()}\n\nCorreo Electronico: ${widget.users!.employee!.email.toString().toUpperCase()} \n\nTelefono: ${widget.users!.employee!.numberPhone.toString().toUpperCase()} \n\nOficina: ${widget.users!.employee!.oficina.toString().toUpperCase()} \n\nRol: ${widget.users!.role!.nameRole.toString().toUpperCase()} \n "),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               /* Card(
                 shape: RoundedRectangleBorder(

@@ -76,7 +76,7 @@ class _HomeScreenRegionUpdateState extends State<HomeScreenRegionUpdate> {
             children: [
               BarGradient("Actualizar Region", Icons.update),
               Container(
-                margin: EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                margin: EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
                 /* tamaño del colum */ height: 80,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 4),

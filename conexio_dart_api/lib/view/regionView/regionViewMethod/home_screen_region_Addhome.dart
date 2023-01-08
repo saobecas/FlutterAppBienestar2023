@@ -54,7 +54,7 @@ class _HomeScreenRegionAddState extends State<HomeScreenRegionAdd> {
             BarGradient("Crear Region", Icons.add_box_rounded),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(

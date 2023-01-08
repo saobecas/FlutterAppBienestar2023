@@ -49,7 +49,7 @@ class _LoginViewState extends State<LoginView> {
                   "Directorios Escolares De Educación Básica", Icons.school),
               Container(
                 margin: const EdgeInsets.symmetric(
-                    horizontal: 30.0, vertical: 10.0),
+                    horizontal: 400.0, vertical: 10.0),
                 height: 80,
                 padding:
                     const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
                   builder: (context, value, child) {
                     return Container(
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 30.0, vertical: 10.0),
+                          horizontal: 400.0, vertical: 20.0),
                       height: 80,
                       padding: const EdgeInsets.symmetric(
                           vertical: 4, horizontal: 16),
@@ -102,7 +102,7 @@ class _LoginViewState extends State<LoginView> {
                 height: height * .085,
               ),
               RoundButton(
-                title: "Iniciar Sesiòn",
+                title: "Iniciar Sesion",
                 loading: authViewModel.loading,
                 onPress: () {
                   if (_emailController.text.isEmpty) {

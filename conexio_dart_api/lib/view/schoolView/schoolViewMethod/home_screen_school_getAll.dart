@@ -78,8 +78,8 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
                   return Card(
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    margin: EdgeInsets.all(11),
-                    elevation: 8,
+                    margin: EdgeInsets.symmetric(horizontal: 300, vertical: 10),
+                    elevation: 20,
                     child: Column(
                       children: <Widget>[
                         ListTile(
@@ -112,7 +112,7 @@ class _HomeScreenSchoolGetAllState extends State<HomeScreenSchoolGetAll> {
                                     .toString(),
                           ),
                           trailing: Container(
-                            width: 70,
+                            width: 90,
                             child: Row(
                               children: [
                                 Expanded(

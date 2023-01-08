@@ -90,7 +90,7 @@ class _SchoolGetIdDetailState extends State<SareGetIdDetail> {
           ),
         ),
       ),
-      floatingActionButton: Padding(
+      /*floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 50),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -130,7 +130,7 @@ class _SchoolGetIdDetailState extends State<SareGetIdDetail> {
             ),
           ],
         ),
-      ),
+      ),*/
     );
   }
 }

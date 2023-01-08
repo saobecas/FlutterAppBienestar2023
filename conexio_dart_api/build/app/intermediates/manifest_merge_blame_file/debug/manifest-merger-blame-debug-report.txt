@@ -1,0 +1,191 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.conexio_dart_api"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="20"
+9        android:targetSdkVersion="31" />
+10    <!--
+11         The INTERNET permission is required for development. Specifically,
+12         the Flutter tool needs it to communicate with the running application
+13         to allow setting breakpoints, to provide hot reload, etc.
+14    -->
+15    <uses-permission android:name="android.permission.INTERNET" />
+15-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:9:4-65
+15-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:9:21-63
+16
+17    <queries>
+17-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:3:5-8:15
+18        <intent>
+18-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:4:9-7:18
+19            <action android:name="android.intent.action.SENDTO" />
+19-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:5:13-67
+19-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:5:21-64
+20
+21            <data android:scheme="mailto" />
+21-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:6:13-45
+21-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:6:19-42
+22        </intent>
+23        <!-- Needs to be explicitly declared on Android R+ -->
+24        <package android:name="com.google.android.apps.maps" />
+24-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:33:9-64
+24-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:33:18-61
+25    </queries>
+26
+27    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+27-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:10:4-78
+27-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:10:21-75
+28    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+28-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:11:4-80
+28-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:11:21-77
+29    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+29-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:12:4-84
+29-->C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\android\app\src\main\AndroidManifest.xml:12:21-81
+30    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- Include required permissions for Google Maps API to run. -->
+30-->[:geolocator_android] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-77
+30-->[:geolocator_android] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-74
+31    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+31-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:5-79
+31-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:23:22-76
+32
+33    <uses-feature
+33-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:26:5-28:35
+34        android:glEsVersion="0x00020000"
+34-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:27:9-41
+35        android:required="true" />
+35-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:28:9-32
+36
+37    <application
+38        android:name="android.app.Application"
+39        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+39-->[androidx.core:core:1.8.0] C:\Users\elcro\.gradle\caches\transforms-3\d363e3b5616f580c766e3e2b3c05f27d\transformed\core-1.8.0\AndroidManifest.xml:24:18-86
+40        android:debuggable="true"
+41        android:icon="@mipmap/ic_launcher"
+42        android:label="conexio_dart_api" >
+43        <meta-data
+44            android:name="com.google.android.geo.API_KEY"
+45            android:value="AIzaSyCdniLdk6ObOWW8trRHJblvZFPRFgPqoTg" />
+46
+47        <activity
+48            android:name="com.example.conexio_dart_api.MainActivity"
+49            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+50            android:exported="true"
+51            android:hardwareAccelerated="true"
+52            android:launchMode="singleTop"
+53            android:theme="@style/LaunchTheme"
+54            android:windowSoftInputMode="adjustResize" >
+55
+56            <!--
+57                 Specifies an Android theme to apply to this Activity as soon as
+58                 the Android process has started. This theme is visible to the user
+59                 while the Flutter UI initializes. After that, this theme continues
+60                 to determine the Window background behind the Flutter UI.
+61            -->
+62            <meta-data
+63                android:name="io.flutter.embedding.android.NormalTheme"
+64                android:resource="@style/NormalTheme" />
+65
+66            <intent-filter>
+67                <action android:name="android.intent.action.MAIN" />
+68
+69                <category android:name="android.intent.category.LAUNCHER" />
+70            </intent-filter>
+71        </activity>
+72        <!--
+73             Don't delete the meta-data below.
+74             This is used by the Flutter tool to generate GeneratedPluginRegistrant.java
+75        -->
+76        <meta-data
+77            android:name="flutterEmbedding"
+78            android:value="2" />
+79
+80        <provider
+80-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:10:9-18:20
+81            android:name="com.sidlatau.flutteremailsender.FlutterEmailSenderFileProvider"
+81-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-90
+82            android:authorities="com.example.conexio_dart_api.file_provider"
+82-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:12:13-65
+83            android:exported="false"
+83-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-37
+84            android:grantUriPermissions="true" >
+84-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-47
+85            <meta-data
+85-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-17:61
+86                android:name="android.support.FILE_PROVIDER_PATHS"
+86-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:16:17-67
+87                android:resource="@xml/shared_file_paths" />
+87-->[:flutter_email_sender] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\flutter_email_sender\intermediates\merged_manifest\debug\AndroidManifest.xml:17:17-58
+88        </provider>
+89
+90        <service
+90-->[:geolocator_android] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:12:9-16:56
+91            android:name="com.baseflow.geolocator.GeolocatorLocationService"
+91-->[:geolocator_android] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:13:13-77
+92            android:enabled="true"
+92-->[:geolocator_android] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:14:13-35
+93            android:exported="false"
+93-->[:geolocator_android] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:15:13-37
+94            android:foregroundServiceType="location" />
+94-->[:geolocator_android] C:\Users\elcro\OneDrive\Escritorio\ConexionApi\conexio_dart_api\build\geolocator_android\intermediates\merged_manifest\debug\AndroidManifest.xml:16:13-53
+95
+96        <uses-library
+96-->[androidx.window:window:1.0.0-beta04] C:\Users\elcro\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:25:9-27:40
+97            android:name="androidx.window.extensions"
+97-->[androidx.window:window:1.0.0-beta04] C:\Users\elcro\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:26:13-54
+98            android:required="false" />
+98-->[androidx.window:window:1.0.0-beta04] C:\Users\elcro\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:27:13-37
+99        <uses-library
+99-->[androidx.window:window:1.0.0-beta04] C:\Users\elcro\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:28:9-30:40
+100            android:name="androidx.window.sidecar"
+100-->[androidx.window:window:1.0.0-beta04] C:\Users\elcro\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:29:13-51
+101            android:required="false" /> <!-- Needs to be explicitly declared on P+ -->
+101-->[androidx.window:window:1.0.0-beta04] C:\Users\elcro\.gradle\caches\transforms-3\49bc944d29f70d45aa5add8e43e3247e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:30:13-37
+102        <uses-library
+102-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:39:9-41:40
+103            android:name="org.apache.http.legacy"
+103-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:40:13-50
+104            android:required="false" />
+104-->[com.google.android.gms:play-services-maps:18.1.0] C:\Users\elcro\.gradle\caches\transforms-3\e201e9ad108cf5dd9bf454f2a581d29d\transformed\jetified-play-services-maps-18.1.0\AndroidManifest.xml:41:13-37
+105
+106        <activity
+106-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\elcro\.gradle\caches\transforms-3\3ff720be07735976176520d1c05fb799\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:9-22:45
+107            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+107-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\elcro\.gradle\caches\transforms-3\3ff720be07735976176520d1c05fb799\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:20:19-85
+108            android:exported="false"
+108-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\elcro\.gradle\caches\transforms-3\3ff720be07735976176520d1c05fb799\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:22:19-43
+109            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+109-->[com.google.android.gms:play-services-base:18.0.1] C:\Users\elcro\.gradle\caches\transforms-3\3ff720be07735976176520d1c05fb799\transformed\jetified-play-services-base-18.0.1\AndroidManifest.xml:21:19-78
+110
+111        <meta-data
+111-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\elcro\.gradle\caches\transforms-3\601d4158b382ad9f634d3bbb23a34c83\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:21:9-23:69
+112            android:name="com.google.android.gms.version"
+112-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\elcro\.gradle\caches\transforms-3\601d4158b382ad9f634d3bbb23a34c83\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:22:13-58
+113            android:value="@integer/google_play_services_version" />
+113-->[com.google.android.gms:play-services-basement:18.0.0] C:\Users\elcro\.gradle\caches\transforms-3\601d4158b382ad9f634d3bbb23a34c83\transformed\jetified-play-services-basement-18.0.0\AndroidManifest.xml:23:13-66
+114
+115        <provider
+115-->[androidx.emoji2:emoji2:1.2.0] C:\Users\elcro\.gradle\caches\transforms-3\9fc546b4b41c30406c1c6f8de93a0c6d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+116            android:name="androidx.startup.InitializationProvider"
+116-->[androidx.emoji2:emoji2:1.2.0] C:\Users\elcro\.gradle\caches\transforms-3\9fc546b4b41c30406c1c6f8de93a0c6d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:25:13-67
+117            android:authorities="com.example.conexio_dart_api.androidx-startup"
+117-->[androidx.emoji2:emoji2:1.2.0] C:\Users\elcro\.gradle\caches\transforms-3\9fc546b4b41c30406c1c6f8de93a0c6d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:26:13-68
+118            android:exported="false" >
+118-->[androidx.emoji2:emoji2:1.2.0] C:\Users\elcro\.gradle\caches\transforms-3\9fc546b4b41c30406c1c6f8de93a0c6d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:27:13-37
+119            <meta-data
+119-->[androidx.emoji2:emoji2:1.2.0] C:\Users\elcro\.gradle\caches\transforms-3\9fc546b4b41c30406c1c6f8de93a0c6d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+120                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+120-->[androidx.emoji2:emoji2:1.2.0] C:\Users\elcro\.gradle\caches\transforms-3\9fc546b4b41c30406c1c6f8de93a0c6d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:30:17-75
+121                android:value="androidx.startup" />
+121-->[androidx.emoji2:emoji2:1.2.0] C:\Users\elcro\.gradle\caches\transforms-3\9fc546b4b41c30406c1c6f8de93a0c6d\transformed\jetified-emoji2-1.2.0\AndroidManifest.xml:31:17-49
+122            <meta-data
+122-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\elcro\.gradle\caches\transforms-3\c7dc2d946f639e7b414f5fbe78913a76\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+123                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+123-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\elcro\.gradle\caches\transforms-3\c7dc2d946f639e7b414f5fbe78913a76\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+124                android:value="androidx.startup" />
+124-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\elcro\.gradle\caches\transforms-3\c7dc2d946f639e7b414f5fbe78913a76\transformed\jetified-lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+125        </provider>
+126    </application>
+127
+128</manifest>

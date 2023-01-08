@@ -66,7 +66,8 @@ class _ListUserViewState extends State<ListUserView> {
                     return Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      margin: EdgeInsets.all(11),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 300, vertical: 10),
                       elevation: 8,
                       child: Column(
                         children: <Widget>[
