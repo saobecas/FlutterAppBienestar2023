@@ -141,7 +141,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             BarGradient("Actualizar Escuela", Icons.create_new_folder),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -167,7 +167,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 90,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -193,7 +193,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -356,7 +356,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -374,7 +374,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -393,7 +393,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -412,7 +412,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -430,7 +430,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 85,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -455,7 +455,7 @@ class _HomeScreenSchoolUpdateState extends State<HomeScreenSchoolUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 90,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(

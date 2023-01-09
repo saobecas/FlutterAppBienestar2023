@@ -11,7 +11,6 @@ class BottomNavigatorBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       onTap: voidCallbackParam,
-      backgroundColor: Colors.grey.shade300,
       currentIndex: currentIndex,
       items: [
         BottomNavigationBarItem(

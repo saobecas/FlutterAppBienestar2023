@@ -105,6 +105,19 @@ class _GetLocationsState extends State<GetLocations> {
     });
   }
 
+  /*void getDataSchool(){
+    name_school 
+      cct 
+      nivel 
+      calle 
+      noExterior 
+      numeroInteriofinal 
+      asentamiento 
+      email_school 
+      telefono 
+      localidadId 
+  }*/
+
   @override
   void initState() {
     // TODO: implement initState
@@ -147,7 +160,7 @@ class _GetLocationsState extends State<GetLocations> {
                           children: <Widget>[
                             Container(
                               margin: const EdgeInsets.symmetric(
-                                  horizontal: 400.0, vertical: 10.0),
+                                  horizontal: 30.0, vertical: 10.0),
                               height: 80,
                               padding: const EdgeInsets.symmetric(
                                   vertical: 4, horizontal: 16),
@@ -167,7 +180,7 @@ class _GetLocationsState extends State<GetLocations> {
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(
-                                  horizontal: 400.0, vertical: 10.0),
+                                  horizontal: 30.0, vertical: 10.0),
                               height: 80,
                               padding: const EdgeInsets.symmetric(
                                   vertical: 4, horizontal: 16),
@@ -188,7 +201,7 @@ class _GetLocationsState extends State<GetLocations> {
                           ],
                         )),
                     //Map
-                    /*      Container(
+                    Container(
                       // Another fixed-height child.
                       //color: const Color(0xff008000), // Green
                       height: MediaQuery.of(context).size.height,
@@ -239,7 +252,7 @@ class _GetLocationsState extends State<GetLocations> {
                         //FloatingActionButtonLocation.endTop,
                       ]),
                     ),
-*/
+
                     //button
                     Container(
                       // Another fixed-height child.
@@ -251,7 +264,7 @@ class _GetLocationsState extends State<GetLocations> {
                         onPressed: () {
                           if (_lat.text.isEmpty || _long.text.isEmpty) {
                             Utils.flushBarErrorMessage(
-                                "Antes de continuar asegurese de agregar las coordenadas",
+                                "Antes de continuar asegurese de obtener las coordenadas",
                                 context);
                           } else {
                             // Navigator.pop(context);
@@ -276,6 +289,14 @@ class _GetLocationsState extends State<GetLocations> {
                               ),
                             );
 
+                            /*Map data = {
+                              'latitud': _lat.text.toString(),
+                              'longitud': _long.text.toString(),
+                            };*/
+                            /*Navigator.pushNamed(
+                                context, RoutesName.datDirectorview);*/
+
+                            // addSchoolViewModel.addSchoolApi(data, context);*/
                             print("${this.widget.name_school}");
                           }
                         },

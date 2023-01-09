@@ -1,6 +1,7 @@
 class AppUrl {
-  static var baseUrl = "https://api-render-production.up.railway.app";
-  //static var baseUrl = "https://becas-api.onrender.com";
+  // static var baseUrl = "https://api-render-production.up.railway.app";
+  static var baseUrl =
+      "https://serviciodirectoriosescolares-production.up.railway.app";
   // static var baseUrl = "http://localhost:5000";
 
   static var loginEndPoint = "$baseUrl/api/users/signin";
@@ -13,6 +14,9 @@ class AppUrl {
   static var userUpdatePassword = '$baseUrl/api/users/update/';
   static var employeeDataUpdate = '$baseUrl/api/employee-data/';
   static var userIdDataEndPoint = "$baseUrl/api/user-data/";
+
+  static var listAllRoles = "$baseUrl/api/roles";
+  static var updateSares = "$baseUrl/api/v1/sare/";
 
   static var sareListGellAllEndPoint = "$baseUrl/api/v1/sares";
   static var addSaresEndPoint = "$baseUrl/api/v1/sare";

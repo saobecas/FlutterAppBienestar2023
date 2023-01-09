@@ -2,6 +2,7 @@ import 'package:conexio_dart_api/data/response/status.dart';
 import 'package:conexio_dart_api/model/user_model.dart';
 import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/view/details_user.dart';
+import 'package:conexio_dart_api/view/update_list_user_employee.dart';
 import 'package:conexio_dart_api/view_model/home_view_model.dart';
 import 'package:conexio_dart_api/view_model/user_view_model.dart';
 import 'package:flutter/material.dart';
@@ -17,9 +18,9 @@ class ListUserView extends StatefulWidget {
 class _ListUserViewState extends State<ListUserView> {
   HomeViewModel homeViewModel = HomeViewModel();
 
-  User userData = User();
+  /*User userData = User();
   Employee employeeData = Employee();
-  Role roleData = Role();
+  Role roleData = Role();*/
   UserViewModel getSharedPreferences = UserViewModel();
   String? token;
 
@@ -29,13 +30,13 @@ class _ListUserViewState extends State<ListUserView> {
 
     super.initState();
     getSharedPreferences.getUser().then((value) => {
-          userData = value.user!,
-          employeeData = value.user!.employee!,
-          roleData = value.user!.role!,
+          //userData = value.user!,
+          //employeeData = value.user!.employee!,
+          //roleData = value.user!.role!,
           token = value.token,
           setState(() {
             homeViewModel.fetchUserListApi(token.toString());
-            print("valor del token: ${value.token}");
+            //print("valor del token: ${value.token}");
           })
         });
   }
@@ -66,8 +67,7 @@ class _ListUserViewState extends State<ListUserView> {
                     return Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      margin:
-                          EdgeInsets.symmetric(horizontal: 300, vertical: 10),
+                      margin: EdgeInsets.all(11),
                       elevation: 8,
                       child: Column(
                         children: <Widget>[
@@ -104,6 +104,47 @@ class _ListUserViewState extends State<ListUserView> {
                               width: 70,
                               child: Row(
                                 children: [
+                                  Expanded(
+                                      child: IconButton(
+                                          color: AppColors.buttonColor,
+                                          onPressed: () {
+                                            final employeeId = value
+                                                .userList
+                                                .data!
+                                                .users![index]
+                                                .employee!
+                                                .id
+                                                .toString();
+                                            final fullName = value
+                                                .userList
+                                                .data!
+                                                .users![index]
+                                                .employee!
+                                                .fullName
+                                                .toString();
+                                            final phone = value
+                                                .userList
+                                                .data!
+                                                .users![index]
+                                                .employee!
+                                                .numberPhone
+                                                .toString();
+                                            final oficina = value.userList.data!
+                                                .users![index].employee!.oficina
+                                                .toString();
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    HomeScreenListUserUpdateEmployee(
+                                                  employeeId: employeeId,
+                                                  fullName: fullName,
+                                                  phone: phone,
+                                                  oficina: oficina,
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          icon: Icon(Icons.edit))),
                                   Expanded(
                                     child: IconButton(
                                       color: AppColors.buttonColor,
@@ -161,7 +202,7 @@ class _ListUserViewState extends State<ListUserView> {
                                       },
                                       icon: Icon(Icons.delete),
                                     ),
-                                  )
+                                  ),
                                 ],
                               ),
                             ),

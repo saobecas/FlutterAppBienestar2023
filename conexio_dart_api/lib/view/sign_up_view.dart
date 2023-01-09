@@ -79,7 +79,7 @@ oficinaFocusNode = FocusNode();
             BarGradient("Crear Cuenta", Icons.edit_calendar),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -105,7 +105,7 @@ oficinaFocusNode = FocusNode();
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -133,7 +133,7 @@ oficinaFocusNode = FocusNode();
                 builder: (context, value, child) {
                   return Container(
                     margin: const EdgeInsets.symmetric(
-                        horizontal: 400.0, vertical: 10.0),
+                        horizontal: 30.0, vertical: 10.0),
                     height: 80,
                     padding:
                         const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -168,7 +168,7 @@ oficinaFocusNode = FocusNode();
                 }),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 90,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -188,7 +188,7 @@ oficinaFocusNode = FocusNode();
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(

@@ -1,4 +1,3 @@
-import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
@@ -67,11 +66,6 @@ class _HomeScreenUserPasswordUpdateState
     final height = MediaQuery.of(context).size.height * 1;
     //print("valor de la segunda pantalla $_idRegion $_editNameRegion ");
     return Scaffold(
-      appBar: AppBar(
-        title: Text(""),
-        centerTitle: true,
-        backgroundColor: AppColors.grenSnackBar,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -82,7 +76,7 @@ class _HomeScreenUserPasswordUpdateState
                   builder: (context, value, child) {
                     return Container(
                       margin: const EdgeInsets.symmetric(
-                          horizontal: 400.0, vertical: 10.0),
+                          horizontal: 30.0, vertical: 10.0),
                       height: 80,
                       padding: const EdgeInsets.symmetric(
                           vertical: 4, horizontal: 16),
@@ -147,22 +141,3 @@ class _HomeScreenUserPasswordUpdateState
     );
   }
 }
-
-
-/*
- Scaffold(
-      appBar: AppBar(
-        title: const Text('Second Screen'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          // Within the SecondScreen widget
-          onPressed: () {
-            // todo se utiliza para retornar a la primera pagina
-            Navigator.pop(context);
-          },
-          child: const Text('Go back!'),
-        ),
-      ),
-    );
-    */

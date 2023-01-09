@@ -101,7 +101,7 @@ class _HomeScreenLocalidadUpdateState extends State<HomeScreenLocalidadUpdate> {
             BarGradient("Actualizar Localidad", Icons.update_rounded),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(
@@ -123,7 +123,7 @@ class _HomeScreenLocalidadUpdateState extends State<HomeScreenLocalidadUpdate> {
             ),
             Container(
               margin:
-                  const EdgeInsets.symmetric(horizontal: 400.0, vertical: 10.0),
+                  const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
               height: 80,
               padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
               child: TextFormField(

@@ -21,6 +21,29 @@ class UserListModel {
   }
 }
 
+class RolesList {
+  List<Role>? roles;
+
+  RolesList({this.roles});
+
+  RolesList.fromJson(Map<String, dynamic> json) {
+    if (json['roles'] != null) {
+      roles = <Role>[];
+      json['roles'].forEach((v) {
+        roles!.add(new Role.fromJson(v));
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.roles != null) {
+      data['roles'] = this.roles!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
 class Users {
   int? id;
   String? email;

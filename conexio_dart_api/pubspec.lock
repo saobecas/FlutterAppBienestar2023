@@ -205,20 +205,27 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1"
+  google_maps:
+    dependency: "direct main"
+    description:
+      name: google_maps
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.2.0"
   google_maps_flutter:
     dependency: "direct main"
     description:
       name: google_maps_flutter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.1"
+    version: "2.2.3"
   google_maps_flutter_android:
     dependency: transitive
     description:
       name: google_maps_flutter_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.3"
+    version: "2.4.0"
   google_maps_flutter_ios:
     dependency: transitive
     description:
@@ -261,6 +268,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.4"
+  js_wrapping:
+    dependency: transitive
+    description:
+      name: js_wrapping
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.4"
   json_annotation:
     dependency: transitive
     description:

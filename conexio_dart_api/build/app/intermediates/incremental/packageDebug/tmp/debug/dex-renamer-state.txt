@@ -1,4 +1,4 @@
-#Wed Jan 04 19:21:46 CST 2023
+#Mon Jan 09 16:27:40 CST 2023
 base.0=C\:\\Users\\elcro\\OneDrive\\Escritorio\\ConexionApi\\conexio_dart_api\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

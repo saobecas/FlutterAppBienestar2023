@@ -55,3 +55,14 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+/*
+ breakpoints: [
+            //ResponsiveBreakpoint.autoScale(600)
+            const ResponsiveBreakpoint.resize(400, name: MOBILE),
+            //const ResponsiveBreakpoint.autoScale(800, name: TABLET),
+            //const ResponsiveBreakpoint.autoScale(1000, name: TABLET),
+            //const ResponsiveBreakpoint.resize(600, name: DESKTOP),
+            const ResponsiveBreakpoint.resize(1024, name: DESKTOP),
+            // const ResponsiveBreakpoint.autoScale(2460, name: "4K"),
+          ],
+*/

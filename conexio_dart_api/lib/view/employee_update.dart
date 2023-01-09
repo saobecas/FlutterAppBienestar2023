@@ -1,4 +1,3 @@
-import 'package:conexio_dart_api/res/color.dart';
 import 'package:conexio_dart_api/res/components/round_button.dart';
 import 'package:conexio_dart_api/utils/utils.dart';
 import 'package:conexio_dart_api/view/bar_gradient.dart';
@@ -73,11 +72,6 @@ class _HomeScreenUpdateEmployeeState extends State<HomeScreenUpdateEmployee> {
     final height = MediaQuery.of(context).size.height * 1;
     //print("valor de la segunda pantalla $_idRegion $_editNameRegion ");
     return Scaffold(
-      appBar: AppBar(
-        title: Text(""),
-        centerTitle: true,
-        backgroundColor: AppColors.grenSnackBar,
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Form(
@@ -87,7 +81,7 @@ class _HomeScreenUpdateEmployeeState extends State<HomeScreenUpdateEmployee> {
                 BarGradient("Actualizar Datos Personales", Icons.update),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 400.0, vertical: 10.0),
+                      horizontal: 30.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -114,7 +108,7 @@ class _HomeScreenUpdateEmployeeState extends State<HomeScreenUpdateEmployee> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 400.0, vertical: 10.0),
+                      horizontal: 30.0, vertical: 10.0),
                   height: 90,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
@@ -135,7 +129,7 @@ class _HomeScreenUpdateEmployeeState extends State<HomeScreenUpdateEmployee> {
                 ),
                 Container(
                   margin: const EdgeInsets.symmetric(
-                      horizontal: 400.0, vertical: 10.0),
+                      horizontal: 30.0, vertical: 10.0),
                   height: 80,
                   padding:
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
